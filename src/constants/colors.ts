@@ -268,6 +268,36 @@ export const colorCombinations = {
   lightGradient: {
     full: `bg-gradient-to-br from-[#FEFBFD] via-[#FAF7FB] to-[#F0F4FF]`,
   },
+  
+  header: {
+    base: `bg-[#FEFBFD] border-[#E8E3E8]`,
+    full: `bg-[#FEFBFD] shadow-sm border-b border-[#E8E3E8] sticky top-0 z-50`,
+  },
+  
+  form: {
+    background: `bg-[#FFFFFF]`,
+    sectionBackground: `bg-[#FFFFFF]`,
+    input: `bg-[#FFFFFF] text-[#2D1B36] border-[#E8E3E8] focus:ring-[#9BB5FF] focus:border-transparent placeholder-[#A69BAA]`,
+    label: `text-[#2D1B36]`,
+    infoBox: `bg-[#F0F4FF] border-[#C4C0F0]`,
+    warningBox: `bg-[#FFF2E5] border-[#FFB366]`,
+    successBox: `bg-[#E8F5E8] text-[#2D1B36]`,
+    errorText: `text-[#FF8A80]`,
+    helperText: `text-[#6B5B73]`,
+    priceCategory: `text-[#2D1B36]`,
+    priceValue: `text-[#9BB5FF]`,
+    priceGrid: `bg-[#FFFFFF] border-[#E8E3E8]`,
+    priceItemEven: `bg-[#FFFFFF] border-[#E8E3E8]`,
+    priceItemOdd: `bg-[#FAF7FB] border-[#E8E3E8]`,
+  },
+  
+  process: {
+    stepTitle: `text-[#2D1B36]`,
+    stepDescription: `text-[#6B5B73]`,
+    step1: `bg-[#EFEDFF] text-[#7A73D7]`,
+    step2: `bg-[#E8F7F3] text-[#7CD3BD]`,
+    step3: `bg-[#FCF0F8] text-[#EFB7DB]`,
+  },
 }
 
 // Export individual color groups for easier imports

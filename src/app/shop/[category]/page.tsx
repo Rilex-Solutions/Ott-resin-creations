@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
+import CustomOrderForm from '@/components/forms/CustomOrderForm'
 
 const categories = {
   'coasters': {
@@ -810,6 +811,51 @@ export default function CategoryPage({ params }: CategoryPageProps) {
     notFound()
   }
 
+  // Special handling for custom-orders page
+  if (params.category === 'custom-orders') {
+    return (
+      <div className="min-h-screen flex flex-col">
+        <Header />
+        
+        <main className="flex-grow">
+          {/* Breadcrumb */}
+          <div className="bg-[#FAF7FB] py-4">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <nav className="flex text-sm">
+                <Link href="/" className="text-[#6B5B73] hover:text-[#2D1B36]">Home</Link>
+                <span className="mx-2 text-[#A69BAA]">/</span>
+                <Link href="/shop" className="text-[#6B5B73] hover:text-[#2D1B36]">Shop</Link>
+                <span className="mx-2 text-[#A69BAA]">/</span>
+                <span className="text-[#2D1B36] font-medium">Custom Orders</span>
+              </nav>
+            </div>
+          </div>
+
+          {/* Hero Section */}
+          <section className="bg-gradient-to-br from-[#F8F5FF] via-[#F0FDF9] to-[#FDF2F8] py-16">
+            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+              <h1 className="text-4xl md:text-5xl font-bold text-[#2D1B36] mb-6">
+                Custom Orders
+              </h1>
+              <p className="text-xl text-[#6B5B73] max-w-3xl mx-auto mb-8">
+                Bring your vision to life with completely custom resin art pieces designed just for you
+              </p>
+            </div>
+          </section>
+
+          {/* Custom Order Form */}
+          <section className="py-16 bg-[#FEFBFD]">
+            <div className="px-4 sm:px-6 lg:px-8">
+              <CustomOrderForm />
+            </div>
+          </section>
+        </main>
+
+        <Footer />
+      </div>
+    )
+  }
+
   const featuredProducts = categoryData.products.filter(product => product.featured)
   const otherProducts = categoryData.products.filter(product => !product.featured)
 
@@ -842,7 +888,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
             </p>
             {params.category === 'custom' && (
               <Link 
-                href="/contact" 
+                href="/shop/custom-orders" 
                 className="bg-blue-600 text-white px-8 py-3 rounded-lg text-lg font-semibold hover:bg-blue-700 transition-colors"
               >
                 Start Custom Order
@@ -953,7 +999,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link 
-                  href="/shop/custom" 
+                  href="/shop/custom-orders" 
                   className="bg-white text-blue-600 px-8 py-3 rounded-lg text-lg font-semibold hover:bg-gray-100 transition-colors"
                 >
                   View Custom Options

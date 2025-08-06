@@ -388,12 +388,36 @@ export const styles = {
     
     // Form Styles (More organic)
     form: {
-      input: 'w-full px-6 py-4 border-2 border-[#E8E3E8] rounded-2xl focus:outline-none focus:ring-4 focus:ring-[#9BB5FF]/20 focus:border-[#9BB5FF] transition-all duration-300 bg-[#FEFBFD]',
-      textarea: 'w-full px-6 py-4 border-2 border-[#E8E3E8] rounded-2xl focus:outline-none focus:ring-4 focus:ring-[#9BB5FF]/20 focus:border-[#9BB5FF] transition-all duration-300 bg-[#FEFBFD] resize-none min-h-[120px]',
-      label: 'block text-sm font-semibold mb-3 text-[#2D1B36]',
-      error: 'text-[#FF8A80] text-sm mt-2 font-medium',
-      success: 'text-[#A8D5BA] text-sm mt-2 font-medium',
-      group: 'space-y-3',
+      container: 'max-w-4xl mx-auto',
+      section: 'rounded-lg p-6 border shadow-md',
+      input: 'w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 transition-all duration-300',
+      textarea: 'w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 transition-all duration-300 resize-y min-h-[200px]',
+      label: 'block text-sm font-semibold mb-2',
+      error: 'text-sm mt-4',
+      success: 'text-sm mt-2 font-medium',
+      helper: 'text-sm mt-4 max-w-2xl mx-auto',
+      group: 'space-y-6',
+      grid: 'grid grid-cols-1 md:grid-cols-2 gap-6',
+      infoBox: 'rounded-lg p-6 mb-8 border',
+      warningBox: 'border-l-4 p-4 rounded',
+      successBox: 'rounded-lg p-8 mb-6',
+      priceGrid: 'grid grid-cols-2 md:grid-cols-3 border rounded-lg overflow-hidden mb-6 w-full',
+      priceItemBase: 'flex justify-between items-center px-4 py-3',
+      priceItemBorders: 'border-b border-r',
+      priceItemNoRightBorder: 'border-b',
+      priceItemNoBottomBorder: 'border-r',
+      priceItemNoBorder: '',
+      priceCategory: 'text-sm font-medium',
+      priceValue: 'text-sm font-bold',
+    },
+    
+    // Process Steps
+    process: {
+      container: 'grid md:grid-cols-3 gap-6',
+      step: 'text-center',
+      stepNumber: 'w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3',
+      stepTitle: 'font-semibold mb-2',
+      stepDescription: 'text-sm',
     },
     
     // Badge Styles (More playful)
@@ -517,8 +541,21 @@ export const styleCombinations = {
   brandLink: `${styles.components.nav.brand} ${styles.components.nav.artistic}`,
   
   // Form Combinations (More organic)
+  formContainer: `${styles.components.form.container}`,
+  formSection: `${styles.components.form.section}`,
   inputField: `${styles.components.form.input}`,
+  textareaField: `${styles.components.form.textarea}`,
+  fieldLabel: `${styles.components.form.label}`,
+  formGrid: `${styles.components.form.grid}`,
+  formGroup: `${styles.components.form.group}`,
   submitButton: `${styles.buttons.presets.heroCTA}`,
+  formInfoBox: `${styles.components.form.infoBox}`,
+  formWarningBox: `${styles.components.form.warningBox}`,
+  formSuccessBox: `${styles.components.form.successBox}`,
+  priceGrid: `${styles.components.form.priceGrid}`,
+  priceItemBase: `${styles.components.form.priceItemBase}`,
+  priceItemBorders: `${styles.components.form.priceItemBorders}`,
+  priceItemNoRightBorder: `${styles.components.form.priceItemNoRightBorder}`,
   
   // Animation Combinations (More playful)
   hoverEffect: `${styles.animations.presets.gentleFloat}`,

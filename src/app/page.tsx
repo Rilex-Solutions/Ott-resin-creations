@@ -28,7 +28,7 @@ export default function HomePage() {
                   View Gallery
                 </Link>
                 <Link 
-                  href="/contact" 
+                  href="/shop/custom-orders" 
                   className="bg-white text-blue-600 px-8 py-3 rounded-lg text-lg font-semibold border-2 border-blue-600 hover:bg-blue-50 transition-colors"
                 >
                   Request Custom Piece
@@ -114,7 +114,7 @@ export default function HomePage() {
               Let&rsquo;s discuss your custom resin art project. We&rsquo;ll work together to create a piece that&rsquo;s uniquely yours.
             </p>
             <Link 
-              href="/contact" 
+              href="/shop/custom-orders" 
               className="bg-white text-blue-600 px-8 py-3 rounded-lg text-lg font-semibold hover:bg-gray-100 transition-colors"
             >
               Start Your Custom Order
