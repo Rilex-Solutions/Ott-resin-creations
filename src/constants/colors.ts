@@ -231,6 +231,12 @@ export const colorCombinations = {
     full: `bg-[#9BB5FF] text-[#2D1B36] hover:bg-[#7B9AFF] transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl`,
   },
   
+  productButton: {
+    base: `bg-[#9BB5FF] text-[#2D1B36]`,
+    hover: `hover:bg-[#7B9AFF]`,
+    disabled: `bg-[#D6D1D6] text-[#8B7B94] cursor-not-allowed`,
+  },
+  
   secondaryButton: {
     base: `bg-[#7FDECC] text-[#2D1B36]`,
     hover: `hover:bg-[#5FD4BB]`,
