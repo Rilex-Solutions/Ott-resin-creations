@@ -374,9 +374,9 @@ export default function ShopPage() {
         {/* CTA Section */}
         <section className="py-16 bg-blue-600 text-white">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-3xl font-bold mb-4">Can't Find What You're Looking For?</h2>
+            <h2 className="text-3xl font-bold mb-4">Can&apos;t Find What You&apos;re Looking For?</h2>
             <p className="text-xl mb-8 opacity-90">
-              Let's create something custom just for you. Every piece tells a story - what's yours?
+              Let&apos;s create something custom just for you. Every piece tells a story - what&apos;s yours?
             </p>
             <Link 
               href="/contact" 

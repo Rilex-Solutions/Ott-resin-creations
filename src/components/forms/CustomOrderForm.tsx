@@ -84,7 +84,7 @@ export default function CustomOrderForm() {
             Thank you for your custom order request. A member of our team will call you within 24-48 hours to discuss your ideas, finalize pricing, and arrange payment and delivery.
           </p>
           <p className="text-sm text-[#6B5B73]">
-            Please keep your phone handy - we're excited to bring your vision to life!
+            Please keep your phone handy - we&apos;re excited to bring your vision to life!
           </p>
         </div>
         <button
@@ -165,7 +165,7 @@ export default function CustomOrderForm() {
             <div className="bg-[#E8F7F3] w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3">
               <span className="text-lg font-bold text-[#7CD3BD]">2</span>
             </div>
-            <h3 className="font-semibold text-[#2D1B36] mb-2">We'll Call You</h3>
+            <h3 className="font-semibold text-[#2D1B36] mb-2">We&apos;ll Call You</h3>
             <p className="text-sm text-[#6B5B73]">Our team will call within 24-48 hours to discuss ideas and finalize pricing</p>
           </div>
           
@@ -174,7 +174,7 @@ export default function CustomOrderForm() {
               <span className="text-lg font-bold text-[#EFB7DB]">3</span>
             </div>
             <h3 className="font-semibold text-[#2D1B36] mb-2">Create & Deliver</h3>
-            <p className="text-sm text-[#6B5B73]">Once approved and paid, we'll create your piece and arrange delivery</p>
+            <p className="text-sm text-[#6B5B73]">Once approved and paid, we&apos;ll create your piece and arrange delivery</p>
           </div>
         </div>
       </div>
@@ -297,7 +297,7 @@ export default function CustomOrderForm() {
             )}
             
             <p className={`${colorCombinations.form.helperText}`}>
-              By submitting this form, you're requesting a consultation. We'll call you within 24-48 hours to discuss your project, pricing, and timeline.
+              By submitting this form, you&apos;re requesting a consultation. We&apos;ll call you within 24-48 hours to discuss your project, pricing, and timeline.
             </p>
           </div>
         </div>

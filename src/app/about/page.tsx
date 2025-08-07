@@ -41,7 +41,7 @@ export default function AboutPage() {
                   ensuring that you receive something truly special.
                 </p>
                 <p className="text-lg text-gray-600">
-                  When I'm not in the studio, I love spending time with my family and drawing inspiration 
+                  When I&apos;m not in the studio, I love spending time with my family and drawing inspiration 
                   from nature, which often finds its way into my color palettes and designs.
                 </p>
               </div>
@@ -68,7 +68,7 @@ export default function AboutPage() {
                 <h3 className="text-xl font-semibold text-gray-900 mb-3">Consultation & Design</h3>
                 <p className="text-gray-600">
                   We start with a conversation about your vision, style preferences, and intended use. 
-                  I'll create initial design concepts and color schemes for your approval.
+                  I&apos;ll create initial design concepts and color schemes for your approval.
                 </p>
               </div>
               
@@ -120,7 +120,7 @@ export default function AboutPage() {
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">Personal Touch</h3>
                   <p className="text-gray-600">
                     Every piece is handmade in my studio with attention to detail that 
-                    mass-produced items simply can't match.
+                    mass-produced items simply can&apos;t match.
                   </p>
                 </div>
               </div>
@@ -139,7 +139,7 @@ export default function AboutPage() {
                 <div className="bg-yellow-50 p-4 rounded-lg mb-4">
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">Sustainability</h3>
                   <p className="text-gray-600">
-                    I'm committed to responsible practices, from sourcing eco-friendly 
+                    I&apos;m committed to responsible practices, from sourcing eco-friendly 
                     materials to minimizing waste in my creative process.
                   </p>
                 </div>
@@ -156,7 +156,7 @@ export default function AboutPage() {
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">My Studio</h2>
                 <p className="text-lg text-gray-600 mb-6">
                   Located in my home studio, this creative space is where the magic happens. 
-                  It's equipped with professional-grade tools, proper ventilation, and organized 
+                  It&apos;s equipped with professional-grade tools, proper ventilation, and organized 
                   storage for all my materials and works in progress.
                 </p>
                 <p className="text-lg text-gray-600 mb-6">
@@ -166,7 +166,7 @@ export default function AboutPage() {
                 </p>
                 <p className="text-lg text-gray-600">
                   I welcome clients to visit by appointment to see works in progress and discuss 
-                  custom projects in person. There's something special about experiencing the 
+                  custom projects in person. There&apos;s something special about experiencing the 
                   creative environment where your piece will come to life.
                 </p>
               </div>
@@ -180,9 +180,9 @@ export default function AboutPage() {
         {/* CTA Section */}
         <section className="py-16 bg-blue-600 text-white">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-3xl font-bold mb-4">Let's Create Something Together</h2>
+            <h2 className="text-3xl font-bold mb-4">Let&apos;s Create Something Together</h2>
             <p className="text-xl mb-8 opacity-90">
-              I'd love to hear about your project and discuss how we can bring your vision to life. 
+              I&apos;d love to hear about your project and discuss how we can bring your vision to life. 
               Every custom piece starts with a conversation.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
