@@ -3,8 +3,12 @@ import { notFound } from 'next/navigation'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import CustomOrderForm from '@/components/forms/CustomOrderForm'
+import ProductCard from '@/components/ProductCard'
+import { db } from '@/lib/db'
+import { products, categories } from '@/lib/db/schema'
+import { eq } from 'drizzle-orm'
 
-const categories = {
+const categoryInfo = {
   'coasters': {
     name: 'Coasters',
     description: 'Functional art for your home - custom resin coasters in various designs',
@@ -804,11 +808,52 @@ interface CategoryPageProps {
   }
 }
 
-export default function CategoryPage({ params }: CategoryPageProps) {
-  const categoryData = categories[params.category as keyof typeof categories]
+interface Product {
+  id: string
+  name: string
+  price: string
+  description: string
+  image: string
+  imageUrl: string | null
+  inStock: boolean
+  featured: boolean
+  inventoryCount: number | null
+}
+
+export default async function CategoryPage({ params }: CategoryPageProps) {
+  const categoryData = categoryInfo[params.category as keyof typeof categoryInfo]
   
   if (!categoryData) {
     notFound()
+  }
+
+  // Fetch products from database for this category
+  let categoryProducts: Product[] = []
+  
+  if (params.category !== 'custom-orders') {
+    try {
+      const dbProducts = await db
+        .select({
+          id: products.id,
+          name: products.name,
+          price: products.price,
+          description: products.description,
+          image: products.image,
+          imageUrl: products.imageUrl,
+          inStock: products.inStock,
+          featured: products.featured,
+          inventoryCount: products.inventoryCount
+        })
+        .from(products)
+        .leftJoin(categories, eq(products.categoryId, categories.id))
+        .where(eq(categories.slug, params.category))
+      
+      categoryProducts = dbProducts
+    } catch (error) {
+      console.error('Error fetching products:', error)
+      // Fall back to empty array if database fails
+      categoryProducts = []
+    }
   }
 
   // Special handling for custom-orders page
@@ -856,8 +901,8 @@ export default function CategoryPage({ params }: CategoryPageProps) {
     )
   }
 
-  const featuredProducts = categoryData.products.filter(product => product.featured)
-  const otherProducts = categoryData.products.filter(product => !product.featured)
+  const featuredProducts = categoryProducts.filter(product => product.featured)
+  const otherProducts = categoryProducts.filter(product => !product.featured)
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -908,38 +953,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
               
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {featuredProducts.map((product) => (
-                  <div key={product.id} className="group bg-white rounded-lg shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100">
-                    <div className="aspect-square bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100 flex items-center justify-center relative">
-                      <span className="text-gray-700 font-medium">{product.image}</span>
-                      {!product.inStock && (
-                        <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-                          <span className="text-white font-semibold">Out of Stock</span>
-                        </div>
-                      )}
-                      {product.featured && (
-                        <div className="absolute top-4 right-4 bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                          Featured
-                        </div>
-                      )}
-                    </div>
-                    <div className="p-6">
-                      <h3 className="text-xl font-semibold text-gray-900 mb-2">{product.name}</h3>
-                      <p className="text-gray-600 mb-4">{product.description}</p>
-                      <div className="flex justify-between items-center">
-                        <span className="text-2xl font-bold text-blue-600">{product.price}</span>
-                        <button 
-                          className={`px-6 py-2 rounded-lg font-semibold transition-colors ${
-                            product.inStock 
-                              ? 'bg-blue-600 text-white hover:bg-blue-700' 
-                              : 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                          }`}
-                          disabled={!product.inStock}
-                        >
-                          {product.inStock ? 'Add to Cart' : 'Out of Stock'}
-                        </button>
-                      </div>
-                    </div>
-                  </div>
+                  <ProductCard key={product.id} product={product} variant="featured" />
                 ))}
               </div>
             </div>
@@ -956,33 +970,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
               
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {otherProducts.map((product) => (
-                  <div key={product.id} className="group bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden">
-                    <div className="aspect-square bg-gradient-to-br from-purple-100 to-blue-100 flex items-center justify-center relative">
-                      <span className="text-gray-700 text-sm font-medium text-center px-2">{product.image}</span>
-                      {!product.inStock && (
-                        <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-                          <span className="text-white text-sm font-semibold">Out of Stock</span>
-                        </div>
-                      )}
-                    </div>
-                    <div className="p-4">
-                      <h3 className="text-lg font-semibold text-gray-900 mb-1">{product.name}</h3>
-                      <p className="text-gray-600 text-sm mb-3">{product.description}</p>
-                      <div className="flex justify-between items-center">
-                        <span className="text-lg font-bold text-blue-600">{product.price}</span>
-                        <button 
-                          className={`px-4 py-1 rounded text-sm font-semibold transition-colors ${
-                            product.inStock 
-                              ? 'bg-blue-600 text-white hover:bg-blue-700' 
-                              : 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                          }`}
-                          disabled={!product.inStock}
-                        >
-                          {product.inStock ? 'Add to Cart' : 'Out of Stock'}
-                        </button>
-                      </div>
-                    </div>
-                  </div>
+                  <ProductCard key={product.id} product={product} variant="regular" />
                 ))}
               </div>
             </div>
@@ -1023,7 +1011,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
 
 // Generate static params for all categories
 export async function generateStaticParams() {
-  return Object.keys(categories).map((category) => ({
+  return Object.keys(categoryInfo).map((category) => ({
     category: category,
   }))
 }
