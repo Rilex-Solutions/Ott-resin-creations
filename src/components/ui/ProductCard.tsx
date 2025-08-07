@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { colorCombinations } from '@/constants/colors'
+import { colorCombinations, text, interactive, components } from '@/constants/colors'
 import { styleCombinations } from '@/constants/styles'
 
 interface ProductCardProps {
@@ -60,7 +60,7 @@ export default function ProductCard({
         
         {/* Featured Badge */}
         {featured && (
-          <div className={`absolute top-4 right-4 ${styleCombinations.featuredCard} ${colorCombinations.components.featured.background} ${colorCombinations.components.featured.text} px-3 py-1 rounded-full text-sm font-semibold shadow-lg`}>
+          <div className="absolute top-4 right-4 bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-semibold shadow-lg">
             Featured
           </div>
         )}
@@ -68,7 +68,7 @@ export default function ProductCard({
         {/* Out of Stock Overlay */}
         {!inStock && (
           <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center z-20">
-            <span className={`${colorCombinations.text.white} font-semibold text-lg`}>
+            <span className="text-white font-semibold text-lg">
               Out of Stock
             </span>
           </div>
@@ -78,18 +78,18 @@ export default function ProductCard({
       {/* Product Info */}
       <div className="p-6 flex-grow flex flex-col">
         {/* Product Name */}
-        <h3 className={`text-xl font-semibold mb-2 group-hover:${colorCombinations.interactive.primary} transition-colors ${colorCombinations.text.primary}`}>
+        <h3 className="text-xl font-semibold mb-2 group-hover:text-[#9BB5FF] transition-colors text-[#2D1B36]">
           {name}
         </h3>
         
         {/* Product Description */}
-        <p className={`${colorCombinations.text.secondary} mb-4 flex-grow text-sm leading-relaxed`}>
+        <p className="text-[#4A3B52] mb-4 flex-grow text-sm leading-relaxed">
           {description}
         </p>
         
         {/* Price and Add to Cart */}
         <div className="flex justify-between items-center mt-auto">
-          <span className={`text-2xl font-bold ${colorCombinations.interactive.primary}`}>
+          <span className="text-2xl font-bold text-[#9BB5FF]">
             {price}
           </span>
           
@@ -99,8 +99,8 @@ export default function ProductCard({
             className={`
               px-6 py-2 rounded-lg font-semibold transition-all duration-300 
               ${inStock 
-                ? `${colorCombinations.productButton.base} ${colorCombinations.productButton.hover} hover:scale-105 shadow-md hover:shadow-lg` 
-                : colorCombinations.productButton.disabled
+                ? 'bg-[#9BB5FF] text-[#2D1B36] hover:bg-[#7B9AFF] hover:scale-105 shadow-md hover:shadow-lg transition-all duration-300' 
+                : 'bg-[#D6D1D6] text-[#8B7B94] cursor-not-allowed'
               }
               ${isAddingToCart ? 'opacity-70 cursor-wait' : ''}
             `}
