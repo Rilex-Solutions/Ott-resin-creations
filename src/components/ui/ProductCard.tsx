@@ -54,7 +54,7 @@ export default function ProductCard({
       {/* Product Image */}
       <div className="aspect-square bg-gradient-to-br from-[#F8F5FF] via-[#F0FDF9] to-[#FDF2F8] flex items-center justify-center relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-[#9BB5FF]/10 via-[#7FDECC]/10 to-[#E8B4CB]/10 group-hover:from-[#9BB5FF]/20 group-hover:via-[#7FDECC]/20 group-hover:to-[#E8B4CB]/20 transition-all duration-300"></div>
-        <span className={`${colorCombinations.text.secondary} font-medium text-lg z-10 text-center px-4`}>
+        <span className="text-[#4A3B52] font-medium text-lg z-10 text-center px-4">
           {image}
         </span>
         
