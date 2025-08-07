@@ -803,9 +803,9 @@ const categoryInfo = {
 }
 
 interface CategoryPageProps {
-  params: {
+  params: Promise<{
     category: string
-  }
+  }>
 }
 
 interface Product {
@@ -821,7 +821,8 @@ interface Product {
 }
 
 export default async function CategoryPage({ params }: CategoryPageProps) {
-  const categoryData = categoryInfo[params.category as keyof typeof categoryInfo]
+  const { category } = await params
+  const categoryData = categoryInfo[category as keyof typeof categoryInfo]
   
   if (!categoryData) {
     notFound()
@@ -830,7 +831,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
   // Fetch products from database for this category
   let categoryProducts: Product[] = []
   
-  if (params.category !== 'custom-orders') {
+  if (category !== 'custom-orders') {
     try {
       const dbProducts = await db
         .select({
@@ -846,7 +847,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
         })
         .from(products)
         .leftJoin(categories, eq(products.categoryId, categories.id))
-        .where(eq(categories.slug, params.category))
+        .where(eq(categories.slug, category))
       
       categoryProducts = dbProducts
     } catch (error) {
@@ -857,7 +858,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
   }
 
   // Special handling for custom-orders page
-  if (params.category === 'custom-orders') {
+  if (category === 'custom-orders') {
     return (
       <div className="min-h-screen flex flex-col">
         <Header />
@@ -931,7 +932,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
             <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
               {categoryData.hero}
             </p>
-            {params.category === 'custom' && (
+            {category === 'custom' && (
               <Link 
                 href="/shop/custom-orders" 
                 className="bg-blue-600 text-white px-8 py-3 rounded-lg text-lg font-semibold hover:bg-blue-700 transition-colors"
@@ -978,7 +979,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
         )}
 
         {/* Custom Order CTA for non-custom categories */}
-        {params.category !== 'custom' && (
+        {category !== 'custom' && (
           <section className="py-16 bg-blue-600 text-white">
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
               <h2 className="text-3xl font-bold mb-4">Want Something Different?</h2>
