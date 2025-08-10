@@ -159,6 +159,20 @@ const categoryData = [
     description: 'Decorative pieces designed to hang and catch the light',
     hero: 'Create beautiful displays with our hanging resin art',
     featured: false
+  },
+  {
+    slug: 'trinket-dish',
+    name: 'Trinket Dish',
+    description: 'Small decorative dishes perfect for jewelry, keys, or other treasures',
+    hero: 'Keep your precious items organized in style with handcrafted trinket dishes',
+    featured: false
+  },
+  {
+    slug: 'seconds-sale',
+    name: 'Seconds Sale',
+    description: 'Quality pieces with minor imperfections at discounted prices',
+    hero: 'Discover beautiful resin art at unbeatable prices',
+    featured: true
   }
 ]
 
