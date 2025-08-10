@@ -131,6 +131,7 @@ export default function AddProductPage() {
         <h1 className={`text-3xl font-bold mb-8 text-center ${colorCombinations.form.label}`}>
           Add New Product
         </h1>
+        {/* Force deployment refresh */}
 
         {submitStatus === 'success' && (
           <div className={`${styleCombinations.formSuccessBox} ${colorCombinations.form.successBox} mb-6`}>
