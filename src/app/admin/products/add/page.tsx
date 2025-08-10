@@ -37,7 +37,9 @@ const categories = [
   { slug: 'skulls', name: 'Skulls' },
   { slug: 'magnets', name: 'Magnets' },
   { slug: 'recreational', name: 'Recreational' },
-  { slug: 'hanging-items', name: 'Hanging Items' }
+  { slug: 'hanging-items', name: 'Hanging Items' },
+  { slug: 'trinket-dish', name: 'Trinket Dish' },
+  { slug: 'seconds-sale', name: 'Seconds Sale' }
 ]
 
 const initialFormData: ProductFormData = {
