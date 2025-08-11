@@ -53,50 +53,6 @@ export default function CategoryPage({ params }: CategoryPageProps) {
     )
   }
 
-  // Special handling for custom-orders page
-  if (categorySlug === 'custom-orders') {
-    return (
-      <div className="min-h-screen flex flex-col">
-        <Header />
-        
-        <main className="flex-grow">
-          {/* Breadcrumb */}
-          <div className="bg-[#FAF7FB] py-4">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <nav className="flex text-sm">
-                <a href="/" className="text-[#6B5B73] hover:text-[#2D1B36]">Home</a>
-                <span className="mx-2 text-[#A69BAA]">/</span>
-                <a href="/shop" className="text-[#6B5B73] hover:text-[#2D1B36]">Shop</a>
-                <span className="mx-2 text-[#A69BAA]">/</span>
-                <span className="text-[#2D1B36] font-medium">Custom Orders</span>
-              </nav>
-            </div>
-          </div>
-
-          {/* Hero Section */}
-          <section className="bg-gradient-to-br from-[#F8F5FF] via-[#F0FDF9] to-[#FDF2F8] py-16">
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-              <h1 className="text-4xl md:text-5xl font-bold text-[#2D1B36] mb-6">
-                Custom Orders
-              </h1>
-              <p className="text-xl text-[#6B5B73] max-w-3xl mx-auto mb-8">
-                Bring your vision to life with completely custom resin art pieces designed just for you
-              </p>
-            </div>
-          </section>
-
-          {/* Custom Order Form */}
-          <section className="py-16 bg-[#FEFBFD]">
-            <div className="px-4 sm:px-6 lg:px-8">
-              <CustomOrderForm />
-            </div>
-          </section>
-        </main>
-
-        <Footer />
-      </div>
-    )
-  }
 
   // Loading state
   if (loading || !category) {
@@ -145,6 +101,14 @@ export default function CategoryPage({ params }: CategoryPageProps) {
       
       <main className="flex-grow">
         <CategoryHero category={category} />
+        
+        <ProductsSection 
+          title="Featured Items"
+          products={featuredProducts}
+          loading={loading}
+          variant="featured"
+          backgroundColor="white"
+        />
         
         <ProductsSection 
           title="All Products"
