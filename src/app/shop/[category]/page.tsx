@@ -103,14 +103,6 @@ export default function CategoryPage({ params }: CategoryPageProps) {
         <CategoryHero category={category} />
         
         <ProductsSection 
-          title="Featured Items"
-          products={featuredProducts}
-          loading={loading}
-          variant="featured"
-          backgroundColor="white"
-        />
-        
-        <ProductsSection 
           title="All Products"
           products={otherProducts}
           loading={loading}
