@@ -1,6 +1,23 @@
+'use client'
+
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
+
+interface Product {
+  id: string
+  name: string
+  description: string
+  price: string
+  image: string
+  imageUrl: string | null
+  inStock: boolean
+  featured: boolean
+  inventoryCount: number
+  categoryName: string
+  categorySlug: string
+}
 
 const categories = [
   {
@@ -213,6 +230,28 @@ const categories = [
 ]
 
 export default function ShopPage() {
+  const [products, setProducts] = useState<Product[]>([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch('/api/products')
+        const data = await response.json()
+        if (data.products) {
+          setProducts(data.products)
+        }
+      } catch (error) {
+        console.error('Error fetching products:', error)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchProducts()
+  }, [])
+
+  const featuredProducts = products.filter(product => product.featured)
   const featuredCategories = categories.filter(cat => cat.featured)
   const otherCategories = categories.filter(cat => !cat.featured)
 
@@ -247,6 +286,80 @@ export default function ShopPage() {
             </div>
           </div>
         </section>
+
+        {/* Featured Products */}
+        {loading ? (
+          <section className="py-16 bg-gray-50">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="text-center mb-12">
+                <h2 className="text-3xl font-bold text-gray-900 mb-4">Featured Products</h2>
+                <p className="text-lg text-gray-600">Loading our handpicked showcase pieces...</p>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                {[1, 2, 3, 4].map((i) => (
+                  <div key={i} className="bg-white rounded-xl shadow-md border border-gray-100 animate-pulse">
+                    <div className="aspect-square bg-gray-200"></div>
+                    <div className="p-4">
+                      <div className="h-4 bg-gray-200 rounded mb-2"></div>
+                      <div className="h-3 bg-gray-200 rounded mb-3 w-3/4"></div>
+                      <div className="flex justify-between items-center">
+                        <div className="h-4 bg-gray-200 rounded w-16"></div>
+                        <div className="h-3 bg-gray-200 rounded w-20"></div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+        ) : featuredProducts.length > 0 && (
+          <section className="py-16 bg-gray-50">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="text-center mb-12">
+                <h2 className="text-3xl font-bold text-gray-900 mb-4">Featured Products</h2>
+                <p className="text-lg text-gray-600">Our handpicked showcase pieces</p>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                {featuredProducts.map((product) => (
+                  <div 
+                    key={product.id}
+                    className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100"
+                  >
+                    <div className="aspect-square bg-gradient-to-br from-purple-100 via-blue-100 to-pink-100 flex items-center justify-center relative">
+                      <div className="absolute inset-0 bg-gradient-to-br from-purple-200/50 to-blue-200/50 hover:from-purple-300/60 hover:to-blue-300/60 transition-all duration-300"></div>
+                      {product.imageUrl ? (
+                        <img 
+                          src={product.imageUrl} 
+                          alt={product.name} 
+                          className="w-full h-full object-cover z-10"
+                        />
+                      ) : (
+                        <span className="text-gray-700 font-medium text-center px-4 z-10">{product.image}</span>
+                      )}
+                      <div className="absolute top-4 right-4 bg-yellow-500 text-white px-2 py-1 rounded-full text-xs font-semibold">
+                        Featured
+                      </div>
+                    </div>
+                    <div className="p-4">
+                      <h3 className="text-lg font-bold text-gray-900 mb-2">{product.name}</h3>
+                      <p className="text-gray-600 text-sm mb-3 line-clamp-2">{product.description}</p>
+                      <div className="flex justify-between items-center">
+                        <span className="text-blue-600 font-bold text-lg">{product.price}</span>
+                        <div className="flex items-center gap-2">
+                          <span className="text-xs text-gray-500">{product.categoryName}</span>
+                          {!product.inStock && (
+                            <span className="text-xs bg-red-100 text-red-600 px-2 py-1 rounded">Out of Stock</span>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
 
         {/* Featured Categories */}
         <section id="featured" className="py-16 bg-white">
