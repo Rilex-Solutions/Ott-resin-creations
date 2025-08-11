@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { colorCombinations } from '@/constants/colors'
 import { styleCombinations } from '@/constants/styles'
 
@@ -16,37 +16,17 @@ interface ProductFormData {
   inventoryCount: number
 }
 
-const categories = [
-  { slug: 'coasters', name: 'Coasters' },
-  { slug: 'trays', name: 'Trays' },
-  { slug: 'dragons', name: 'Dragons' },
-  { slug: 'home-decor', name: 'Home Decor' },
-  { slug: 'phone-stands', name: 'Phone Stands' },
-  { slug: 'spooky', name: 'Spooky' },
-  { slug: 'tea-lights', name: 'Tea Lights' },
-  { slug: 'bookmarks', name: 'Bookmarks' },
-  { slug: 'earrings', name: 'Earrings' },
-  { slug: 'teddy-bears', name: 'Teddy Bears' },
-  { slug: 'celestial', name: 'Celestial' },
-  { slug: 'dream-catchers', name: 'Dream Catchers' },
-  { slug: 'memory-pieces', name: 'Memory Pieces' },
-  { slug: 'ornaments', name: 'Ornaments' },
-  { slug: 'keychains', name: 'Keychains' },
-  { slug: 'games', name: 'Games' },
-  { slug: 'necklaces', name: 'Necklaces' },
-  { slug: 'skulls', name: 'Skulls' },
-  { slug: 'magnets', name: 'Magnets' },
-  { slug: 'recreational', name: 'Recreational' },
-  { slug: 'hanging-items', name: 'Hanging Items' },
-  { slug: 'trinket-dish', name: 'Trinket Dish' },
-  { slug: 'seconds-sale', name: 'Seconds Sale' }
-]
+interface Category {
+  slug: string
+  name: string
+}
+
 
 const initialFormData: ProductFormData = {
   name: '',
   description: '',
   price: '',
-  categorySlug: 'coasters',
+  categorySlug: '',
   image: '',
   imageUrl: '',
   inStock: true,
@@ -58,6 +38,26 @@ export default function AddProductPage() {
   const [formData, setFormData] = useState<ProductFormData>(initialFormData)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
+  const [categories, setCategories] = useState<Category[]>([])
+  const [categoriesLoading, setCategoriesLoading] = useState(true)
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await fetch('/api/categories')
+        const data = await response.json()
+        if (data.categories) {
+          setCategories(data.categories)
+        }
+      } catch (error) {
+        console.error('Error fetching categories:', error)
+      } finally {
+        setCategoriesLoading(false)
+      }
+    }
+
+    fetchCategories()
+  }, [])
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value, type } = e.target
@@ -177,13 +177,21 @@ export default function AddProductPage() {
                 value={formData.categorySlug}
                 onChange={handleInputChange}
                 required
+                disabled={categoriesLoading}
                 className={`${styleCombinations.inputField} ${colorCombinations.form.input}`}
               >
-                {categories.map(category => (
-                  <option key={category.slug} value={category.slug}>
-                    {category.name}
-                  </option>
-                ))}
+                {categoriesLoading ? (
+                  <option value="">Loading categories...</option>
+                ) : (
+                  <>
+                    <option value="">Select a category</option>
+                    {categories.map(category => (
+                      <option key={category.slug} value={category.slug}>
+                        {category.name}
+                      </option>
+                    ))}
+                  </>
+                )}
               </select>
             </div>
 
