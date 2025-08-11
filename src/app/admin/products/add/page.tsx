@@ -41,36 +41,17 @@ export default function AddProductPage() {
   const [categories, setCategories] = useState<Category[]>([])
   const [categoriesLoading, setCategoriesLoading] = useState(true)
 
-  // Debug logging for state changes
-  useEffect(() => {
-    console.log('🔍 Categories state updated:', categories.length, 'items')
-    console.log('📋 Current categories:', categories)
-  }, [categories])
-
-  useEffect(() => {
-    console.log('⏳ Categories loading state:', categoriesLoading)
-  }, [categoriesLoading])
-
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        console.log('🔄 Starting to fetch categories from /api/categories')
         const response = await fetch('/api/categories')
-        console.log('📥 Categories API response status:', response.status, response.ok)
         const data = await response.json()
-        console.log('📊 Categories API response data:', data)
-        
         if (data.categories) {
-          console.log('✅ Setting categories:', data.categories.length, 'items')
-          console.log('📝 Categories list:', data.categories.map((cat: Category) => ({ slug: cat.slug, name: cat.name })))
           setCategories(data.categories)
-        } else {
-          console.warn('⚠️ No categories field in response data')
         }
       } catch (error) {
-        console.error('❌ Error fetching categories:', error)
+        console.error('Error fetching categories:', error)
       } finally {
-        console.log('🏁 Finished fetching categories, setting loading to false')
         setCategoriesLoading(false)
       }
     }
@@ -199,28 +180,18 @@ export default function AddProductPage() {
                 disabled={categoriesLoading}
                 className={`${styleCombinations.inputField} ${colorCombinations.form.input}`}
               >
-                {(() => {
-                  console.log('🎨 Rendering select options - Loading:', categoriesLoading, 'Categories count:', categories.length)
-                  if (categoriesLoading) {
-                    console.log('⏳ Showing loading option')
-                    return <option value="">Loading categories...</option>
-                  } else {
-                    console.log('📜 Rendering category options:', categories.map(cat => cat.name).join(', '))
-                    return (
-                      <>
-                        <option value="">Select a category</option>
-                        {categories.map(category => {
-                          console.log('➡️ Rendering option:', category.slug, '-', category.name)
-                          return (
-                            <option key={category.slug} value={category.slug}>
-                              {category.name}
-                            </option>
-                          )
-                        })}
-                      </>
-                    )
-                  }
-                })()}
+                {categoriesLoading ? (
+                  <option value="">Loading categories...</option>
+                ) : (
+                  <>
+                    <option value="">Select a category</option>
+                    {categories.map(category => (
+                      <option key={category.slug} value={category.slug}>
+                        {category.name}
+                      </option>
+                    ))}
+                  </>
+                )}
               </select>
             </div>
 
