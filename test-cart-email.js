@@ -35,7 +35,7 @@ const sampleCartInquiry = {
 
 // Create the exact email content that would be sent to Janet
 const janetEmailContent = `
-New Purchase Inquiry - Ott Resin Creations
+New Purchase Inquiry - Huber Duber Resin Creations
 
 Customer Information:
 Name: ${sampleCartInquiry.customer.name}
@@ -75,7 +75,7 @@ Janet will be reaching out to you within 24 hours to confirm your order and take
 If you have any questions, please don't hesitate to reach out!
 
 Best regards,
-Ott Resin Creations
+Huber Duber Resin Creations
 `.trim()
 
 console.log('='.repeat(80))

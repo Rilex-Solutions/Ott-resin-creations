@@ -8,7 +8,7 @@ export default function Footer() {
         <div className={styles.grid}>
           {/* Company Info */}
           <div className={styles.companySection}>
-            <h3 className={styles.companyTitle}>Ott Resin Creations</h3>
+            <h3 className={styles.companyTitle}>Huber Duber Resin Creations</h3>
             <p className={styles.companyDescription}>
               Handcrafted custom resin art and functional pieces. Each creation is uniquely designed 
               and crafted with care to bring beauty and functionality to your space.
@@ -65,7 +65,7 @@ export default function Footer() {
           <div>
             <h4 className={styles.sectionTitle}>Contact</h4>
             <div className={styles.contactInfo}>
-              <p>Email: info@ottresincreations.com</p>
+              <p>Email: huberduberkid@gmail.com</p>
               <p>Phone: (555) 123-4567</p>
               <p>Follow us for updates and new creations!</p>
             </div>
@@ -75,7 +75,7 @@ export default function Footer() {
         <div className={styles.divider}>
           <div className={styles.bottomSection}>
             <p className={styles.copyright}>
-              © {new Date().getFullYear()} Ott Resin Creations. All rights reserved.
+              © {new Date().getFullYear()} Huber Duber Resin Creations. All rights reserved.
             </p>
             <div className={styles.bottomLinks}>
               <Link href="/privacy" className={styles.bottomLink}>

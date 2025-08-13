@@ -2,8 +2,6 @@ import { NextRequest, NextResponse } from 'next/server'
 import { CartInquiry } from '@/types/cart'
 import { Resend } from 'resend'
 
-const resend = new Resend(process.env.RESEND_API_KEY)
-
 export async function POST(request: NextRequest) {
   try {
     const inquiry: CartInquiry = await request.json()
@@ -25,7 +23,7 @@ export async function POST(request: NextRequest) {
 
     // Create email content for Janet
     const janetEmailContent = `
-New Purchase Inquiry - Ott Resin Creations
+New Purchase Inquiry - Huber Duber Resin Creations
 
 Customer Information:
 Name: ${inquiry.customer.name}
@@ -65,35 +63,47 @@ Janet will be reaching out to you within 24 hours to confirm your order and take
 If you have any questions, please don't hesitate to reach out!
 
 Best regards,
-Ott Resin Creations
+Huber Duber Resin Creations
     `.trim()
 
+    // Initialize Resend (check if API key exists)
+    const resendApiKey = process.env.RESEND_API_KEY
+    if (!resendApiKey) {
+      console.warn('⚠️ RESEND_API_KEY not found - emails will only be logged to console')
+    }
+
+    const resend = resendApiKey ? new Resend(resendApiKey) : null
+
     // Send email to Janet
-    try {
-      await resend.emails.send({
-        from: 'Ott Resin Creations <orders@ottresincreations.com>',
-        to: ['huberduberkid@gmail.com'],
-        subject: 'New Purchase Inquiry - Ott Resin Creations',
-        text: janetEmailContent,
-      })
-      console.log('✅ Email sent to Janet successfully')
-    } catch (emailError) {
-      console.error('❌ Failed to send email to Janet:', emailError)
-      // Continue anyway - don't fail the whole request
+    if (resend) {
+      try {
+        await resend.emails.send({
+          from: 'Huber Duber Resin Creations <orders@huberduberkid.com>',
+          to: ['huberduberkid@gmail.com'],
+          subject: 'New Purchase Inquiry - Huber Duber Resin Creations',
+          text: janetEmailContent,
+        })
+        console.log('✅ Email sent to Janet successfully')
+      } catch (emailError) {
+        console.error('❌ Failed to send email to Janet:', emailError)
+        // Continue anyway - don't fail the whole request
+      }
     }
 
     // Send confirmation email to customer
-    try {
-      await resend.emails.send({
-        from: 'Ott Resin Creations <orders@ottresincreations.com>',
-        to: [inquiry.customer.email],
-        subject: 'Your Purchase Inquiry - Ott Resin Creations',
-        text: customerEmailContent,
-      })
-      console.log('✅ Confirmation email sent to customer successfully')
-    } catch (emailError) {
-      console.error('❌ Failed to send confirmation email:', emailError)
-      // Continue anyway - don't fail the whole request
+    if (resend) {
+      try {
+        await resend.emails.send({
+          from: 'Huber Duber Resin Creations <orders@huberduberkid.com>',
+          to: [inquiry.customer.email],
+          subject: 'Your Purchase Inquiry - Huber Duber Resin Creations',
+          text: customerEmailContent,
+        })
+        console.log('✅ Confirmation email sent to customer successfully')
+      } catch (emailError) {
+        console.error('❌ Failed to send confirmation email:', emailError)
+        // Continue anyway - don't fail the whole request
+      }
     }
 
     // Also log to console for debugging

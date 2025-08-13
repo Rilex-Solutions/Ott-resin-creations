@@ -16,7 +16,7 @@ export default function Header() {
           {/* Logo */}
           <div className={styles.logoContainer}>
             <Link href="/" className={styles.logoLink}>
-              Ott Resin Creations
+              Huber Duber Resin Creations
             </Link>
           </div>
 
