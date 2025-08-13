@@ -1,0 +1,237 @@
+@import '../../../styles/_variables.scss';
+
+.pageContainer {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.mainContent {
+  flex-grow: 1;
+}
+
+// Error State
+.errorMain {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.errorContent {
+  text-align: center;
+}
+
+.errorTitle {
+  font-size: $font-size-2xl;
+  font-weight: bold;
+  color: $text-primary;
+  margin-bottom: $spacing-md;
+}
+
+.errorDescription {
+  color: $text-secondary;
+  margin-bottom: $spacing-xl;
+}
+
+.errorButton {
+  background-color: $primary-main;
+  color: $text-primary;
+  padding: $spacing-sm $spacing-lg;
+  border-radius: $radius-lg;
+  border: none;
+  cursor: pointer;
+  transition: background-color $transition-normal;
+
+  &:hover {
+    background-color: $primary-hover;
+  }
+}
+
+// Loading State
+.loadingBreadcrumb {
+  background-color: $bg-secondary;
+  padding: $spacing-md 0;
+}
+
+.loadingBreadcrumbContainer {
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 0 $spacing-md;
+
+  @media (min-width: 640px) {
+    padding: 0 $spacing-lg;
+  }
+
+  @media (min-width: 1024px) {
+    padding: 0 $spacing-xl;
+  }
+}
+
+.loadingBreadcrumbSkeleton {
+  height: 1rem;
+  background-color: #d1d5db;
+  border-radius: $radius-md;
+  width: 12rem;
+  animation: pulse 2s infinite;
+}
+
+.loadingHero {
+  background: linear-gradient(135deg, $bg-primary, $bg-accent);
+  padding: 4rem 0;
+}
+
+.loadingHeroContainer {
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 0 $spacing-md;
+  text-align: center;
+
+  @media (min-width: 640px) {
+    padding: 0 $spacing-lg;
+  }
+
+  @media (min-width: 1024px) {
+    padding: 0 $spacing-xl;
+  }
+}
+
+.loadingHeroTitle {
+  height: 3rem;
+  background-color: #d1d5db;
+  border-radius: $radius-md;
+  width: 16rem;
+  margin: 0 auto $spacing-lg;
+  animation: pulse 2s infinite;
+}
+
+.loadingHeroSubtitle {
+  height: 1.5rem;
+  background-color: #d1d5db;
+  border-radius: $radius-md;
+  width: 24rem;
+  margin: 0 auto;
+  animation: pulse 2s infinite;
+}
+
+.loadingProducts {
+  padding: 4rem 0;
+}
+
+.loadingProductsContainer {
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 0 $spacing-md;
+
+  @media (min-width: 640px) {
+    padding: 0 $spacing-lg;
+  }
+
+  @media (min-width: 1024px) {
+    padding: 0 $spacing-xl;
+  }
+}
+
+.loadingProductsTitle {
+  height: 2rem;
+  background-color: #d1d5db;
+  border-radius: $radius-md;
+  width: 12rem;
+  margin: 0 auto $spacing-xl;
+  animation: pulse 2s infinite;
+}
+
+.loadingGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacing-xl;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.loadingCard {
+  background-color: $bg-card;
+  border-radius: $radius-xl;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  animation: pulse 2s infinite;
+}
+
+.loadingCardImage {
+  aspect-ratio: 1;
+  background-color: #d1d5db;
+}
+
+.loadingCardContent {
+  padding: $spacing-lg;
+}
+
+.loadingCardTitle {
+  height: 1.5rem;
+  background-color: #d1d5db;
+  border-radius: $radius-md;
+  margin-bottom: $spacing-sm;
+}
+
+.loadingCardDescription {
+  height: 1rem;
+  background-color: #d1d5db;
+  border-radius: $radius-md;
+  margin-bottom: $spacing-md;
+}
+
+.loadingCardPrice {
+  height: 1rem;
+  background-color: #d1d5db;
+  border-radius: $radius-md;
+  width: 6rem;
+}
+
+// Empty State
+.emptySection {
+  padding: 4rem 0;
+  background-color: $bg-card;
+}
+
+.emptyContainer {
+  max-width: 64rem;
+  margin: 0 auto;
+  padding: 0 $spacing-md;
+  text-align: center;
+
+  @media (min-width: 640px) {
+    padding: 0 $spacing-lg;
+  }
+
+  @media (min-width: 1024px) {
+    padding: 0 $spacing-xl;
+  }
+}
+
+.emptyTitle {
+  font-size: $font-size-2xl;
+  font-weight: bold;
+  color: $text-primary;
+  margin-bottom: $spacing-md;
+}
+
+.emptyDescription {
+  font-size: $font-size-lg;
+  color: $text-secondary;
+  margin-bottom: $spacing-xl;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}

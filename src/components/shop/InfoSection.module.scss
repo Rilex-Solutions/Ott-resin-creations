@@ -1,0 +1,83 @@
+@import '../../styles/_variables.scss';
+
+.section {
+  padding: 4rem 0;
+  background-color: $bg-card;
+}
+
+.container {
+  max-width: 64rem;
+  margin: 0 auto;
+  padding: 0 $spacing-md;
+  text-align: center;
+
+  @media (min-width: 640px) {
+    padding: 0 $spacing-lg;
+  }
+
+  @media (min-width: 1024px) {
+    padding: 0 $spacing-xl;
+  }
+}
+
+.title {
+  font-size: $font-size-3xl;
+  font-weight: bold;
+  color: $text-primary;
+  margin-bottom: $spacing-lg;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacing-xl;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.featureCard {
+  text-align: center;
+}
+
+.iconContainer {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto $spacing-md;
+
+  &.quality {
+    background-color: #F8F5FF;
+    color: $primary-main;
+  }
+
+  &.custom {
+    background-color: #F0FDF9;
+    color: $secondary-main;
+  }
+
+  &.love {
+    background-color: #FDF2F8;
+    color: $tertiary-main;
+  }
+
+  svg {
+    width: 2rem;
+    height: 2rem;
+  }
+}
+
+.featureTitle {
+  font-size: $font-size-xl;
+  font-weight: 600;
+  color: $text-primary;
+  margin-bottom: $spacing-sm;
+}
+
+.featureDescription {
+  color: $text-secondary;
+}

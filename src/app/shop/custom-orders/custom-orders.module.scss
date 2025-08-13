@@ -1,0 +1,28 @@
+@import '../../../styles/_variables.scss';
+
+.pageContainer {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.mainContent {
+  flex-grow: 1;
+}
+
+.formSection {
+  padding: 4rem 0;
+  background-color: $bg-card;
+}
+
+.formContainer {
+  padding: 0 $spacing-md;
+
+  @media (min-width: 640px) {
+    padding: 0 $spacing-lg;
+  }
+
+  @media (min-width: 1024px) {
+    padding: 0 $spacing-xl;
+  }
+}

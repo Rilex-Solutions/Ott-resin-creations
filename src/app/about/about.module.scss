@@ -1,0 +1,387 @@
+@import '../../styles/_variables.scss';
+
+.pageContainer {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.mainContent {
+  flex-grow: 1;
+}
+
+// Hero Section
+.heroSection {
+  background: linear-gradient(135deg, $bg-secondary, $bg-accent);
+  padding: 5rem 0;
+}
+
+.heroContainer {
+  max-width: 64rem;
+  margin: 0 auto;
+  padding: 0 $spacing-md;
+  text-align: center;
+
+  @media (min-width: 640px) {
+    padding: 0 $spacing-lg;
+  }
+
+  @media (min-width: 1024px) {
+    padding: 0 $spacing-xl;
+  }
+}
+
+.heroTitle {
+  font-size: $font-size-4xl;
+  font-weight: bold;
+  color: $text-primary;
+  margin-bottom: $spacing-lg;
+
+  @media (min-width: 768px) {
+    font-size: 3rem;
+  }
+}
+
+.heroDescription {
+  font-size: $font-size-xl;
+  color: $text-secondary;
+  max-width: 32rem;
+  margin: 0 auto;
+}
+
+// Story Section
+.storySection {
+  padding: 4rem 0;
+  background-color: $bg-card;
+}
+
+.storyContainer {
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 0 $spacing-md;
+
+  @media (min-width: 640px) {
+    padding: 0 $spacing-lg;
+  }
+
+  @media (min-width: 1024px) {
+    padding: 0 $spacing-xl;
+  }
+}
+
+.storyGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  align-items: center;
+
+  @media (min-width: 1024px) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.artistPortrait {
+  background: linear-gradient(135deg, $bg-secondary, $bg-accent);
+  border-radius: $radius-lg;
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $text-muted;
+}
+
+.storyTitle {
+  font-size: $font-size-3xl;
+  font-weight: bold;
+  color: $text-primary;
+  margin-bottom: $spacing-lg;
+}
+
+.storyParagraph {
+  font-size: $font-size-lg;
+  color: $text-secondary;
+  margin-bottom: $spacing-lg;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+// Process Section
+.processSection {
+  padding: 4rem 0;
+  background-color: $bg-secondary;
+}
+
+.processContainer {
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 0 $spacing-md;
+
+  @media (min-width: 640px) {
+    padding: 0 $spacing-lg;
+  }
+
+  @media (min-width: 1024px) {
+    padding: 0 $spacing-xl;
+  }
+}
+
+.sectionHeader {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.sectionTitle {
+  font-size: $font-size-3xl;
+  font-weight: bold;
+  color: $text-primary;
+  margin-bottom: $spacing-md;
+}
+
+.sectionDescription {
+  font-size: $font-size-lg;
+  color: $text-secondary;
+  max-width: 48rem;
+  margin: 0 auto;
+}
+
+.processGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacing-xl;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.processStep {
+  text-align: center;
+}
+
+.stepNumber {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto $spacing-md;
+  font-size: $font-size-2xl;
+  font-weight: bold;
+
+  &.step1 {
+    background-color: $bg-accent;
+    color: $primary-main;
+  }
+
+  &.step2 {
+    background-color: $bg-secondary;
+    color: $secondary-main;
+  }
+
+  &.step3 {
+    background-color: $bg-tertiary;
+    color: $tertiary-main;
+  }
+}
+
+.stepTitle {
+  font-size: $font-size-xl;
+  font-weight: 600;
+  color: $text-primary;
+  margin-bottom: $spacing-sm;
+}
+
+.stepDescription {
+  color: $text-secondary;
+}
+
+// Values Section
+.valuesSection {
+  padding: 4rem 0;
+  background-color: $bg-card;
+}
+
+.valuesContainer {
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 0 $spacing-md;
+
+  @media (min-width: 640px) {
+    padding: 0 $spacing-lg;
+  }
+
+  @media (min-width: 1024px) {
+    padding: 0 $spacing-xl;
+  }
+}
+
+.valuesGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacing-xl;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.valueCard {
+  text-align: center;
+}
+
+.valueContent {
+  padding: $spacing-md;
+  border-radius: $radius-lg;
+  margin-bottom: $spacing-md;
+
+  &.quality {
+    background-color: $bg-accent;
+  }
+
+  &.personal {
+    background-color: $bg-secondary;
+  }
+
+  &.care {
+    background-color: $bg-tertiary;
+  }
+
+  &.sustainability {
+    background-color: #FFF9E6;
+  }
+}
+
+.valueTitle {
+  font-size: $font-size-lg;
+  font-weight: 600;
+  color: $text-primary;
+  margin-bottom: $spacing-sm;
+}
+
+.valueDescription {
+  color: $text-secondary;
+}
+
+// Studio Section
+.studioSection {
+  padding: 4rem 0;
+  background-color: $bg-secondary;
+}
+
+.studioContainer {
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 0 $spacing-md;
+
+  @media (min-width: 640px) {
+    padding: 0 $spacing-lg;
+  }
+
+  @media (min-width: 1024px) {
+    padding: 0 $spacing-xl;
+  }
+}
+
+.studioGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  align-items: center;
+
+  @media (min-width: 1024px) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.studioImage {
+  background: linear-gradient(135deg, $bg-accent, $bg-primary);
+  border-radius: $radius-lg;
+  aspect-ratio: 4/3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $text-muted;
+}
+
+// CTA Section
+.ctaSection {
+  padding: 4rem 0;
+  background-color: $primary-main;
+  color: white;
+}
+
+.ctaContainer {
+  max-width: 64rem;
+  margin: 0 auto;
+  padding: 0 $spacing-md;
+  text-align: center;
+
+  @media (min-width: 640px) {
+    padding: 0 $spacing-lg;
+  }
+
+  @media (min-width: 1024px) {
+    padding: 0 $spacing-xl;
+  }
+}
+
+.ctaTitle {
+  font-size: $font-size-3xl;
+  font-weight: bold;
+  margin-bottom: $spacing-md;
+}
+
+.ctaDescription {
+  font-size: $font-size-xl;
+  margin-bottom: $spacing-xl;
+  opacity: 0.9;
+}
+
+.ctaButtons {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+  justify-content: center;
+
+  @media (min-width: 640px) {
+    flex-direction: row;
+  }
+}
+
+.ctaPrimaryButton {
+  background-color: white;
+  color: $primary-main;
+  padding: $spacing-sm $spacing-xl;
+  border-radius: $radius-lg;
+  font-size: $font-size-lg;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color $transition-normal;
+
+  &:hover {
+    background-color: #f9fafb;
+  }
+}
+
+.ctaSecondaryButton {
+  background-color: rgba(59, 130, 246, 0.8);
+  color: white;
+  padding: $spacing-sm $spacing-xl;
+  border-radius: $radius-lg;
+  font-size: $font-size-lg;
+  font-weight: 600;
+  text-decoration: none;
+  border: 2px solid rgba(96, 165, 250, 1);
+  transition: background-color $transition-normal;
+
+  &:hover {
+    background-color: rgba(96, 165, 250, 1);
+  }
+}

@@ -1,0 +1,218 @@
+@import '../../styles/_variables.scss';
+
+.container {
+  max-width: 56rem;
+  margin: 0 auto;
+  padding: 0 $spacing-md;
+
+  @media (min-width: 640px) {
+    padding: 0 $spacing-lg;
+  }
+
+  @media (min-width: 1024px) {
+    padding: 0 $spacing-xl;
+  }
+}
+
+.successMessage {
+  text-align: center;
+  padding: 3rem 0;
+}
+
+.successIcon {
+  width: 4rem;
+  height: 4rem;
+  margin: 0 auto $spacing-md;
+  color: $secondary-main;
+}
+
+.successTitle {
+  font-size: $font-size-2xl;
+  font-weight: bold;
+  color: $text-primary;
+  margin-bottom: $spacing-md;
+}
+
+.successDescription {
+  font-size: $font-size-sm;
+  color: $text-tertiary;
+}
+
+.infoCard {
+  background-color: $bg-card;
+  border-radius: $radius-lg;
+  padding: $spacing-lg;
+  margin-bottom: $spacing-xl;
+  border: 1px solid $border-primary;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.infoTitle {
+  font-size: $font-size-xl;
+  font-weight: bold;
+  color: $text-primary;
+  margin-bottom: $spacing-md;
+}
+
+.stepsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $spacing-lg;
+}
+
+.step {
+  text-align: center;
+}
+
+.stepIcon {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto $spacing-sm;
+
+  &.step1 {
+    background-color: $bg-accent;
+    
+    span {
+      font-size: $font-size-lg;
+      font-weight: bold;
+      color: $primary-main;
+    }
+  }
+
+  &.step2 {
+    background-color: $bg-tertiary;
+    
+    span {
+      font-size: $font-size-lg;
+      font-weight: bold;
+      color: $secondary-main;
+    }
+  }
+
+  &.step3 {
+    background-color: $bg-secondary;
+    
+    span {
+      font-size: $font-size-lg;
+      font-weight: bold;
+      color: $tertiary-main;
+    }
+  }
+}
+
+.stepTitle {
+  font-weight: 600;
+  color: $text-primary;
+  margin-bottom: $spacing-sm;
+}
+
+.stepDescription {
+  font-size: $font-size-sm;
+  color: $text-tertiary;
+}
+
+.form {
+  // Form styles will be added as needed
+  .formGroup {
+    margin-bottom: $spacing-lg;
+  }
+
+  .label {
+    display: block;
+    font-weight: 600;
+    color: $text-primary;
+    margin-bottom: $spacing-sm;
+  }
+
+  .input {
+    width: 100%;
+    padding: $spacing-sm;
+    border: 1px solid $border-primary;
+    border-radius: $radius-md;
+    font-size: $font-size-base;
+    transition: border-color $transition-normal;
+
+    &:focus {
+      outline: none;
+      border-color: $primary-main;
+      box-shadow: 0 0 0 3px rgba(155, 181, 255, 0.1);
+    }
+  }
+
+  .textarea {
+    width: 100%;
+    padding: $spacing-sm;
+    border: 1px solid $border-primary;
+    border-radius: $radius-md;
+    font-size: $font-size-base;
+    min-height: 6rem;
+    resize: vertical;
+    transition: border-color $transition-normal;
+
+    &:focus {
+      outline: none;
+      border-color: $primary-main;
+      box-shadow: 0 0 0 3px rgba(155, 181, 255, 0.1);
+    }
+  }
+
+  .submitButton {
+    background-color: $primary-main;
+    color: white;
+    padding: $spacing-md $spacing-xl;
+    border-radius: $radius-lg;
+    border: none;
+    font-size: $font-size-lg;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color $transition-normal;
+
+    &:hover:not(:disabled) {
+      background-color: $primary-hover;
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+}
+
+.pricesGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $spacing-md;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.priceCard {
+  background-color: $bg-secondary;
+  padding: $spacing-sm;
+  border-radius: $radius-md;
+  text-align: center;
+  border: 1px solid $border-primary;
+}
+
+.priceCategory {
+  font-size: $font-size-sm;
+  font-weight: 600;
+  color: $text-primary;
+  margin-bottom: $spacing-xs;
+}
+
+.priceAmount {
+  font-size: $font-size-lg;
+  font-weight: bold;
+  color: $primary-main;
+}

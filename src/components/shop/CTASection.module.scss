@@ -1,0 +1,49 @@
+@import '../../styles/_variables.scss';
+
+.section {
+  padding: 4rem 0;
+  background-color: $primary-main;
+  color: white;
+}
+
+.container {
+  max-width: 64rem;
+  margin: 0 auto;
+  padding: 0 $spacing-md;
+  text-align: center;
+
+  @media (min-width: 640px) {
+    padding: 0 $spacing-lg;
+  }
+
+  @media (min-width: 1024px) {
+    padding: 0 $spacing-xl;
+  }
+}
+
+.title {
+  font-size: $font-size-3xl;
+  font-weight: bold;
+  margin-bottom: $spacing-md;
+}
+
+.description {
+  font-size: $font-size-xl;
+  margin-bottom: $spacing-xl;
+  opacity: 0.9;
+}
+
+.ctaButton {
+  background-color: white;
+  color: $primary-main;
+  padding: $spacing-sm $spacing-xl;
+  border-radius: $radius-lg;
+  font-size: $font-size-lg;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color $transition-normal;
+
+  &:hover {
+    background-color: #f9fafb;
+  }
+}

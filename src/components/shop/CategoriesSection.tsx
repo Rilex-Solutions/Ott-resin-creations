@@ -3,7 +3,7 @@
 import { Category, Product } from '@/types/shop'
 import CategoryCard from './CategoryCard'
 import LoadingSpinner from '@/components/ui/LoadingSpinner'
-import { text } from '@/constants/colors'
+import styles from './CategoriesSection.module.scss'
 
 interface CategoriesSectionProps {
   title: string
@@ -27,23 +27,21 @@ export default function CategoriesSection({
   backgroundColor = 'white'
 }: CategoriesSectionProps) {
   const isFeatured = variant === 'featured'
-  const bgClass = backgroundColor === 'white' ? 'bg-white' : 'bg-gray-50'
-  const gridClass = isFeatured 
-    ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'
-    : 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6'
 
   return (
     <section 
       id={sectionId}
-      className={`py-16 ${bgClass}`}
+      className={`${styles.section} ${
+        backgroundColor === 'white' ? styles.white : styles.gray
+      }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className={styles.container}>
         {/* Header */}
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-[#2D1B36] mb-4">
+        <div className={styles.header}>
+          <h2 className={styles.title}>
             {title}
           </h2>
-          <p className="text-lg text-[#4A3B52]">
+          <p className={styles.subtitle}>
             {subtitle}
           </p>
         </div>
@@ -54,8 +52,8 @@ export default function CategoriesSection({
             message={`Loading ${isFeatured ? 'featured ' : ''}collections...`} 
           />
         ) : categories.length === 0 ? (
-          <div className="text-center py-12">
-            <p className="text-[#4A3B52]">
+          <div className={styles.emptyState}>
+            <p>
               {isFeatured 
                 ? 'No featured collections available at this time.' 
                 : 'No additional collections available at this time.'
@@ -63,7 +61,9 @@ export default function CategoriesSection({
             </p>
           </div>
         ) : (
-          <div className={gridClass}>
+          <div className={`${styles.grid} ${
+            isFeatured ? styles.featured : styles.compact
+          }`}>
             {categories.map((category) => (
               <CategoryCard 
                 key={category.id}

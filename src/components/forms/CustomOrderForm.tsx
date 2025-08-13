@@ -1,8 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { colorCombinations } from '@/constants/colors'
-import { styleCombinations } from '@/constants/styles'
+import styles from './CustomOrderForm.module.scss'
 
 interface FormData {
   name: string

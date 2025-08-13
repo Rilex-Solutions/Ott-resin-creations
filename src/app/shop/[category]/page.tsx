@@ -9,6 +9,7 @@ import CustomOrderCTA from '@/components/shop/CustomOrderCTA'
 import CustomOrderForm from '@/components/forms/CustomOrderForm'
 import { useCategoryData } from '@/hooks/useCategoryData'
 import { use } from 'react'
+import styles from './category.module.scss'
 
 interface CategoryPageProps {
   params: Promise<{
@@ -34,15 +35,15 @@ export default function CategoryPage({ params }: CategoryPageProps) {
 
   if (error) {
     return (
-      <div className="min-h-screen flex flex-col">
+      <div className={styles.pageContainer}>
         <Header />
-        <main className="flex-grow flex items-center justify-center">
-          <div className="text-center">
-            <h1 className="text-2xl font-bold text-[#2D1B36] mb-4">Something went wrong</h1>
-            <p className="text-[#4A3B52] mb-8">We're having trouble loading this category. Please try again later.</p>
+        <main className={styles.errorMain}>
+          <div className={styles.errorContent}>
+            <h1 className={styles.errorTitle}>Something went wrong</h1>
+            <p className={styles.errorDescription}>We're having trouble loading this category. Please try again later.</p>
             <button 
               onClick={() => window.location.reload()} 
-              className="bg-[#9BB5FF] text-[#2D1B36] px-6 py-2 rounded-lg hover:bg-[#7B9AFF] transition-colors"
+              className={styles.errorButton}
             >
               Try Again
             </button>
@@ -57,36 +58,35 @@ export default function CategoryPage({ params }: CategoryPageProps) {
   // Loading state
   if (loading || !category) {
     return (
-      <div className="min-h-screen flex flex-col">
+      <div className={styles.pageContainer}>
         <Header />
-        <main className="flex-grow">
+        <main className={styles.mainContent}>
           {/* Loading skeleton */}
-          <div className="bg-gray-50 py-4">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="h-4 bg-gray-200 rounded w-48 animate-pulse"></div>
+          <div className={styles.loadingBreadcrumb}>
+            <div className={styles.loadingBreadcrumbContainer}>
+              <div className={styles.loadingBreadcrumbSkeleton}></div>
             </div>
           </div>
-          <section className="bg-gradient-to-br from-[#FEFBFD] to-[#F0F4FF] py-16">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-              <div className="h-12 bg-gray-200 rounded w-64 mx-auto mb-6 animate-pulse"></div>
-              <div className="h-6 bg-gray-200 rounded w-96 mx-auto animate-pulse"></div>
+          <section className={styles.loadingHero}>
+            <div className={styles.loadingHeroContainer}>
+              <div className={styles.loadingHeroTitle}></div>
+              <div className={styles.loadingHeroSubtitle}></div>
             </div>
           </section>
-          <div className="py-16">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="h-8 bg-gray-200 rounded w-48 mx-auto mb-8 animate-pulse"></div>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className={styles.loadingProducts}>
+            <div className={styles.loadingProductsContainer}>
+              <div className={styles.loadingProductsTitle}></div>
+              <div className={styles.loadingGrid}>
                 {[...Array(6)].map((_, i) => (
-                  <div key={i} className="bg-white rounded-xl shadow-md overflow-hidden animate-pulse">
-                    <div className="aspect-square bg-gray-200"></div>
-                    <div className="p-6">
-                      <div className="h-6 bg-gray-200 rounded mb-2"></div>
-                      <div className="h-4 bg-gray-200 rounded mb-4"></div>
-                      <div className="h-4 bg-gray-200 rounded w-24"></div>
+                  <div key={i} className={styles.loadingCard}>
+                    <div className={styles.loadingCardImage}></div>
+                    <div className={styles.loadingCardContent}>
+                      <div className={styles.loadingCardTitle}></div>
+                      <div className={styles.loadingCardDescription}></div>
+                      <div className={styles.loadingCardPrice}></div>
                     </div>
                   </div>
-                ))}
-              </div>
+                ))}</div>
             </div>
           </div>
         </main>
@@ -96,10 +96,10 @@ export default function CategoryPage({ params }: CategoryPageProps) {
   }
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className={styles.pageContainer}>
       <Header />
       
-      <main className="flex-grow">
+      <main className={styles.mainContent}>
         <CategoryHero category={category} />
         
         <ProductsSection 
@@ -112,10 +112,10 @@ export default function CategoryPage({ params }: CategoryPageProps) {
 
         {/* Show message if no products */}
         {!loading && products.length === 0 && (
-          <section className="py-16 bg-white">
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-              <h2 className="text-2xl font-bold text-[#2D1B36] mb-4">Coming Soon!</h2>
-              <p className="text-lg text-[#4A3B52] mb-8">
+          <section className={styles.emptySection}>
+            <div className={styles.emptyContainer}>
+              <h2 className={styles.emptyTitle}>Coming Soon!</h2>
+              <p className={styles.emptyDescription}>
                 We're working on amazing {category.name.toLowerCase()} pieces for you. 
                 In the meantime, why not create something custom?
               </p>

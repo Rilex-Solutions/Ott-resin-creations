@@ -1,0 +1,81 @@
+@import '../../styles/_variables.scss';
+
+.heroSection {
+  background: linear-gradient(135deg, $bg-primary, $bg-accent);
+  padding: 4rem 0;
+}
+
+.heroContainer {
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 0 $spacing-md;
+  text-align: center;
+
+  @media (min-width: 640px) {
+    padding: 0 $spacing-lg;
+  }
+
+  @media (min-width: 1024px) {
+    padding: 0 $spacing-xl;
+  }
+}
+
+.heroTitle {
+  font-size: $font-size-4xl;
+  font-weight: bold;
+  color: $text-primary;
+  margin-bottom: $spacing-lg;
+
+  @media (min-width: 768px) {
+    font-size: 3rem;
+  }
+}
+
+.heroDescription {
+  font-size: $font-size-xl;
+  color: $text-secondary;
+  max-width: 48rem;
+  margin: 0 auto $spacing-xl;
+}
+
+.heroButtons {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+  justify-content: center;
+
+  @media (min-width: 640px) {
+    flex-direction: row;
+  }
+}
+
+.primaryButton {
+  background-color: $primary-main;
+  color: white;
+  padding: $spacing-md $spacing-xl;
+  border-radius: $radius-lg;
+  font-size: $font-size-lg;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color $transition-normal;
+
+  &:hover {
+    background-color: $primary-hover;
+  }
+}
+
+.secondaryButton {
+  background-color: $bg-card;
+  color: $primary-main;
+  padding: $spacing-md $spacing-xl;
+  border-radius: $radius-lg;
+  font-size: $font-size-lg;
+  font-weight: 600;
+  text-decoration: none;
+  border: 2px solid $primary-main;
+  transition: background-color $transition-normal;
+
+  &:hover {
+    background-color: $bg-accent;
+  }
+}
