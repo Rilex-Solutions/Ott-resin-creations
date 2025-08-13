@@ -187,7 +187,7 @@ export default function CustomOrderForm() {
                 onChange={handleInputChange}
                 required
                 className={styles.input}
-                placeholder="(555) 123-4567"
+                placeholder="(720) 805-5509"
               />
             </div>
           </div>

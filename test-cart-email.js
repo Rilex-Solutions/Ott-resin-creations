@@ -7,7 +7,7 @@ const sampleCartInquiry = {
   customer: {
     name: "Sarah Johnson",
     email: "sarah.johnson@email.com", 
-    phone: "(555) 123-4567"
+    phone: "(720) 805-5509"
   },
   items: [
     {

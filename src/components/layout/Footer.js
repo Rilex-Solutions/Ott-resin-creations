@@ -66,7 +66,7 @@ export default function Footer() {
             <h4 className={styles.sectionTitle}>Contact</h4>
             <div className={styles.contactInfo}>
               <p>Email: huberduberkid@gmail.com</p>
-              <p>Phone: (555) 123-4567</p>
+              <p>Phone: (720) 805-5509</p>
               <p>Follow us for updates and new creations!</p>
             </div>
           </div>
