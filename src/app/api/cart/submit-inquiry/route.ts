@@ -1,5 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { CartInquiry } from '@/types/cart'
+import { Resend } from 'resend'
+
+const resend = new Resend(process.env.RESEND_API_KEY)
 
 export async function POST(request: NextRequest) {
   try {
@@ -65,34 +68,40 @@ Best regards,
 Ott Resin Creations
     `.trim()
 
-    // In a real application, you would send emails here using a service like:
-    // - SendGrid
-    // - Mailgun
-    // - Nodemailer with SMTP
-    // - AWS SES
-    
-    // For now, we'll simulate email sending and log the content
-    console.log('Email to Janet (huberduberkid@gmail.com):')
+    // Send email to Janet
+    try {
+      await resend.emails.send({
+        from: 'Ott Resin Creations <orders@ottresincreations.com>',
+        to: ['huberduberkid@gmail.com'],
+        subject: 'New Purchase Inquiry - Ott Resin Creations',
+        text: janetEmailContent,
+      })
+      console.log('✅ Email sent to Janet successfully')
+    } catch (emailError) {
+      console.error('❌ Failed to send email to Janet:', emailError)
+      // Continue anyway - don't fail the whole request
+    }
+
+    // Send confirmation email to customer
+    try {
+      await resend.emails.send({
+        from: 'Ott Resin Creations <orders@ottresincreations.com>',
+        to: [inquiry.customer.email],
+        subject: 'Your Purchase Inquiry - Ott Resin Creations',
+        text: customerEmailContent,
+      })
+      console.log('✅ Confirmation email sent to customer successfully')
+    } catch (emailError) {
+      console.error('❌ Failed to send confirmation email:', emailError)
+      // Continue anyway - don't fail the whole request
+    }
+
+    // Also log to console for debugging
+    console.log('📧 Email content sent to Janet:')
     console.log(janetEmailContent)
     console.log('\n---\n')
-    console.log(`Email to Customer (${inquiry.customer.email}):`)
+    console.log('📧 Email content sent to customer:')
     console.log(customerEmailContent)
-
-    // TODO: Replace this console.log with actual email sending
-    // Example with a hypothetical email service:
-    /*
-    await emailService.send({
-      to: 'huberduberkid@gmail.com',
-      subject: 'New Purchase Inquiry - Ott Resin Creations',
-      text: janetEmailContent
-    })
-    
-    await emailService.send({
-      to: inquiry.customer.email,
-      subject: 'Your Purchase Inquiry - Ott Resin Creations',
-      text: customerEmailContent
-    })
-    */
 
     return NextResponse.json({ 
       success: true, 
