@@ -116,8 +116,27 @@
 }
 
 .form {
-  // Form styles will be added as needed
+  padding: $spacing-lg;
+
   .formGroup {
+    margin-bottom: $spacing-lg;
+  }
+
+  .formGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $spacing-md;
+    
+    @media (min-width: 768px) {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .formTitle {
+    font-size: $font-size-2xl;
+    font-weight: bold;
+    color: $text-primary;
+    text-align: center;
     margin-bottom: $spacing-lg;
   }
 
@@ -180,6 +199,42 @@
       cursor: not-allowed;
     }
   }
+
+  .submitButtonDisabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .submitSection {
+    text-align: center;
+    padding-top: $spacing-md;
+  }
+
+  .loadingSpinner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .spinnerIcon {
+    animation: spin 1s linear infinite;
+    margin-left: -0.25rem;
+    margin-right: 0.75rem;
+    height: 1.25rem;
+    width: 1.25rem;
+  }
+
+  .errorText {
+    color: $status-error;
+    font-size: $font-size-sm;
+    margin-top: $spacing-sm;
+  }
+
+  .disclaimerText {
+    color: $text-secondary;
+    font-size: $font-size-sm;
+    margin-top: $spacing-sm;
+  }
 }
 
 .pricesGrid {
@@ -215,4 +270,77 @@
   font-size: $font-size-lg;
   font-weight: bold;
   color: $primary-main;
+}
+
+.successContainer {
+  max-width: 32rem;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.warningCard {
+  background-color: #fefce8;
+  padding: $spacing-md;
+  border-radius: $radius-lg;
+  border: 1px solid #facc15;
+  margin-bottom: $spacing-md;
+}
+
+.warningTitle {
+  font-weight: 600;
+  color: $text-primary;
+  margin-bottom: $spacing-sm;
+}
+
+.warningList {
+  font-size: $font-size-sm;
+  color: $text-secondary;
+  list-style: none;
+  padding: 0;
+  
+  li {
+    margin-bottom: 0.25rem;
+  }
+}
+
+.helperCard {
+  background-color: #eff6ff;
+  border: 1px solid #93c5fd;
+  border-radius: $radius-lg;
+  padding: $spacing-sm;
+  margin-bottom: $spacing-sm;
+}
+
+.helperText {
+  font-size: $font-size-sm;
+  color: $text-secondary;
+  margin-bottom: $spacing-sm;
+}
+
+.helperTextBold {
+  font-size: $font-size-sm;
+  color: $text-secondary;
+  margin-top: $spacing-sm;
+  font-weight: 500;
+}
+
+.helperList {
+  font-size: $font-size-sm;
+  color: $text-secondary;
+  margin: $spacing-sm 0;
+  padding-left: $spacing-md;
+  
+  li {
+    margin-bottom: 0.25rem;
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }

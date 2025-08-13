@@ -74,7 +74,7 @@ export default function CustomOrderForm() {
   if (submitStatus === 'success') {
     return (
       <div className="max-w-2xl mx-auto p-8 text-center">
-        <div className={`${styleCombinations.formSuccessBox} ${colorCombinations.form.successBox}`}>
+        <div className={styles.successMessage}>
           <svg className="w-16 h-16 mx-auto mb-4 text-[#A8D5BA]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
           </svg>
@@ -88,7 +88,7 @@ export default function CustomOrderForm() {
         </div>
         <button
           onClick={() => setSubmitStatus('idle')}
-          className={`${colorCombinations.primaryButton.full} px-6 py-3 rounded-lg font-semibold`}
+          className={styles.submitButton}
         >
           Submit Another Request
         </button>
@@ -97,49 +97,23 @@ export default function CustomOrderForm() {
   }
 
   return (
-    <div className={styleCombinations.formContainer}>
+    <div className={styles.container}>
       {/* Pricing Reference */}
-      <div className={`${styleCombinations.formInfoBox} ${colorCombinations.form.infoBox}`}>
-        <h2 className={`text-xl font-bold mb-4 ${colorCombinations.form.label}`}>Starting Prices by Category</h2>
+      <div className={styles.infoCard}>
+        <h2 className={styles.infoTitle}>Starting Prices by Category</h2>
         
-        <div className={`${styleCombinations.priceGrid} ${colorCombinations.form.priceGrid}`}>
-          {basePrices.map((item, index) => {
-            const totalItems = basePrices.length
-            const isRightmostMobile = (index + 1) % 2 === 0 // Every 2nd item on mobile (2 columns)
-            const isRightmostDesktop = (index + 1) % 3 === 0 // Every 3rd item on desktop (3 columns)  
-            const isLastRow = index >= totalItems - (totalItems % 3 === 0 ? 3 : totalItems % 3) // Items in last row
-            
-            // Determine border classes
-            let borderClass = styleCombinations.priceItemBorders
-            if (isRightmostMobile && !isRightmostDesktop) {
-              borderClass = `${styleCombinations.priceItemNoRightBorder} md:${styleCombinations.priceItemBorders}`
-            } else if (isRightmostDesktop) {
-              borderClass = styleCombinations.priceItemNoRightBorder
-            }
-            if (isLastRow) {
-              borderClass = borderClass.replace('border-b', '')
-            }
-            
-            // Determine background color - alternating rows
-            const rowNumber = Math.floor(index / 3) // Desktop row number
-            const isEvenRow = rowNumber % 2 === 0
-            const backgroundClass = isEvenRow ? colorCombinations.form.priceItemEven : colorCombinations.form.priceItemOdd
-            
-            return (
-              <div 
-                key={item.category} 
-                className={`${styleCombinations.priceItemBase} ${borderClass} ${backgroundClass}`}
-              >
-                <span className={colorCombinations.form.priceCategory}>{item.category}</span>
-                <span className={colorCombinations.form.priceValue}>{item.price}</span>
-              </div>
-            )
-          })}
+        <div className={styles.pricesGrid}>
+          {basePrices.map((item) => (
+            <div key={item.category} className={styles.priceCard}>
+              <span className={styles.priceCategory}>{item.category}</span>
+              <span className={styles.priceAmount}>{item.price}</span>
+            </div>
+          ))}
         </div>
         
-        <div className={`${styleCombinations.formWarningBox} ${colorCombinations.form.warningBox}`}>
-          <h3 className={`font-semibold mb-2 ${colorCombinations.form.label}`}>Important Pricing Information</h3>
-          <ul className={`text-sm space-y-1 ${colorCombinations.form.helperText}`}>
+        <div className={styles.warningCard}>
+          <h3 className={styles.warningTitle}>Important Pricing Information</h3>
+          <ul className={styles.warningList}>
             <li>• These are <strong>base prices</strong> for standard items in each category</li>
             <li>• Customizations, special materials, or complex designs may increase the price</li>
             <li>• Memorial pieces and items requiring special inclusions have additional costs</li>
@@ -160,33 +134,33 @@ export default function CustomOrderForm() {
             <p className="text-sm text-[#6B5B73]">Fill out the form below with your vision and contact information</p>
           </div>
           
-          <div className="text-center">
-            <div className="bg-[#E8F7F3] w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3">
-              <span className="text-lg font-bold text-[#7CD3BD]">2</span>
+          <div className={styles.step}>
+            <div className={`${styles.stepIcon} ${styles.step2}`}>
+              <span>2</span>
             </div>
-            <h3 className="font-semibold text-[#2D1B36] mb-2">We&apos;ll Call You</h3>
-            <p className="text-sm text-[#6B5B73]">Our team will call within 24-48 hours to discuss ideas and finalize pricing</p>
+            <h3 className={styles.stepTitle}>We&apos;ll Call You</h3>
+            <p className={styles.stepDescription}>Our team will call within 24-48 hours to discuss ideas and finalize pricing</p>
           </div>
           
-          <div className="text-center">
-            <div className="bg-[#FCF0F8] w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3">
-              <span className="text-lg font-bold text-[#EFB7DB]">3</span>
+          <div className={styles.step}>
+            <div className={`${styles.stepIcon} ${styles.step3}`}>
+              <span>3</span>
             </div>
-            <h3 className="font-semibold text-[#2D1B36] mb-2">Create & Deliver</h3>
-            <p className="text-sm text-[#6B5B73]">Once approved and paid, we&apos;ll create your piece and arrange delivery</p>
+            <h3 className={styles.stepTitle}>Create & Deliver</h3>
+            <p className={styles.stepDescription}>Once approved and paid, we&apos;ll create your piece and arrange delivery</p>
           </div>
         </div>
       </div>
 
       {/* Custom Order Form */}
-      <form onSubmit={handleSubmit} className={`${styleCombinations.formSection} ${colorCombinations.form.sectionBackground}`}>
-        <h2 className={`text-2xl font-bold mb-6 text-center ${colorCombinations.form.label}`}>Request a Custom Piece</h2>
+      <form onSubmit={handleSubmit} className={styles.form}>
+        <h2 className={styles.formTitle}>Request a Custom Piece</h2>
         
-        <div className={styleCombinations.formGroup}>
+        <div className={styles.formGroup}>
           {/* Contact Information */}
-          <div className={styleCombinations.formGrid}>
+          <div className={styles.formGrid}>
             <div>
-              <label htmlFor="name" className={`${styleCombinations.fieldLabel} ${colorCombinations.form.label}`}>
+              <label htmlFor="name" className={styles.label}>
                 Full Name *
               </label>
               <input
@@ -196,13 +170,13 @@ export default function CustomOrderForm() {
                 value={formData.name}
                 onChange={handleInputChange}
                 required
-                className={`${styleCombinations.inputField} ${colorCombinations.form.input}`}
+                className={styles.input}
                 placeholder="Enter your full name"
               />
             </div>
             
             <div>
-              <label htmlFor="phone" className={`${styleCombinations.fieldLabel} ${colorCombinations.form.label}`}>
+              <label htmlFor="phone" className={styles.label}>
                 Phone Number *
               </label>
               <input
@@ -212,14 +186,14 @@ export default function CustomOrderForm() {
                 value={formData.phone}
                 onChange={handleInputChange}
                 required
-                className={`${styleCombinations.inputField} ${colorCombinations.form.input}`}
+                className={styles.input}
                 placeholder="(555) 123-4567"
               />
             </div>
           </div>
           
           <div>
-            <label htmlFor="email" className={`${styleCombinations.fieldLabel} ${colorCombinations.form.label}`}>
+            <label htmlFor="email" className={styles.label}>
               Email Address *
             </label>
             <input
@@ -229,21 +203,21 @@ export default function CustomOrderForm() {
               value={formData.email}
               onChange={handleInputChange}
               required
-              className={`${styleCombinations.inputField} ${colorCombinations.form.input}`}
+              className={styles.input}
               placeholder="your.email@example.com"
             />
           </div>
           
           {/* Description */}
           <div>
-            <label htmlFor="description" className={`${styleCombinations.fieldLabel} ${colorCombinations.form.label}`}>
+            <label htmlFor="description" className={styles.label}>
               Describe Your Custom Piece *
             </label>
-            <div className={`mb-3 p-3 rounded-lg ${colorCombinations.form.infoBox}`}>
-              <p className={`text-sm ${colorCombinations.form.helperText} mb-2`}>
+            <div className={styles.helperCard}>
+              <p className={styles.helperText}>
                 Please tell us about your custom piece idea. Include details like:
               </p>
-              <ul className={`text-sm ${colorCombinations.form.helperText} space-y-1 ml-4`}>
+              <ul className={styles.helperList}>
                 <li>• What type of item you want (coaster, tray, wall art, etc.)</li>
                 <li>• Size or dimensions you need</li>
                 <li>• Colors or themes you prefer</li>
@@ -251,7 +225,7 @@ export default function CustomOrderForm() {
                 <li>• When you need it completed</li>
                 <li>• Any inspiration or reference ideas</li>
               </ul>
-              <p className={`text-sm ${colorCombinations.form.helperText} mt-2 font-medium`}>
+              <p className={styles.helperTextBold}>
                 The more details you provide, the better we can understand your vision!
               </p>
             </div>
@@ -262,23 +236,23 @@ export default function CustomOrderForm() {
               onChange={handleInputChange}
               required
               rows={8}
-              className={`${styleCombinations.textareaField} ${colorCombinations.form.input}`}
+              className={styles.textarea}
               placeholder="Start describing your custom piece idea here..."
             />
           </div>
           
           {/* Submit Button */}
-          <div className="text-center pt-4">
+          <div className={styles.submitSection}>
             <button
               type="submit"
               disabled={isSubmitting}
-              className={`${colorCombinations.primaryButton.full} px-8 py-4 rounded-lg text-lg font-bold ${
-                isSubmitting ? 'opacity-50 cursor-not-allowed' : ''
+              className={`${styles.submitButton} ${
+                isSubmitting ? styles.submitButtonDisabled : ''
               }`}
             >
               {isSubmitting ? (
-                <span className="flex items-center justify-center">
-                  <svg className="animate-spin -ml-1 mr-3 h-5 w-5" fill="none" viewBox="0 0 24 24">
+                <span className={styles.loadingSpinner}>
+                  <svg className={styles.spinnerIcon} fill="none" viewBox="0 0 24 24">
                     <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                     <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                   </svg>
@@ -290,12 +264,12 @@ export default function CustomOrderForm() {
             </button>
             
             {submitStatus === 'error' && (
-              <p className={`${colorCombinations.form.errorText}`}>
+              <p className={styles.errorText}>
                 There was an error submitting your request. Please try again or contact us directly.
               </p>
             )}
             
-            <p className={`${colorCombinations.form.helperText}`}>
+            <p className={styles.disclaimerText}>
               By submitting this form, you&apos;re requesting a consultation. We&apos;ll call you within 24-48 hours to discuss your project, pricing, and timeline.
             </p>
           </div>
