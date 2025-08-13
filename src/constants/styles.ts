@@ -1,4 +1,4 @@
-// Style Constants for Huber Duber Resin Creations
+// Style Constants for Huberduberkid Resin Creations
 // This file contains all styling values used throughout the application
 // Updated to match the whimsical, artistic logo and create a bespoke feeling
 

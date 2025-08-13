@@ -1,4 +1,4 @@
-// Color Constants for Huber Duber Resin Creations
+// Color Constants for Huberduberkid Resin Creations
 // This file contains all color values used throughout the application
 // Update these values to change the site-wide color scheme
 

@@ -23,7 +23,7 @@ export async function POST(request: NextRequest) {
 
     // Create email content for Janet
     const janetEmailContent = `
-New Purchase Inquiry - Huber Duber Resin Creations
+New Purchase Inquiry - Huberduberkid Resin Creations
 
 Customer Information:
 Name: ${inquiry.customer.name}
@@ -63,7 +63,7 @@ Janet will be reaching out to you within 24 hours to confirm your order and take
 If you have any questions, please don't hesitate to reach out!
 
 Best regards,
-Huber Duber Resin Creations
+Huberduberkid Resin Creations
     `.trim()
 
     // Initialize Resend (check if API key exists)
@@ -78,9 +78,9 @@ Huber Duber Resin Creations
     if (resend) {
       try {
         await resend.emails.send({
-          from: 'Huber Duber Resin Creations <orders@huberduberkid.com>',
+          from: 'Huberduberkid Resin Creations <orders@huberduberkid.com>',
           to: ['huberduberkid@gmail.com'],
-          subject: 'New Purchase Inquiry - Huber Duber Resin Creations',
+          subject: 'New Purchase Inquiry - Huberduberkid Resin Creations',
           text: janetEmailContent,
         })
         console.log('✅ Email sent to Janet successfully')
@@ -94,9 +94,9 @@ Huber Duber Resin Creations
     if (resend) {
       try {
         await resend.emails.send({
-          from: 'Huber Duber Resin Creations <orders@huberduberkid.com>',
+          from: 'Huberduberkid Resin Creations <orders@huberduberkid.com>',
           to: [inquiry.customer.email],
-          subject: 'Your Purchase Inquiry - Huber Duber Resin Creations',
+          subject: 'Your Purchase Inquiry - Huberduberkid Resin Creations',
           text: customerEmailContent,
         })
         console.log('✅ Confirmation email sent to customer successfully')
