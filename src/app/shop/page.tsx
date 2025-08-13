@@ -7,6 +7,7 @@ import CategoriesSection from '@/components/shop/CategoriesSection'
 import InfoSection from '@/components/shop/InfoSection'
 import CTASection from '@/components/shop/CTASection'
 import { useShopData } from '@/hooks/useShopData'
+import styles from './shop.module.scss'
 
 export default function ShopPage() {
   const { 
@@ -20,15 +21,15 @@ export default function ShopPage() {
   // Show error state if needed
   if (error) {
     return (
-      <div className="min-h-screen flex flex-col">
+      <div className={styles.errorContainer}>
         <Header />
-        <main className="flex-grow flex items-center justify-center">
-          <div className="text-center">
-            <h1 className="text-2xl font-bold text-[#2D1B36] mb-4">Something went wrong</h1>
-            <p className="text-[#4A3B52] mb-8">We're having trouble loading our collections. Please try again later.</p>
+        <main className={styles.errorMain}>
+          <div className={styles.errorContent}>
+            <h1 className={styles.errorTitle}>Something went wrong</h1>
+            <p className={styles.errorDescription}>We're having trouble loading our collections. Please try again later.</p>
             <button 
               onClick={() => window.location.reload()} 
-              className="bg-[#9BB5FF] text-[#2D1B36] px-6 py-2 rounded-lg hover:bg-[#7B9AFF] transition-colors"
+              className={styles.errorButton}
             >
               Try Again
             </button>
@@ -40,10 +41,10 @@ export default function ShopPage() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className={styles.pageContainer}>
       <Header />
       
-      <main className="flex-grow">
+      <main className={styles.mainContent}>
         <HeroSection />
         
         <CategoriesSection 

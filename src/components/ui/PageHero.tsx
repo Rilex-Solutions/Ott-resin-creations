@@ -1,6 +1,6 @@
 'use client'
 
-import { colorCombinations } from '@/constants/colors'
+import styles from './PageHero.module.scss'
 
 interface PageHeroProps {
   title: string
@@ -13,23 +13,15 @@ export default function PageHero({
   subtitle, 
   maxWidth = '4xl' 
 }: PageHeroProps) {
-  const maxWidthClasses = {
-    sm: 'max-w-sm',
-    md: 'max-w-md', 
-    lg: 'max-w-lg',
-    xl: 'max-w-xl',
-    '2xl': 'max-w-2xl',
-    '3xl': 'max-w-3xl',
-    '4xl': 'max-w-4xl'
-  }
+  const maxWidthClass = maxWidth === '2xl' ? 'xl2' : maxWidth === '3xl' ? 'xl3' : maxWidth === '4xl' ? 'xl4' : maxWidth;
 
   return (
-    <section className={`${colorCombinations.heroGradient.full} py-16`}>
-      <div className={`${maxWidthClasses[maxWidth]} mx-auto px-4 sm:px-6 lg:px-8 text-center`}>
-        <h1 className="text-4xl md:text-5xl font-bold text-[#2D1B36] mb-6">
+    <section className={styles.heroSection}>
+      <div className={`${styles.heroContainer} ${styles[maxWidthClass]}`}>
+        <h1 className={styles.heroTitle}>
           {title}
         </h1>
-        <p className="text-xl text-[#4A3B52] max-w-3xl mx-auto mb-8">
+        <p className={styles.heroSubtitle}>
           {subtitle}
         </p>
       </div>

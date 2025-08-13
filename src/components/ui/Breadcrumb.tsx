@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import styles from './Breadcrumb.module.scss'
 
 interface BreadcrumbItem {
   label: string
@@ -13,18 +14,18 @@ interface BreadcrumbProps {
 
 export default function Breadcrumb({ items }: BreadcrumbProps) {
   return (
-    <div className="bg-gray-50 py-4">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <nav className="flex text-sm">
+    <div className={styles.breadcrumbContainer}>
+      <div className={styles.breadcrumbInner}>
+        <nav className={styles.breadcrumbNav}>
           {items.map((item, index) => (
-            <span key={index} className="flex items-center">
-              {index > 0 && <span className="mx-2 text-[#A69BAA]">/</span>}
+            <span key={index} className={styles.breadcrumbItem}>
+              {index > 0 && <span className={styles.breadcrumbSeparator}>/</span>}
               {item.href ? (
-                <Link href={item.href} className="text-[#6B5B73] hover:text-[#2D1B36] transition-colors">
+                <Link href={item.href} className={styles.breadcrumbLink}>
                   {item.label}
                 </Link>
               ) : (
-                <span className="text-[#2D1B36] font-medium">{item.label}</span>
+                <span className={styles.breadcrumbCurrent}>{item.label}</span>
               )}
             </span>
           ))}

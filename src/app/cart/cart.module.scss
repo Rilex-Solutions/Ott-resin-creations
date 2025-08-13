@@ -1,0 +1,342 @@
+@import '../../styles/_variables.scss';
+
+.pageContainer {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.mainContent {
+  flex: 1;
+}
+
+.cartSection {
+  padding: $spacing-3xl 0;
+  background-color: $bg-card;
+}
+
+.container {
+  max-width: 1536px;
+  margin: 0 auto;
+  padding: 0 $spacing-md;
+
+  @media (min-width: 640px) {
+    padding: 0 $spacing-lg;
+  }
+
+  @media (min-width: 1024px) {
+    padding: 0 $spacing-xl;
+  }
+}
+
+.pageTitle {
+  font-size: $font-size-3xl;
+  font-weight: bold;
+  color: $text-primary;
+  margin-bottom: $spacing-xl;
+  text-align: center;
+}
+
+// Empty Cart State
+.emptyCartContainer {
+  text-align: center;
+  padding: $spacing-3xl 0;
+}
+
+.emptyCartIcon {
+  width: 6rem;
+  height: 6rem;
+  margin: 0 auto $spacing-md;
+  color: $text-muted;
+  stroke-width: 1;
+}
+
+.emptyCartTitle {
+  font-size: $font-size-2xl;
+  font-weight: 600;
+  color: $text-primary;
+  margin-bottom: $spacing-md;
+}
+
+.emptyCartDescription {
+  color: $text-secondary;
+  margin-bottom: $spacing-xl;
+}
+
+.browseShopButton {
+  background-color: $primary-main;
+  color: white;
+  padding: $spacing-md $spacing-xl;
+  border-radius: $radius-lg;
+  font-size: $font-size-lg;
+  font-weight: 600;
+  transition: background-color $transition-normal;
+  border: none;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $primary-hover;
+  }
+}
+
+// Cart with Items
+.cartGrid {
+  display: grid;
+  gap: $spacing-xl;
+
+  @media (min-width: 1024px) {
+    grid-template-columns: 2fr 1fr;
+  }
+}
+
+// Cart Items Section
+.cartItemsContainer {
+  background-color: $bg-secondary;
+  border-radius: $radius-lg;
+  padding: $spacing-lg;
+}
+
+.cartItemsTitle {
+  font-size: $font-size-xl;
+  font-weight: 600;
+  color: $text-primary;
+  margin-bottom: $spacing-lg;
+}
+
+.cartItemsList {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+}
+
+.cartItem {
+  background-color: $bg-card;
+  border-radius: $radius-lg;
+  padding: $spacing-md;
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+}
+
+.itemImage {
+  width: 4rem;
+  height: 4rem;
+  background-color: $bg-secondary;
+  border-radius: $radius-lg;
+  overflow: hidden;
+  flex-shrink: 0;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.noImagePlaceholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $text-muted;
+  font-size: $font-size-xs;
+}
+
+.itemDetails {
+  flex: 1;
+}
+
+.itemName {
+  font-weight: 600;
+  color: $text-primary;
+}
+
+.itemDescription {
+  font-size: $font-size-sm;
+  color: $text-secondary;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.itemPrice {
+  font-weight: bold;
+  color: $primary-main;
+}
+
+.removeButton {
+  color: $status-error;
+  padding: $spacing-sm;
+  border: none;
+  background: none;
+  cursor: pointer;
+  transition: color $transition-normal;
+
+  &:hover {
+    color: darken($status-error, 10%);
+  }
+
+  svg {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+}
+
+// Cart Total
+.cartTotal {
+  margin-top: $spacing-lg;
+  padding-top: $spacing-lg;
+  border-top: 1px solid $border-primary;
+}
+
+.totalRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: $font-size-xl;
+  font-weight: bold;
+}
+
+// Customer Form Section
+.customerFormContainer {
+  background-color: $bg-card;
+  border: 1px solid $border-primary;
+  border-radius: $radius-lg;
+  padding: $spacing-lg;
+  position: sticky;
+  top: $spacing-md;
+}
+
+.formTitle {
+  font-size: $font-size-xl;
+  font-weight: 600;
+  color: $text-primary;
+  margin-bottom: $spacing-lg;
+}
+
+.customerForm {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.formLabel {
+  display: block;
+  font-size: $font-size-sm;
+  font-weight: 500;
+  color: $text-primary;
+  margin-bottom: $spacing-sm;
+}
+
+.formInput {
+  width: 100%;
+  padding: $spacing-md;
+  border: 1px solid $border-primary;
+  border-radius: $radius-md;
+  font-size: $font-size-base;
+  background-color: $bg-card;
+  color: $text-primary;
+  transition: border-color $transition-normal, box-shadow $transition-normal;
+
+  &:focus {
+    outline: none;
+    border-color: $primary-main;
+    box-shadow: 0 0 0 2px rgba(155, 181, 255, 0.2);
+  }
+}
+
+.submitButtonContainer {
+  padding-top: $spacing-md;
+}
+
+.submitButton {
+  width: 100%;
+  background-color: $primary-main;
+  color: white;
+  padding: $spacing-md;
+  border-radius: $radius-lg;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: background-color $transition-normal;
+
+  &:hover:not(:disabled) {
+    background-color: $primary-hover;
+  }
+
+  &:disabled {
+    background-color: $btn-disabled;
+    cursor: not-allowed;
+  }
+}
+
+.formNote {
+  font-size: $font-size-sm;
+  color: $text-secondary;
+  text-align: center;
+
+  p {
+    margin: $spacing-xs 0;
+  }
+}
+
+// Success State
+.successContainer {
+  text-align: center;
+}
+
+.successBox {
+  background-color: $status-success-light;
+  border: 1px solid $status-success;
+  border-radius: $radius-lg;
+  padding: $spacing-xl;
+  margin-bottom: $spacing-xl;
+}
+
+.successIcon {
+  width: 4rem;
+  height: 4rem;
+  margin: 0 auto $spacing-md;
+  color: $status-success;
+}
+
+.successTitle {
+  font-size: $font-size-3xl;
+  font-weight: bold;
+  color: darken($status-success, 30%);
+  margin-bottom: $spacing-md;
+}
+
+.successMessage {
+  font-size: $font-size-lg;
+  color: darken($status-success, 20%);
+  margin-bottom: $spacing-md;
+}
+
+.successNote {
+  color: darken($status-success, 10%);
+}
+
+.continueShoppingButton {
+  background-color: $primary-main;
+  color: white;
+  padding: $spacing-md $spacing-xl;
+  border-radius: $radius-lg;
+  font-size: $font-size-lg;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: background-color $transition-normal;
+
+  &:hover {
+    background-color: $primary-hover;
+  }
+}

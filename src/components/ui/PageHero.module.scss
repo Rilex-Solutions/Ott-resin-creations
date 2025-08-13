@@ -1,0 +1,66 @@
+@import '../../styles/_variables.scss';
+
+.heroSection {
+  background: linear-gradient(135deg, $bg-primary, $bg-accent);
+  padding: $spacing-3xl 0;
+}
+
+.heroContainer {
+  margin: 0 auto;
+  padding: 0 $spacing-md;
+  text-align: center;
+
+  @media (min-width: 640px) {
+    padding: 0 $spacing-lg;
+  }
+
+  @media (min-width: 1024px) {
+    padding: 0 $spacing-xl;
+  }
+
+  &.sm {
+    max-width: 24rem;
+  }
+
+  &.md {
+    max-width: 28rem;
+  }
+
+  &.lg {
+    max-width: 32rem;
+  }
+
+  &.xl {
+    max-width: 36rem;
+  }
+
+  &.xl2 {
+    max-width: 42rem;
+  }
+
+  &.xl3 {
+    max-width: 48rem;
+  }
+
+  &.xl4 {
+    max-width: 56rem;
+  }
+}
+
+.heroTitle {
+  font-size: $font-size-4xl;
+  font-weight: bold;
+  color: $text-primary;
+  margin-bottom: $spacing-lg;
+
+  @media (min-width: 768px) {
+    font-size: 3rem;
+  }
+}
+
+.heroSubtitle {
+  font-size: $font-size-xl;
+  color: $text-secondary;
+  max-width: 48rem;
+  margin: 0 auto $spacing-xl;
+}

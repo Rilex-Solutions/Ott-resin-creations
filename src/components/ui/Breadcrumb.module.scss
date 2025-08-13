@@ -1,0 +1,50 @@
+@import '../../styles/_variables.scss';
+
+.breadcrumbContainer {
+  background-color: $bg-secondary;
+  padding: $spacing-md 0;
+}
+
+.breadcrumbInner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 $spacing-md;
+
+  @media (min-width: 640px) {
+    padding: 0 $spacing-lg;
+  }
+
+  @media (min-width: 1024px) {
+    padding: 0 $spacing-xl;
+  }
+}
+
+.breadcrumbNav {
+  display: flex;
+  font-size: $font-size-sm;
+}
+
+.breadcrumbItem {
+  display: flex;
+  align-items: center;
+}
+
+.breadcrumbSeparator {
+  margin: 0 $spacing-sm;
+  color: $text-muted;
+}
+
+.breadcrumbLink {
+  color: $text-tertiary;
+  text-decoration: none;
+  transition: color $transition-normal;
+
+  &:hover {
+    color: $text-primary;
+  }
+}
+
+.breadcrumbCurrent {
+  color: $text-primary;
+  font-weight: 500;
+}

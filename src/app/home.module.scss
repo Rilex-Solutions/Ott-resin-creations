@@ -1,0 +1,102 @@
+@import '../styles/_variables.scss';
+
+.pageContainer {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.mainContent {
+  flex: 1;
+}
+
+// Hero Section
+.heroSection {
+  background: linear-gradient(135deg, #ddd6fe, #c7d2fe);
+  padding: 5rem 0;
+}
+
+.heroContainer {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 $spacing-md;
+
+  @media (min-width: 640px) {
+    padding: 0 $spacing-lg;
+  }
+
+  @media (min-width: 1024px) {
+    padding: 0 $spacing-xl;
+  }
+}
+
+.heroContent {
+  text-align: center;
+}
+
+.heroTitle {
+  font-size: $font-size-4xl;
+  font-weight: bold;
+  color: $text-primary;
+  margin-bottom: $spacing-lg;
+
+  @media (min-width: 768px) {
+    font-size: 3.75rem;
+  }
+}
+
+.heroSubtitle {
+  display: block;
+  color: $primary-main;
+}
+
+.heroDescription {
+  font-size: $font-size-xl;
+  color: $text-secondary;
+  margin-bottom: $spacing-xl;
+  max-width: 48rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.heroButtons {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+  justify-content: center;
+
+  @media (min-width: 640px) {
+    flex-direction: row;
+  }
+}
+
+.heroButtonPrimary {
+  background-color: $primary-main;
+  color: white;
+  padding: $spacing-md $spacing-xl;
+  border-radius: $radius-lg;
+  font-size: $font-size-lg;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color $transition-normal;
+
+  &:hover {
+    background-color: $primary-hover;
+  }
+}
+
+.heroButtonSecondary {
+  background-color: $bg-card;
+  color: $primary-main;
+  padding: $spacing-md $spacing-xl;
+  border-radius: $radius-lg;
+  font-size: $font-size-lg;
+  font-weight: 600;
+  text-decoration: none;
+  border: 2px solid $primary-main;
+  transition: background-color $transition-normal;
+
+  &:hover {
+    background-color: $bg-accent;
+  }
+}
