@@ -1,5 +1,8 @@
 'use client'
 
+import { useCart } from '@/contexts/CartContext'
+import { CartItem } from '@/types/cart'
+
 interface Product {
   id: string
   name: string
@@ -63,6 +66,23 @@ function getDirectImageUrl(googlePhotosUrl: string | null): string | null {
 }
 
 export default function ProductCard({ product, variant }: ProductCardProps) {
+  const { addToCart, isInCart } = useCart()
+
+  const handleAddToCart = () => {
+    if (!product.inStock) return
+    
+    const cartItem: CartItem = {
+      productId: product.id,
+      name: product.name,
+      price: parseFloat(product.price.replace(/[^0-9.]/g, '')), // Remove $ and convert to number
+      description: product.description,
+      imageUrl: getDirectImageUrl(product.imageUrl)
+    }
+    
+    addToCart(cartItem)
+  }
+
+  const productInCart = isInCart(product.id)
   if (variant === 'featured') {
     return (
       <div className="group bg-white rounded-lg shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100">
@@ -96,14 +116,17 @@ export default function ProductCard({ product, variant }: ProductCardProps) {
           <div className="flex justify-between items-center">
             <span className="text-2xl font-bold text-blue-600">{product.price}</span>
             <button 
+              onClick={handleAddToCart}
               className={`px-6 py-2 rounded-lg font-semibold transition-colors ${
-                product.inStock 
-                  ? 'bg-blue-600 text-white hover:bg-blue-700' 
-                  : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                !product.inStock
+                  ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                  : productInCart
+                  ? 'bg-green-600 text-white hover:bg-green-700'
+                  : 'bg-blue-600 text-white hover:bg-blue-700'
               }`}
-              disabled={!product.inStock}
+              disabled={!product.inStock || productInCart}
             >
-              {product.inStock ? 'Add to Cart' : 'Out of Stock'}
+              {!product.inStock ? 'Out of Stock' : productInCart ? 'In Cart' : 'Add to Cart'}
             </button>
           </div>
         </div>
@@ -138,14 +161,17 @@ export default function ProductCard({ product, variant }: ProductCardProps) {
         <div className="flex justify-between items-center">
           <span className="text-lg font-bold text-blue-600">{product.price}</span>
           <button 
+            onClick={handleAddToCart}
             className={`px-4 py-1 rounded text-sm font-semibold transition-colors ${
-              product.inStock 
-                ? 'bg-blue-600 text-white hover:bg-blue-700' 
-                : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+              !product.inStock
+                ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                : productInCart
+                ? 'bg-green-600 text-white hover:bg-green-700'
+                : 'bg-blue-600 text-white hover:bg-blue-700'
             }`}
-            disabled={!product.inStock}
+            disabled={!product.inStock || productInCart}
           >
-            {product.inStock ? 'Add to Cart' : 'Out of Stock'}
+            {!product.inStock ? 'Out of Stock' : productInCart ? 'In Cart' : 'Add to Cart'}
           </button>
         </div>
       </div>

@@ -135,12 +135,12 @@ export const colors = {
     header: {
       background: '#FEFBFD',    // Snow
       border: '#E8E3E8',        // Light border
-      brand: '#7A73D7',         // Medium slate blue
-      brandHover: '#6B63C7',    // Darker purple
-      nav: '#191116',           // Licorice
-      navHover: '#7A73D7',      // Brand purple
-      cta: '#7A73D7',           // Brand purple
-      ctaHover: '#6B63C7',      // Darker purple
+      brand: '#2D1B36',         // Dark text for brand
+      brandHover: '#7A73D7',    // Purple hover
+      nav: '#2D1B36',           // Dark text for navigation
+      navHover: '#7A73D7',      // Purple hover
+      cta: '#7A73D7',           // Purple button
+      ctaHover: '#6B63C7',      // Darker purple hover
     },
     
     // Footer

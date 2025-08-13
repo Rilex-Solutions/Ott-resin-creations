@@ -1,0 +1,143 @@
+// SASS Variables generated from colors.ts
+// This file contains all color values used throughout the application
+
+// Brand Colors
+$brand-snow: #FEFBFD;
+$brand-seafoam-green: #7FDECC;
+$brand-lavender-pink: #E8B4CB;
+$brand-periwinkle: #9BB5FF;
+$brand-coral: #FF9B85;
+$brand-sage: #A8D5BA;
+$brand-dusty-purple: #B794C7;
+$brand-peachy: #FFAB91;
+$brand-sky-blue: #87CEEB;
+
+// Primary Colors
+$primary-main: #9BB5FF;
+$primary-hover: #7B9AFF;
+$primary-light: #B5C8FF;
+$primary-dark: #6B85E6;
+
+// Secondary Colors
+$secondary-main: #7FDECC;
+$secondary-hover: #5FD4BB;
+$secondary-light: #9FE8D6;
+$secondary-dark: #4FB8A0;
+
+// Tertiary Colors
+$tertiary-main: #E8B4CB;
+$tertiary-hover: #E099B8;
+$tertiary-light: #F0C7D6;
+$tertiary-dark: #D089A5;
+
+// Background Colors
+$bg-primary: #FEFBFD;
+$bg-secondary: #FAF7FB;
+$bg-tertiary: #F5F2F7;
+$bg-dark: #2D1B36;
+$bg-card: #FFFFFF;
+$bg-accent: #F0F4FF;
+
+// Text Colors
+$text-primary: #2D1B36;
+$text-secondary: #4A3B52;
+$text-tertiary: #6B5B73;
+$text-light: #8B7B94;
+$text-white: #FEFBFD;
+$text-muted: #A69BAA;
+$text-accent: #9BB5FF;
+
+// Border Colors
+$border-primary: #E8E3E8;
+$border-secondary: #D6D1D6;
+$border-accent: #7A73D7;
+$border-accent-light: #C4C0F0;
+$border-subtle: #F0EBF0;
+
+// Component-specific Colors
+// Header
+$header-bg: #FEFBFD;
+$header-border: #E8E3E8;
+$header-brand: #2D1B36;
+$header-brand-hover: #7A73D7;
+$header-nav: #2D1B36;
+$header-nav-hover: #7A73D7;
+$header-cta: #7A73D7;
+$header-cta-hover: #6B63C7;
+
+// Footer
+$footer-bg: #191116;
+$footer-brand: #7CD3BD;
+$footer-text: #FEFBFD;
+$footer-text-secondary: #A8A3A8;
+$footer-text-muted: #8B8690;
+$footer-text-hover: #EFB7DB;
+
+// Buttons
+$btn-primary: #7A73D7;
+$btn-primary-hover: #6B63C7;
+$btn-primary-text: #FEFBFD;
+$btn-secondary: #7CD3BD;
+$btn-secondary-hover: #6BC4AD;
+$btn-secondary-text: #FEFBFD;
+$btn-tertiary: #FEFBFD;
+$btn-tertiary-hover: #F8F4F7;
+$btn-tertiary-text: #7A73D7;
+$btn-tertiary-border: #7A73D7;
+$btn-disabled: #D6D1D6;
+$btn-disabled-text: #8B8690;
+
+// Status Colors
+$status-success: #A8D5BA;
+$status-success-light: #E8F5E8;
+$status-warning: #FFB366;
+$status-warning-light: #FFF2E5;
+$status-error: #FF8A80;
+$status-error-light: #FFE5E5;
+$status-info: #87CEEB;
+$status-info-light: #E6F3FF;
+
+// Interactive Colors
+$interactive-primary: #9BB5FF;
+$interactive-primary-hover: #7B9AFF;
+$interactive-secondary: #7FDECC;
+$interactive-secondary-hover: #5FD4BB;
+$interactive-link: #9BB5FF;
+$interactive-link-hover: #7B9AFF;
+
+// Spacing Variables
+$spacing-xs: 0.25rem;   // 4px
+$spacing-sm: 0.5rem;    // 8px
+$spacing-md: 1rem;      // 16px
+$spacing-lg: 1.5rem;    // 24px
+$spacing-xl: 2rem;      // 32px
+$spacing-2xl: 3rem;     // 48px
+$spacing-3xl: 4rem;     // 64px
+
+// Border Radius
+$radius-sm: 0.25rem;    // 4px
+$radius-md: 0.5rem;     // 8px
+$radius-lg: 0.75rem;    // 12px
+$radius-xl: 1rem;       // 16px
+
+// Shadows
+$shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+$shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+$shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+$shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+// Typography
+$font-family-sans: system-ui, -apple-system, sans-serif;
+$font-size-xs: 0.75rem;   // 12px
+$font-size-sm: 0.875rem;  // 14px
+$font-size-base: 1rem;    // 16px
+$font-size-lg: 1.125rem;  // 18px
+$font-size-xl: 1.25rem;   // 20px
+$font-size-2xl: 1.5rem;   // 24px
+$font-size-3xl: 1.875rem; // 30px
+$font-size-4xl: 2.25rem;  // 36px
+
+// Transitions
+$transition-fast: 0.15s ease-in-out;
+$transition-normal: 0.3s ease-in-out;
+$transition-slow: 0.5s ease-in-out;

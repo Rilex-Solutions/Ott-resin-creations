@@ -1,0 +1,166 @@
+@import '../../styles/variables';
+
+.header {
+  background-color: $header-bg;
+  border-bottom: 1px solid $header-border;
+  box-shadow: $shadow-sm;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.nav {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 $spacing-md;
+
+  @media (min-width: 640px) {
+    padding: 0 $spacing-lg;
+  }
+
+  @media (min-width: 1024px) {
+    padding: 0 $spacing-xl;
+  }
+}
+
+.navContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 4rem;
+}
+
+.logoContainer {
+  flex-shrink: 0;
+}
+
+.logoLink {
+  font-size: $font-size-2xl;
+  font-weight: bold;
+  color: $header-brand;
+  text-decoration: none;
+  transition: color $transition-normal;
+
+  &:hover {
+    color: $header-brand-hover;
+  }
+}
+
+.desktopNav {
+  display: none;
+
+  @media (min-width: 768px) {
+    display: block;
+  }
+}
+
+.navList {
+  margin-left: $spacing-2xl;
+  display: flex;
+  align-items: baseline;
+  gap: $spacing-xl;
+}
+
+.navLink {
+  color: $header-nav;
+  text-decoration: none;
+  padding: $spacing-sm $spacing-md;
+  font-size: $font-size-sm;
+  font-weight: 500;
+  transition: color $transition-normal;
+
+  &:hover {
+    color: $header-nav-hover;
+  }
+}
+
+.cartButton {
+  background-color: $header-cta;
+  color: white;
+  padding: $spacing-sm $spacing-md;
+  border-radius: $radius-md;
+  font-size: $font-size-sm;
+  font-weight: 500;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  transition: background-color $transition-normal;
+
+  &:hover {
+    background-color: $header-cta-hover;
+  }
+}
+
+.cartIcon {
+  width: 1rem;
+  height: 1rem;
+}
+
+.mobileMenuButton {
+  display: block;
+  color: $header-nav;
+  background: none;
+  border: none;
+  padding: $spacing-sm;
+  cursor: pointer;
+  transition: color $transition-normal;
+
+  &:hover,
+  &:focus {
+    color: $header-nav-hover;
+    outline: none;
+  }
+
+  @media (min-width: 768px) {
+    display: none;
+  }
+}
+
+.menuIcon {
+  height: $spacing-lg;
+  width: $spacing-lg;
+}
+
+.mobileNav {
+  display: block;
+
+  @media (min-width: 768px) {
+    display: none;
+  }
+}
+
+.mobileNavContainer {
+  padding: $spacing-sm $spacing-sm $spacing-md;
+  background-color: $header-bg;
+  border-top: 1px solid $header-border;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xs;
+
+  @media (min-width: 640px) {
+    padding: $spacing-sm $spacing-md $spacing-md;
+  }
+}
+
+.mobileNavLink {
+  color: $header-nav;
+  text-decoration: none;
+  display: block;
+  padding: $spacing-md;
+  font-size: $font-size-sm;
+  font-weight: 500;
+  transition: color $transition-normal;
+
+  &:hover {
+    color: $header-nav-hover;
+  }
+}
+
+.mobileCartButton {
+  @extend .cartButton;
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  justify-content: flex-start;
+}
