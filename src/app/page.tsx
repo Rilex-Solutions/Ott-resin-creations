@@ -22,10 +22,10 @@ export default function HomePage() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link 
-                  href="/gallery" 
+                  href="/shop" 
                   className="bg-blue-600 text-white px-8 py-3 rounded-lg text-lg font-semibold hover:bg-blue-700 transition-colors"
                 >
-                  View Gallery
+                  View Shop
                 </Link>
                 <Link 
                   href="/shop/custom-orders" 

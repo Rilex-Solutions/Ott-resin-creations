@@ -24,9 +24,6 @@ export default function Header() {
               <Link href="/" className={`text-${components.header.nav} hover:text-${components.header.navHover} px-3 py-2 text-sm font-medium transition-colors`}>
                 Home
               </Link>
-              <Link href="/gallery" className={`text-${components.header.nav} hover:text-${components.header.navHover} px-3 py-2 text-sm font-medium transition-colors`}>
-                Gallery
-              </Link>
               <Link href="/shop" className={`text-${components.header.nav} hover:text-${components.header.navHover} px-3 py-2 text-sm font-medium transition-colors`}>
                 Shop
               </Link>
@@ -66,9 +63,6 @@ export default function Header() {
             <div className={`px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-${components.header.background} border-t border-${components.header.border}`}>
               <Link href="/" className={`text-${components.header.nav} hover:text-${components.header.navHover} block px-3 py-2 text-sm font-medium`}>
                 Home
-              </Link>
-              <Link href="/gallery" className={`text-${components.header.nav} hover:text-${components.header.navHover} block px-3 py-2 text-sm font-medium`}>
-                Gallery
               </Link>
               <Link href="/shop" className={`text-${components.header.nav} hover:text-${components.header.navHover} block px-3 py-2 text-sm font-medium`}>
                 Shop

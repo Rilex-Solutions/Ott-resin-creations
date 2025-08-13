@@ -193,7 +193,7 @@ export default function AboutPage() {
                 Get In Touch
               </Link>
               <Link 
-                href="/gallery" 
+                href="/shop" 
                 className="bg-blue-500 text-white px-8 py-3 rounded-lg text-lg font-semibold border-2 border-blue-400 hover:bg-blue-400 transition-colors"
               >
                 View My Work
