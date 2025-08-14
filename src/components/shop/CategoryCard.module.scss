@@ -209,11 +209,11 @@
   display: flex;
   align-items: center;
   font-weight: 600;
-  color: $primary-main;
+  color: $brand-coral;
   transition: color $transition-normal;
 
   .categoryCard:hover & {
-    color: $primary-hover;
+    color: $brand-coral-dark;
   }
 
   svg {

@@ -9,43 +9,46 @@ export default function AboutPage() {
       <Header />
       
       <main className={styles.mainContent}>
-        {/* Hero Section */}
-        <section className={styles.heroSection}>
-          <div className={styles.heroContainer}>
-            <h1 className={styles.heroTitle}>
-              About Our Studio
-            </h1>
-            <p className={styles.heroDescription}>
-              Welcome to my world of custom resin art, where creativity meets craftsmanship 
-              to create unique pieces that tell your story.
-            </p>
+        {/* Logo Hero Section */}
+        <section className={styles.logoHeroSection}>
+          <div className={styles.logoHeroContainer}>
+            <div className={styles.logoContainer}>
+              <img 
+                src="/huberduberkid-logo.png" 
+                alt="Huberduberkid Resin Creations - Colorful resin art logo with otter mascot" 
+                className={styles.logoImage}
+              />
+            </div>
+            <div className={styles.logoContent}>
+              <h1 className={styles.logoHeroTitle}>
+                Welcome to Huberduberkid Resin Creations
+              </h1>
+              <p className={styles.logoHeroDescription}>
+                Where creativity meets craftsmanship to create unique pieces that tell your story.
+              </p>
+            </div>
           </div>
         </section>
 
         {/* My Story Section */}
         <section className={styles.storySection}>
           <div className={styles.storyContainer}>
-            <div className={styles.storyGrid}>
-              <div className={styles.artistPortrait}>
-                <span>Artist Portrait</span>
-              </div>
-              <div>
-                <h2 className={styles.storyTitle}>My Journey into Resin Art</h2>
-                <p className={styles.storyParagraph}>
-                  What started as a creative hobby quickly blossomed into a passion for creating 
-                  beautiful, functional art pieces. I discovered the endless possibilities of resin 
-                  and fell in love with how each piece becomes a unique masterpiece.
-                </p>
-                <p className={styles.storyParagraph}>
-                  As a small business owner, I take pride in every single creation that leaves my studio. 
-                  Each piece is handled with care, from the initial concept to the final polish, 
-                  ensuring that you receive something truly special.
-                </p>
-                <p className={styles.storyParagraph}>
-                  When I&apos;m not in the studio, I love spending time with my family and drawing inspiration 
-                  from nature, which often finds its way into my color palettes and designs.
-                </p>
-              </div>
+            <h2 className={styles.storyCenterTitle}>My Journey into Resin Art</h2>
+            <div className={styles.storyContent}>
+              <p className={styles.storyParagraph}>
+                What started as a creative hobby quickly blossomed into a passion for creating 
+                beautiful, functional art pieces. I discovered the endless possibilities of resin 
+                and fell in love with how each piece becomes a unique masterpiece.
+              </p>
+              <p className={styles.storyParagraph}>
+                As a small business owner, I take pride in every single creation that leaves my studio. 
+                Each piece is handled with care, from the initial concept to the final polish, 
+                ensuring that you receive something truly special.
+              </p>
+              <p className={styles.storyParagraph}>
+                When I&apos;m not in the studio, I love spending time with my family and drawing inspiration 
+                from nature, which often finds its way into my color palettes and designs.
+              </p>
             </div>
           </div>
         </section>
@@ -149,34 +152,6 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Studio Section */}
-        <section className={styles.studioSection}>
-          <div className={styles.studioContainer}>
-            <div className={styles.studioGrid}>
-              <div>
-                <h2 className={styles.storyTitle}>My Studio</h2>
-                <p className={styles.storyParagraph}>
-                  Located in my home studio, this creative space is where the magic happens. 
-                  It&apos;s equipped with professional-grade tools, proper ventilation, and organized 
-                  storage for all my materials and works in progress.
-                </p>
-                <p className={styles.storyParagraph}>
-                  The studio is designed for both functionality and inspiration, with natural light 
-                  flooding in during the day and carefully controlled lighting for evening work sessions. 
-                  Every corner is thoughtfully arranged to support the creative process.
-                </p>
-                <p className={styles.storyParagraph}>
-                  I welcome clients to visit by appointment to see works in progress and discuss 
-                  custom projects in person. There&apos;s something special about experiencing the 
-                  creative environment where your piece will come to life.
-                </p>
-              </div>
-              <div className={styles.studioImage}>
-                <span>Studio Workspace Image</span>
-              </div>
-            </div>
-          </div>
-        </section>
 
         {/* CTA Section */}
         <section className={styles.ctaSection}>

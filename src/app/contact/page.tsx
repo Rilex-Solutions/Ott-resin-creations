@@ -113,10 +113,26 @@ export default function ContactPage() {
       <main className={styles.mainContent}>
         <Breadcrumb items={breadcrumbItems} />
         
-        <PageHero 
-          title="Contact Us"
-          subtitle="Have questions about our resin art pieces or want to discuss a custom order? We'd love to hear from you!"
-        />
+        {/* Logo Hero Section */}
+        <section className={styles.logoHeroSection}>
+          <div className={styles.logoHeroContainer}>
+            <div className={styles.logoContainer}>
+              <img 
+                src="/huberduberkid-logo.png" 
+                alt="Huberduberkid Resin Creations - Colorful resin art logo with otter mascot" 
+                className={styles.logoImage}
+              />
+            </div>
+            <div className={styles.logoContent}>
+              <h1 className={styles.logoHeroTitle}>
+                Let's Create Something Beautiful Together
+              </h1>
+              <p className={styles.logoHeroDescription}>
+                Have questions about our resin art pieces? We'd love to hear from you!
+              </p>
+            </div>
+          </div>
+        </section>
 
         <div className={styles.contactSection}>
           <div className={styles.container}>
@@ -126,8 +142,7 @@ export default function ContactPage() {
               <div className={styles.contactInfo}>
                 <h2 className={styles.sectionTitle}>Get In Touch</h2>
                 <p className={styles.sectionDescription}>
-                  Whether you're interested in our existing pieces, want to commission something custom, 
-                  or just have questions about resin art, we're here to help!
+                  Whether you're interested in our existing pieces or just have questions about resin art, we're here to help!
                 </p>
 
                 <div className={styles.contactMethods}>
@@ -191,7 +206,6 @@ export default function ContactPage() {
                       className={styles.select}
                     >
                       <option value="general">General Question</option>
-                      <option value="custom">Custom Order Inquiry</option>
                       <option value="existing">Question About Existing Product</option>
                       <option value="shipping">Shipping & Delivery</option>
                       <option value="care">Care Instructions</option>
@@ -272,14 +286,7 @@ export default function ContactPage() {
                       Message *
                     </label>
                     <div className={styles.helperText}>
-                      <p>Please provide as much detail as possible. For custom orders, include:</p>
-                      <ul>
-                        <li>• Type of piece you're interested in</li>
-                        <li>• Size requirements</li>
-                        <li>• Color preferences</li>
-                        <li>• Any special elements or themes</li>
-                        <li>• Timeline needs</li>
-                      </ul>
+                      <p>Please provide as much detail as possible about your question or inquiry.</p>
                     </div>
                     <textarea
                       id="message"
@@ -289,7 +296,7 @@ export default function ContactPage() {
                       required
                       rows={6}
                       className={styles.textarea}
-                      placeholder="Tell us about your inquiry or custom order idea..."
+                      placeholder="Tell us about your inquiry..."
                     />
                   </div>
                   

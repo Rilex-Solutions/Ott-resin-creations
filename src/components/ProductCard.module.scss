@@ -53,11 +53,11 @@
       transition: all $transition-normal;
 
       &.available {
-        background-color: $primary-main;
+        background-color: $brand-coral;
         color: white;
 
         &:hover {
-          background-color: $primary-hover;
+          background-color: $brand-coral-dark;
         }
       }
 
@@ -121,11 +121,11 @@
       transition: all $transition-normal;
 
       &.available {
-        background-color: $primary-main;
+        background-color: $brand-coral;
         color: white;
 
         &:hover {
-          background-color: $primary-hover;
+          background-color: $brand-coral-dark;
         }
       }
 

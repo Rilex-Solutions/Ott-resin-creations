@@ -49,6 +49,88 @@
   margin: 0 auto;
 }
 
+// Logo Hero Section
+.logoHeroSection {
+  background: linear-gradient(135deg, $bg-secondary, $bg-accent);
+  padding: 4rem 0;
+}
+
+.logoHeroContainer {
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 0 $spacing-md;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacing-2xl;
+
+  @media (min-width: 640px) {
+    padding: 0 $spacing-lg;
+  }
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    justify-content: center;
+    gap: $spacing-3xl;
+  }
+
+  @media (min-width: 1024px) {
+    padding: 0 $spacing-xl;
+  }
+}
+
+.logoContainer {
+  flex-shrink: 0;
+}
+
+.logoImage {
+  width: 100%;
+  max-width: 320px;
+  height: auto;
+  border-radius: $radius-xl;
+  box-shadow: $shadow-lg;
+  transition: transform $transition-normal;
+
+  &:hover {
+    transform: scale(1.02);
+  }
+
+  @media (min-width: 768px) {
+    max-width: 400px;
+  }
+}
+
+.logoContent {
+  text-align: center;
+  max-width: 28rem;
+
+  @media (min-width: 768px) {
+    text-align: left;
+  }
+}
+
+.logoHeroTitle {
+  font-size: $font-size-3xl;
+  font-weight: bold;
+  color: $brand-dark-teal;
+  margin-bottom: $spacing-lg;
+  line-height: 1.2;
+
+  @media (min-width: 768px) {
+    font-size: $font-size-4xl;
+  }
+
+  @media (min-width: 1024px) {
+    font-size: 3rem;
+  }
+}
+
+.logoHeroDescription {
+  font-size: $font-size-xl;
+  color: $text-secondary;
+  line-height: 1.6;
+}
+
 // Story Section
 .storySection {
   padding: 4rem 0;
@@ -95,6 +177,24 @@
   font-weight: bold;
   color: $text-primary;
   margin-bottom: $spacing-lg;
+}
+
+.storyCenterTitle {
+  font-size: $font-size-3xl;
+  font-weight: bold;
+  color: $text-primary;
+  margin-bottom: $spacing-2xl;
+  text-align: center;
+
+  @media (min-width: 768px) {
+    font-size: $font-size-4xl;
+  }
+}
+
+.storyContent {
+  max-width: 48rem;
+  margin: 0 auto;
+  text-align: center;
 }
 
 .storyParagraph {
