@@ -36,9 +36,11 @@ export default function Header() {
                 Contact
               </Link>
               <Link href="/cart" className={styles.cartButton}>
-                <svg className={styles.cartIcon} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-1.68 7M7 13v6a1 1 0 001 1h8a1 1 0 001-1v-6m-9 0V9a1 1 0 011-1h6a1 1 0 011 1v4" />
-                </svg>
+                <img 
+                  src="/shopping-cart.png" 
+                  alt="Smart cart icons created by Freepik - Flaticon" 
+                  className={styles.cartIcon}
+                />
                 <span>Cart{cart.itemCount > 0 ? ` (${cart.itemCount})` : ''}</span>
               </Link>
             </div>
@@ -77,9 +79,11 @@ export default function Header() {
                 Contact
               </Link>
               <Link href="/cart" className={styles.mobileCartButton}>
-                <svg className={styles.cartIcon} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-1.68 7M7 13v6a1 1 0 001 1h8a1 1 0 001-1v-6m-9 0V9a1 1 0 011-1h6a1 1 0 011 1v4" />
-                </svg>
+                <img 
+                  src="/shopping-cart.png" 
+                  alt="Smart cart icons created by Freepik - Flaticon" 
+                  className={styles.cartIcon}
+                />
                 <span>Cart{cart.itemCount > 0 ? ` (${cart.itemCount})` : ''}</span>
               </Link>
             </div>

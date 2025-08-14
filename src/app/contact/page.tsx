@@ -167,37 +167,8 @@ export default function ContactPage() {
                     </div>
                   </div>
 
-                  <div className={styles.contactMethod}>
-                    <div className={styles.contactIcon}>
-                      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                      </svg>
-                    </div>
-                    <div className={styles.contactDetails}>
-                      <h3>Location</h3>
-                      <p>Serving customers nationwide</p>
-                    </div>
-                  </div>
                 </div>
 
-                <div className={styles.businessHours}>
-                  <h3 className={styles.hoursTitle}>Business Hours</h3>
-                  <div className={styles.hoursGrid}>
-                    <div className={styles.hoursDay}>
-                      <span>Monday - Friday</span>
-                      <span>9:00 AM - 6:00 PM</span>
-                    </div>
-                    <div className={styles.hoursDay}>
-                      <span>Saturday</span>
-                      <span>10:00 AM - 4:00 PM</span>
-                    </div>
-                    <div className={styles.hoursDay}>
-                      <span>Sunday</span>
-                      <span>Closed</span>
-                    </div>
-                  </div>
-                </div>
               </div>
 
               {/* Contact Form */}
