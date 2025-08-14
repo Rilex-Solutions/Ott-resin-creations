@@ -129,6 +129,30 @@
   font-size: $font-size-sm;
 }
 
+.makersMark {
+  color: $text-muted;
+  font-size: $font-size-xs;
+  margin-top: $spacing-xs;
+  text-align: center;
+  
+  @media (min-width: 768px) {
+    text-align: left;
+  }
+}
+
+.makersName {
+  color: $primary-light;
+  font-weight: 400;
+  font-family: 'Arial', 'Helvetica', sans-serif;
+  text-decoration: none;
+  transition: color $transition-normal;
+  
+  &:hover {
+    color: $primary-main;
+    text-decoration: underline;
+  }
+}
+
 .bottomLinks {
   display: flex;
   gap: $spacing-lg;

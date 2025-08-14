@@ -38,7 +38,7 @@ export default function CategoryCard({
           isFeatured ? styles.featured : styles.compact
         }`} />
         
-        {/* Product Image */}
+        {/* Featured Product Image */}
         {featuredProduct?.imageUrl ? (
           <img 
             src={getDirectImageUrl(featuredProduct.imageUrl) || featuredProduct.imageUrl} 
