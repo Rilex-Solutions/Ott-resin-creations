@@ -11,31 +11,33 @@ export default function HomePage() {
       <main className={styles.mainContent}>
         {/* Hero Section */}
         <section className={styles.heroSection}>
-          <div className={styles.heroContainer}>
-            <div className={styles.heroContent}>
-              <h1 className={styles.heroTitle}>
-                Custom Resin Art
-                <span className={styles.heroSubtitle}>Made Just For You</span>
-              </h1>
-              <p className={styles.heroDescription}>
-                Discover unique, handcrafted resin pieces that blend artistry with functionality. 
-                Each creation is custom-made to bring your vision to life.
-              </p>
-              <div className={styles.heroButtons}>
-                <Link 
-                  href="/shop" 
-                  className={styles.heroButtonPrimary}
-                >
-                  View Shop
-                </Link>
-                <Link 
-                  href="/shop/custom-orders" 
-                  className={styles.heroButtonSecondary}
-                >
-                  Request Custom Piece
-                </Link>
-              </div>
+          {/* Full overlay container for positioning content */}
+          <div className={styles.heroOverlay}>
+            {/* Title at top 20% */}
+            <h1 className={styles.heroTitle}>
+              Handcrafted Resin Art
+            </h1>
+            
+            {/* Buttons positioned over the white canvas */}
+            <div className={styles.canvasButtons}>
+              <Link 
+                href="/shop" 
+                className={styles.canvasButton}
+              >
+                View Shop
+              </Link>
+              <Link 
+                href="/shop/custom-orders" 
+                className={styles.canvasButton}
+              >
+                Create Custom
+              </Link>
             </div>
+            
+            {/* Subtitle at bottom */}
+            <p className={styles.heroSubtitle}>
+              Unique pieces crafted with love, bringing your vision to life through the magic of resin art
+            </p>
           </div>
         </section>
       </main>

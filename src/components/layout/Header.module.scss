@@ -36,7 +36,8 @@
 
 .logoLink {
   font-size: $font-size-2xl;
-  font-weight: bold;
+  font-family: 'Pacifico', 'Caveat', cursive;
+  font-weight: normal;
   color: $header-brand;
   text-decoration: none;
   transition: color $transition-normal;
@@ -64,13 +65,18 @@
 .navLink {
   color: $header-nav;
   text-decoration: none;
-  padding: $spacing-sm $spacing-md;
+  padding: $spacing-md;
   font-size: $font-size-sm;
-  font-weight: 500;
-  transition: color $transition-normal;
+  font-family: 'Arial Black', 'Helvetica Neue', Arial, sans-serif;
+  font-weight: 700;
+  border-radius: $radius-md;
+  border: 2px solid transparent;
+  transition: all $transition-normal;
 
   &:hover {
     color: $header-nav-hover;
+    border-color: $header-nav-hover;
+    font-weight: 900;
   }
 }
 
@@ -149,11 +155,16 @@
   display: block;
   padding: $spacing-md;
   font-size: $font-size-sm;
-  font-weight: 500;
-  transition: color $transition-normal;
+  font-family: 'Arial Black', 'Helvetica Neue', Arial, sans-serif;
+  font-weight: 700;
+  border-radius: $radius-md;
+  border: 2px solid transparent;
+  transition: all $transition-normal;
 
   &:hover {
     color: $header-nav-hover;
+    border-color: $header-nav-hover;
+    font-weight: 900;
   }
 }
 
