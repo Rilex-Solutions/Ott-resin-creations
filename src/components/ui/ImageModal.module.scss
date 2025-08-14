@@ -1,0 +1,107 @@
+@import '../../styles/_variables.scss';
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(232, 180, 203, 0.85); // Dark pink overlay using brand-lavender-pink
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: $spacing-lg;
+  cursor: pointer;
+  
+  // Fade in animation
+  animation: fadeIn 0.3s ease-out;
+}
+
+.modalContent {
+  position: relative;
+  max-width: 90vw;
+  max-height: 90vh;
+  cursor: default;
+  
+  // Scale in animation
+  animation: scaleIn 0.3s ease-out;
+}
+
+.closeButton {
+  position: absolute;
+  top: -$spacing-lg;
+  right: -$spacing-lg;
+  background-color: rgba(255, 255, 255, 0.9);
+  border: none;
+  border-radius: 50%;
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10000;
+  transition: all $transition-normal;
+  
+  &:hover {
+    background-color: rgba(255, 255, 255, 1);
+    transform: scale(1.1);
+  }
+  
+  svg {
+    color: $text-primary;
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+}
+
+.modalImage {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  border-radius: $radius-lg;
+  box-shadow: $shadow-xl;
+  display: block;
+}
+
+// Animations
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+// Mobile responsive adjustments
+@media (max-width: 768px) {
+  .modalOverlay {
+    padding: $spacing-md;
+  }
+  
+  .closeButton {
+    top: -$spacing-md;
+    right: -$spacing-md;
+    width: 2.5rem;
+    height: 2.5rem;
+    
+    svg {
+      width: 1.25rem;
+      height: 1.25rem;
+    }
+  }
+}

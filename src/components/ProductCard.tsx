@@ -1,7 +1,9 @@
 'use client'
 
+import { useState } from 'react'
 import { useCart } from '@/contexts/CartContext'
 import { CartItem } from '@/types/cart'
+import ImageModal from '@/components/ui/ImageModal'
 import styles from './ProductCard.module.scss'
 
 interface Product {
@@ -68,6 +70,7 @@ function getDirectImageUrl(googlePhotosUrl: string | null): string | null {
 
 export default function ProductCard({ product, variant }: ProductCardProps) {
   const { addToCart, isInCart } = useCart()
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
   const handleAddToCart = () => {
     if (!product.inStock) return
@@ -97,9 +100,19 @@ export default function ProductCard({ product, variant }: ProductCardProps) {
     return 'Add to Cart'
   }
 
+  const handleImageClick = () => {
+    if (getDirectImageUrl(product.imageUrl)) {
+      setIsModalOpen(true)
+    }
+  }
+
   return (
     <div className={`${styles.productCard} ${styles[variant]}`}>
-      <div className={styles.imageContainer}>
+      <div 
+        className={styles.imageContainer}
+        onClick={handleImageClick}
+        style={{ cursor: getDirectImageUrl(product.imageUrl) ? 'pointer' : 'default' }}
+      >
         {getDirectImageUrl(product.imageUrl) ? (
           <img 
             src={getDirectImageUrl(product.imageUrl)!} 
@@ -145,6 +158,14 @@ export default function ProductCard({ product, variant }: ProductCardProps) {
           </button>
         </div>
       </div>
+      
+      {/* Image Modal */}
+      <ImageModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        imageSrc={getDirectImageUrl(product.imageUrl) || ''}
+        imageAlt={product.name}
+      />
     </div>
   )
 }
