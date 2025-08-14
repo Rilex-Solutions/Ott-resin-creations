@@ -13,6 +13,7 @@
   z-index: 9999;
   padding: $spacing-lg;
   cursor: pointer;
+  overflow: hidden; // Prevent scrolling within the modal
   
   // Fade in animation
   animation: fadeIn 0.3s ease-out;

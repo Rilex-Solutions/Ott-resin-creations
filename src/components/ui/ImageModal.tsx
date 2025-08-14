@@ -11,7 +11,7 @@ interface ImageModalProps {
 }
 
 export default function ImageModal({ isOpen, onClose, imageSrc, imageAlt }: ImageModalProps) {
-  // Handle ESC key press
+  // Handle ESC key press and scroll prevention
   useEffect(() => {
     const handleEscKey = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
@@ -20,15 +20,32 @@ export default function ImageModal({ isOpen, onClose, imageSrc, imageAlt }: Imag
     }
 
     if (isOpen) {
+      // Store current scroll position
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop
+      
       document.addEventListener('keydown', handleEscKey)
+      
       // Prevent body scroll when modal is open
       document.body.style.overflow = 'hidden'
+      document.body.style.position = 'fixed'
+      document.body.style.top = `-${scrollTop}px`
+      document.body.style.width = '100%'
     }
 
     return () => {
-      document.removeEventListener('keydown', handleEscKey)
-      // Restore body scroll
-      document.body.style.overflow = 'unset'
+      if (isOpen) {
+        document.removeEventListener('keydown', handleEscKey)
+        
+        // Restore body scroll and position
+        const scrollTop = Math.abs(parseInt(document.body.style.top || '0'))
+        document.body.style.overflow = ''
+        document.body.style.position = ''
+        document.body.style.top = ''
+        document.body.style.width = ''
+        
+        // Restore scroll position
+        window.scrollTo(0, scrollTop)
+      }
     }
   }, [isOpen, onClose])
 
