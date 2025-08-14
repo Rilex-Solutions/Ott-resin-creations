@@ -121,9 +121,11 @@ export default function CartPage() {
             
             {cart.items.length === 0 ? (
               <div className={styles.emptyCartContainer}>
-                <svg className={styles.emptyCartIcon} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-1.68 7M7 13v6a1 1 0 001 1h8a1 1 0 001-1v-6m-9 0V9a1 1 0 011-1h6a1 1 0 011 1v4" />
-                </svg>
+                <img 
+                  src="/shopping-cart.png" 
+                  alt="Smart cart icons created by Freepik - Flaticon" 
+                  className={styles.emptyCartIcon}
+                />
                 <h2 className={styles.emptyCartTitle}>Your cart is empty</h2>
                 <p className={styles.emptyCartDescription}>Browse our beautiful resin art pieces and add some to your cart!</p>
                 <button
