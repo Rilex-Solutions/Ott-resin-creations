@@ -80,7 +80,7 @@ export default function CustomOrderForm() {
           </svg>
           <h2 className="text-2xl font-bold mb-4">Request Submitted!</h2>
           <p className="text-lg mb-4">
-            Thank you for your custom order request. A member of our team will call you within 24-48 hours to discuss your ideas, finalize pricing, and arrange payment and delivery.
+            Thank you for your custom order request. A member of our team will call you within 24 hours to discuss your ideas, finalize pricing, and arrange payment and delivery.
           </p>
           <p className="text-sm text-[#6B5B73]">
             Please keep your phone handy - we&apos;re excited to bring your vision to life!
@@ -102,13 +102,27 @@ export default function CustomOrderForm() {
       <div className={styles.infoCard}>
         <h2 className={styles.infoTitle}>Starting Prices by Category</h2>
         
-        <div className={styles.pricesGrid}>
-          {basePrices.map((item) => (
-            <div key={item.category} className={styles.priceCard}>
-              <span className={styles.priceCategory}>{item.category}</span>
-              <span className={styles.priceAmount}>{item.price}</span>
-            </div>
-          ))}
+        <div className={styles.pricesTable}>
+          <div className={styles.tableBody}>
+            {Array.from({ length: Math.ceil(basePrices.length / 3) }, (_, rowIndex) => (
+              <div key={rowIndex} className={`${styles.tableRow} ${rowIndex % 2 === 0 ? styles.evenRow : styles.oddRow}`}>
+                {Array.from({ length: 3 }, (_, colIndex) => {
+                  const itemIndex = rowIndex * 3 + colIndex;
+                  const item = basePrices[itemIndex];
+                  return (
+                    <div key={colIndex} className={styles.tableCell}>
+                      {item ? (
+                        <>
+                          <div className={styles.categoryName}>{item.category}</div>
+                          <div className={styles.categoryPrice}>{item.price}</div>
+                        </>
+                      ) : null}
+                    </div>
+                  );
+                })}
+              </div>
+            ))}
+          </div>
         </div>
         
         <div className={styles.warningCard}>
@@ -123,15 +137,15 @@ export default function CustomOrderForm() {
       </div>
 
       {/* How It Works */}
-      <div className="bg-[#FFFFFF] rounded-lg p-6 mb-8 border border-[#E8E3E8] shadow-sm">
-        <h2 className="text-xl font-bold text-[#2D1B36] mb-4">How Custom Orders Work</h2>
-        <div className="grid md:grid-cols-3 gap-6">
-          <div className="text-center">
-            <div className="bg-[#EFEDFF] w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3">
-              <span className="text-lg font-bold text-[#7A73D7]">1</span>
+      <div className={styles.stepsCard}>
+        <h2 className={styles.stepsTitle}>How Custom Orders Work</h2>
+        <div className={styles.stepsGrid}>
+          <div className={styles.step}>
+            <div className={`${styles.stepIcon} ${styles.step1}`}>
+              <span>1</span>
             </div>
-            <h3 className="font-semibold text-[#2D1B36] mb-2">Submit Your Idea</h3>
-            <p className="text-sm text-[#6B5B73]">Fill out the form below with your vision and contact information</p>
+            <h3 className={styles.stepTitle}>Submit Your Idea</h3>
+            <p className={styles.stepDescription}>Fill out the form below with your vision and contact information</p>
           </div>
           
           <div className={styles.step}>
@@ -139,7 +153,7 @@ export default function CustomOrderForm() {
               <span>2</span>
             </div>
             <h3 className={styles.stepTitle}>We&apos;ll Call You</h3>
-            <p className={styles.stepDescription}>Our team will call within 24-48 hours to discuss ideas and finalize pricing</p>
+            <p className={styles.stepDescription}>Our team will call within 24 hours to discuss ideas and finalize pricing</p>
           </div>
           
           <div className={styles.step}>
@@ -270,7 +284,7 @@ export default function CustomOrderForm() {
             )}
             
             <p className={styles.disclaimerText}>
-              By submitting this form, you&apos;re requesting a consultation. We&apos;ll call you within 24-48 hours to discuss your project, pricing, and timeline.
+              By submitting this form, you&apos;re requesting a consultation. We&apos;ll call you within 24 hours to discuss your project, pricing, and timeline.
             </p>
           </div>
         </div>
