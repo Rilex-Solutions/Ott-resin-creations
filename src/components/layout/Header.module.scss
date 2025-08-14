@@ -111,6 +111,10 @@
   padding: $spacing-sm;
   cursor: pointer;
   transition: color $transition-normal;
+  z-index: 100;
+  position: relative;
+  min-width: 44px;
+  min-height: 44px;
 
   &:hover,
   &:focus {

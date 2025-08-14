@@ -9,6 +9,11 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const { cart } = useCart()
 
+  const toggleMenu = () => {
+    console.log('Menu toggle clicked, current state:', isMenuOpen)
+    setIsMenuOpen(!isMenuOpen)
+  }
+
   return (
     <header className={styles.header}>
       <nav className={styles.nav}>
@@ -48,7 +53,7 @@ export default function Header() {
 
           {/* Mobile menu button */}
           <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            onClick={toggleMenu}
             className={styles.mobileMenuButton}
             aria-label="Toggle menu"
           >
