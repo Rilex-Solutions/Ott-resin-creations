@@ -104,7 +104,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
         
         <ProductsSection 
           title="All Products"
-          products={otherProducts}
+          products={products}
           loading={loading}
           variant="regular"
           backgroundColor="gray"
