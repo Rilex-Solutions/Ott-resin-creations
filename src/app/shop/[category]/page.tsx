@@ -22,8 +22,6 @@ export default function CategoryPage({ params }: CategoryPageProps) {
   const { 
     category, 
     products, 
-    featuredProducts, 
-    otherProducts, 
     loading, 
     error 
   } = useCategoryData(categorySlug)
@@ -62,11 +60,6 @@ export default function CategoryPage({ params }: CategoryPageProps) {
         <Header />
         <main className={styles.mainContent}>
           {/* Loading skeleton */}
-          <div className={styles.loadingBreadcrumb}>
-            <div className={styles.loadingBreadcrumbContainer}>
-              <div className={styles.loadingBreadcrumbSkeleton}></div>
-            </div>
-          </div>
           <section className={styles.loadingHero}>
             <div className={styles.loadingHeroContainer}>
               <div className={styles.loadingHeroTitle}></div>

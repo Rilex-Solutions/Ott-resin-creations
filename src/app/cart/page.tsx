@@ -3,7 +3,6 @@
 import { useState } from 'react'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
-import Breadcrumb from '@/components/ui/Breadcrumb'
 import { useCart } from '@/contexts/CartContext'
 import { CustomerInfo } from '@/types/cart'
 import styles from './cart.module.scss'
@@ -18,11 +17,6 @@ export default function CartPage() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
 
-  const breadcrumbItems = [
-    { label: 'Home', href: '/' },
-    { label: 'Shop', href: '/shop' },
-    { label: 'Cart' }
-  ]
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
@@ -74,7 +68,6 @@ export default function CartPage() {
         <Header />
         
         <main className={styles.mainContent}>
-          <Breadcrumb items={breadcrumbItems} />
           
           <section className={styles.cartSection}>
             <div className={styles.container}>
@@ -113,7 +106,6 @@ export default function CartPage() {
       <Header />
       
       <main className={styles.mainContent}>
-        <Breadcrumb items={breadcrumbItems} />
         
         <section className={styles.cartSection}>
           <div className={styles.container}>

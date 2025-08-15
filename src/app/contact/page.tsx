@@ -3,7 +3,6 @@
 import { useState } from 'react'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
-import Breadcrumb from '@/components/ui/Breadcrumb'
 import PageHero from '@/components/ui/PageHero'
 import styles from './contact.module.scss'
 
@@ -30,10 +29,6 @@ export default function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
 
-  const breadcrumbItems = [
-    { label: 'Home', href: '/' },
-    { label: 'Contact' }
-  ]
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target
@@ -78,7 +73,6 @@ export default function ContactPage() {
       <div className={styles.pageContainer}>
         <Header />
         <main className={styles.mainContent}>
-          <Breadcrumb items={breadcrumbItems} />
           <PageHero 
             title="Thank You!"
             subtitle="Your message has been sent successfully. We'll get back to you within 24 hours."
@@ -111,7 +105,6 @@ export default function ContactPage() {
       <Header />
       
       <main className={styles.mainContent}>
-        <Breadcrumb items={breadcrumbItems} />
         
         {/* Logo Hero Section */}
         <section className={styles.logoHeroSection}>
