@@ -93,11 +93,38 @@
   z-index: 10;
 }
 
-.fallbackText {
+.fallbackContent {
   z-index: 10;
-  font-weight: 500;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   text-align: center;
   padding: 0 $spacing-sm;
+  gap: $spacing-sm;
+
+  &.hidden {
+    display: none;
+  }
+}
+
+.fallbackIcon {
+  color: $text-muted;
+  opacity: 0.6;
+  
+  &.featured {
+    width: 3rem;
+    height: 3rem;
+  }
+  
+  &.compact {
+    width: 2rem;
+    height: 2rem;
+  }
+}
+
+.fallbackText {
+  font-weight: 500;
   color: $text-primary;
 
   &.featured {
@@ -106,10 +133,6 @@
 
   &.compact {
     font-size: $font-size-sm;
-  }
-
-  &.hidden {
-    display: none;
   }
 }
 

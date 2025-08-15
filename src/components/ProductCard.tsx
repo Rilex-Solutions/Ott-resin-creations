@@ -124,9 +124,16 @@ export default function ProductCard({ product, variant }: ProductCardProps) {
             }}
           />
         ) : null}
-        <span className={`${styles.imageFallback} ${styles[variant]} ${getDirectImageUrl(product.imageUrl) ? 'hidden' : ''}`}>
-          {product.image}
-        </span>
+        <div className={`${styles.imageFallback} ${styles[variant]} ${getDirectImageUrl(product.imageUrl) ? 'hidden' : ''}`}>
+          <img 
+            src="/favicon.ico" 
+            alt="Placeholder" 
+            className={`${styles.fallbackIcon} ${styles[variant]}`} 
+          />
+          <span className={styles.fallbackText}>
+            {product.image}
+          </span>
+        </div>
         
         {!product.inStock && (
           <div className={styles.outOfStockOverlay}>

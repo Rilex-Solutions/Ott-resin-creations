@@ -161,13 +161,45 @@
   }
 
   .imageFallback {
-    color: $text-secondary;
-    font-weight: 500;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     text-align: center;
     padding: $spacing-sm;
+    gap: $spacing-sm;
+    height: 100%;
 
     &.featured {
-      // Featured fallback styles
+      gap: $spacing-md;
+    }
+
+    &.regular {
+      gap: $spacing-sm;
+    }
+  }
+
+  .fallbackIcon {
+    color: $text-muted;
+    opacity: 0.6;
+    
+    &.featured {
+      width: 3rem;
+      height: 3rem;
+    }
+    
+    &.regular {
+      width: 2.5rem;
+      height: 2.5rem;
+    }
+  }
+
+  .fallbackText {
+    color: $text-secondary;
+    font-weight: 500;
+
+    &.featured {
+      font-size: $font-size-base;
     }
 
     &.regular {

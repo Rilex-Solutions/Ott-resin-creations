@@ -53,14 +53,23 @@ export default function CategoryCard({
           />
         ) : null}
         
-        {/* Fallback Text */}
-        <span className={`${styles.fallbackText} ${
+        {/* Fallback Content */}
+        <div className={`${styles.fallbackContent} ${
           featuredProduct?.imageUrl ? styles.hidden : ''
         } ${
           isFeatured ? styles.featured : styles.compact
         }`}>
-          {isFeatured ? `${category.name} Collection` : category.name}
-        </span>
+          <img 
+            src="/favicon.ico" 
+            alt="Placeholder" 
+            className={`${styles.fallbackIcon} ${
+              isFeatured ? styles.featured : styles.compact
+            }`} 
+          />
+          <span className={styles.fallbackText}>
+            {isFeatured ? `${category.name} Collection` : category.name}
+          </span>
+        </div>
         
         {/* Featured Badge */}
         {category.featured && (
