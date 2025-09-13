@@ -85,7 +85,7 @@
 
 .logoImage {
   width: 100%;
-  max-width: 320px;
+  max-width: 250px;
   height: auto;
   border-radius: $radius-xl;
   box-shadow: $shadow-lg;
@@ -96,7 +96,7 @@
   }
 
   @media (min-width: 768px) {
-    max-width: 400px;
+    max-width: 312px;
   }
 }
 

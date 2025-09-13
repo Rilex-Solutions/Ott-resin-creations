@@ -1,0 +1,248 @@
+@import url('https://fonts.googleapis.com/css2?family=Ms+Madi&family=Inter:wght@400;500;600;700&display=swap');
+@import '../../styles/_variables.scss';
+
+.heroSection {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 253, 245, 0.7) 0%,
+    rgba(254, 248, 220, 0.8) 25%,
+    rgba(253, 240, 180, 0.7) 50%,
+    rgba(251, 220, 120, 0.6) 75%,
+    rgba(253, 210, 150, 0.7) 100%
+  );
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+      radial-gradient(circle at 20% 80%, rgba(251, 191, 36, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(245, 158, 11, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+  }
+}
+
+.heroContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem $spacing-md;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+
+  @media (min-width: 640px) {
+    padding: 4rem $spacing-lg;
+  }
+
+  @media (min-width: 1024px) {
+    grid-template-columns: 1fr 1.2fr;
+    gap: 4rem;
+    padding: 5rem $spacing-xl;
+  }
+
+  @media (min-width: 1280px) {
+    gap: 5rem;
+  }
+}
+
+.imageColumn {
+  display: flex;
+  justify-content: center;
+
+  @media (min-width: 1024px) {
+    justify-content: flex-end;
+  }
+}
+
+.imageWrapper {
+  position: relative;
+  display: inline-block;
+  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.15));
+}
+
+.profileImage {
+  width: 100%;
+  height: auto;
+  max-width: 350px;
+  border-radius: 20px;
+  object-fit: cover;
+  transition: all 0.3s ease;
+
+  @media (min-width: 768px) {
+    max-width: 400px;
+  }
+
+  @media (min-width: 1024px) {
+    max-width: 380px;
+  }
+}
+
+.handwrittenGreeting {
+  position: absolute;
+  bottom: 15px;
+  right: -20px;
+  font-family: 'Ms Madi', cursive;
+  font-size: 4rem;
+  color: white;
+  text-shadow: 2px 3px 6px rgba(0, 0, 0, 0.4);
+  transform: rotate(-5deg);
+  pointer-events: none;
+  z-index: 2;
+  animation: gentlePulse 4s ease-in-out infinite;
+
+  @media (min-width: 768px) {
+    font-size: 4.5rem;
+    bottom: 20px;
+    right: -25px;
+  }
+
+  @media (min-width: 1024px) {
+    font-size: 5rem;
+    bottom: 25px;
+    right: -30px;
+  }
+}
+
+.contentColumn {
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  @media (min-width: 1024px) {
+    text-align: left;
+  }
+}
+
+.content {
+  width: 100%;
+  max-width: 550px;
+  margin: 0 auto;
+
+  @media (min-width: 1024px) {
+    margin: 0;
+  }
+}
+
+.mainHeadline {
+  font-family: 'Inter', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1.1;
+  color: $brand-dark-teal;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+
+  @media (min-width: 768px) {
+    font-size: 3rem;
+  }
+
+  @media (min-width: 1024px) {
+    font-size: 3.25rem;
+    margin-bottom: 1.25rem;
+  }
+}
+
+.tagline {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: rgba(120, 53, 15, 0.8);
+  margin-bottom: 2rem;
+  font-style: italic;
+  letter-spacing: 0.01em;
+
+  @media (min-width: 768px) {
+    font-size: 1.375rem;
+  }
+
+  @media (min-width: 1024px) {
+    font-size: 1.5rem;
+    margin-bottom: 2.5rem;
+  }
+}
+
+.personalParagraph {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.125rem;
+  line-height: 1.7;
+  color: rgba(55, 65, 81, 0.9);
+  font-weight: 400;
+  max-width: 500px;
+  margin: 0 auto;
+
+  @media (min-width: 1024px) {
+    margin: 0;
+    font-size: 1.2rem;
+    line-height: 1.75;
+  }
+}
+
+// Responsive adjustments for mobile
+@media (max-width: 640px) {
+  .heroSection {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+
+  .heroContainer {
+    padding: 2rem $spacing-sm;
+    gap: 2rem;
+  }
+
+  .handwrittenGreeting {
+    font-size: 3rem;
+    bottom: 10px;
+    right: -15px;
+  }
+
+  .mainHeadline {
+    font-size: 2.25rem;
+  }
+
+  .tagline {
+    font-size: 1.125rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .personalParagraph {
+    font-size: 1rem;
+  }
+}
+
+// Print styles
+@media print {
+  .heroSection {
+    background: white;
+
+    &::before {
+      display: none;
+    }
+  }
+
+  .handwrittenGreeting {
+    color: #4b5563;
+    text-shadow: none;
+    animation: none;
+  }
+}
+
+// Keyframe animations
+@keyframes gentlePulse {
+  0% {
+    transform: rotate(-5deg) scale(1);
+  }
+  50% {
+    transform: rotate(-5deg) scale(1.08);
+  }
+  100% {
+    transform: rotate(-5deg) scale(1);
+  }
+}

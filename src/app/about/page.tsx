@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
+import JanetAboutHero from '@/components/about/JanetAboutHero'
 import styles from './about.module.scss'
 
 export default function AboutPage() {
@@ -9,49 +10,9 @@ export default function AboutPage() {
       <Header />
       
       <main className={styles.mainContent}>
-        {/* Logo Hero Section */}
-        <section className={styles.logoHeroSection}>
-          <div className={styles.logoHeroContainer}>
-            <div className={styles.logoContainer}>
-              <img 
-                src="/huberduberkid-logo.png" 
-                alt="Huberduberkid Resin Creations - Colorful resin art logo with otter mascot" 
-                className={styles.logoImage}
-              />
-            </div>
-            <div className={styles.logoContent}>
-              <h1 className={styles.logoHeroTitle}>
-                Welcome to Huberduberkid Resin Creations
-              </h1>
-              <p className={styles.logoHeroDescription}>
-                Where creativity meets craftsmanship to create unique pieces that tell your story.
-              </p>
-            </div>
-          </div>
-        </section>
+        {/* Janet's About Hero Section */}
+        <JanetAboutHero />
 
-        {/* My Story Section */}
-        <section className={styles.storySection}>
-          <div className={styles.storyContainer}>
-            <h2 className={styles.storyCenterTitle}>My Journey into Resin Art</h2>
-            <div className={styles.storyContent}>
-              <p className={styles.storyParagraph}>
-                What started as a creative hobby quickly blossomed into a passion for creating 
-                beautiful, functional art pieces. I discovered the endless possibilities of resin 
-                and fell in love with how each piece becomes a unique masterpiece.
-              </p>
-              <p className={styles.storyParagraph}>
-                As a small business owner, I take pride in every single creation that leaves my studio. 
-                Each piece is handled with care, from the initial concept to the final polish, 
-                ensuring that you receive something truly special.
-              </p>
-              <p className={styles.storyParagraph}>
-                When I&apos;m not in the studio, I love spending time with my family and drawing inspiration 
-                from nature, which often finds its way into my color palettes and designs.
-              </p>
-            </div>
-          </div>
-        </section>
 
         {/* My Process Section */}
         <section className={styles.processSection}>

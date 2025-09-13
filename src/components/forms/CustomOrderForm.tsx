@@ -18,27 +18,36 @@ const initialFormData: FormData = {
 }
 
 const basePrices = [
-  { category: 'Coasters', price: '$30' },
-  { category: 'Trays', price: '$75' },
-  { category: 'Dragons', price: '$42' },
-  { category: 'Home Decor', price: '$55' },
-  { category: 'Phone Stands', price: '$25' },
-  { category: 'Spooky', price: '$35' },
-  { category: 'Tea Lights', price: '$20' },
-  { category: 'Bookmarks', price: '$20' },
-  { category: 'Earrings', price: '$22' },
-  { category: 'Teddy Bears', price: '$40' },
-  { category: 'Celestial', price: '$55' },
-  { category: 'Dream Catchers', price: '$52' },
-  { category: 'Memory Pieces', price: '$55' },
-  { category: 'Ornaments', price: '$18' },
-  { category: 'Keychains', price: '$12' },
-  { category: 'Games', price: '$25' },
-  { category: 'Necklaces', price: '$42' },
-  { category: 'Skulls', price: '$45' },
-  { category: 'Magnets', price: '$18' },
-  { category: 'Recreational', price: '$28' },
-  { category: 'Hanging Items', price: '$35' }
+  { category: 'Memorial', subcategory: 'Sleeping Puppy (Medium)', price: '$3' },
+  { category: 'Memorial', subcategory: 'Sleeping Kitty (Medium)', price: '$3' },
+  { category: 'Memorial', subcategory: 'Hanging Cloud w/Heart', price: '$10' },
+  { category: 'Memorial', subcategory: 'German Shepherd', price: '$6' },
+  { category: 'Memorial', subcategory: 'Paw Prints', price: '$5' },
+  { category: 'Memorial', subcategory: 'Jumping Spider Keychain', price: '$5' },
+  { category: 'Necklaces', subcategory: 'Necklace', price: '$5' },
+  { category: 'Ornaments', subcategory: 'Mouse', price: '$2' },
+  { category: 'Ornaments', subcategory: 'Large', price: '$5' },
+  { category: 'Ornaments', subcategory: 'Small', price: '$2' },
+  { category: 'Phone Stands', subcategory: 'Phone Stand', price: '$5' },
+  { category: 'Recreational', subcategory: 'Tray', price: '$8' },
+  { category: 'Recreational', subcategory: 'Ashtray', price: '$8' },
+  { category: 'Teddy Bears', subcategory: 'Teddy Bear', price: '$5' },
+  { category: 'Tea Light Holders', subcategory: 'Tea Light Holder', price: '$5' },
+  { category: 'Trinket Boxes', subcategory: 'Shape', price: '$5' },
+  { category: 'Trinket Boxes', subcategory: 'Coffin', price: '$8' },
+  { category: 'Trinket Boxes', subcategory: 'Pumpkin', price: '$10' },
+  { category: 'Trinket Trays', subcategory: 'Regular Shape', price: '$5' },
+  { category: 'Trinket Trays', subcategory: 'Small Circle', price: '$2' },
+  { category: 'Trinket Trays', subcategory: 'Tray and Dish Set', price: '$8' },
+  { category: 'Magnets', subcategory: 'Magnet', price: '$2' },
+  { category: 'Coasters', subcategory: 'Coasters', price: '$5' },
+  { category: 'Dream Catchers', subcategory: 'Dream Catchers', price: '$5' },
+  { category: 'Dragons', subcategory: 'Dragons', price: '$5' },
+  { category: 'Runes', subcategory: 'Runes', price: '$10' },
+  { category: 'Games', subcategory: 'Games', price: '$5' },
+  { category: 'Earrings', subcategory: 'Earrings', price: '$2' },
+  { category: 'Hanging Items', subcategory: 'Hanging Items', price: '$3' },
+  { category: 'Home Decor', subcategory: 'Home Decor', price: '$3' }
 ]
 
 export default function CustomOrderForm() {
@@ -114,6 +123,9 @@ export default function CustomOrderForm() {
                       {item ? (
                         <>
                           <div className={styles.categoryName}>{item.category}</div>
+                          {item.subcategory !== item.category && (
+                            <div className={styles.subcategoryName}>{item.subcategory}</div>
+                          )}
                           <div className={styles.categoryPrice}>{item.price}</div>
                         </>
                       ) : null}
