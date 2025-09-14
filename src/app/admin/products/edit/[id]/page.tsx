@@ -1,9 +1,9 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import ProductPreview from '@/components/admin/ProductPreview'
+import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-import styles from './add-product.module.scss'
+import styles from './edit-product.module.scss'
 
 interface ProductFormData {
   name: string
@@ -22,7 +22,6 @@ interface Category {
   name: string
 }
 
-
 const initialFormData: ProductFormData = {
   name: '',
   description: '',
@@ -35,92 +34,61 @@ const initialFormData: ProductFormData = {
   inventoryCount: 1
 }
 
-export default function AddProductPage() {
+export default function EditProductPage({ params }: { params: { id: string } }) {
+  const router = useRouter()
   const [formData, setFormData] = useState<ProductFormData>(initialFormData)
+  const [isLoading, setIsLoading] = useState(true)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
   const [categories, setCategories] = useState<Category[]>([])
   const [categoriesLoading, setCategoriesLoading] = useState(true)
-  const [errors, setErrors] = useState<{[key: string]: string}>({})
 
   useEffect(() => {
-    const fetchCategories = async () => {
+    const fetchData = async () => {
       try {
-        const response = await fetch('/api/categories')
-        const data = await response.json()
-        if (data.categories) {
-          setCategories(data.categories)
+        // Fetch product and categories in parallel
+        const [productResponse, categoriesResponse] = await Promise.all([
+          fetch(`/api/products/${params.id}`),
+          fetch('/api/categories')
+        ])
+
+        if (productResponse.ok) {
+          const productData = await productResponse.json()
+          if (productData.product) {
+            const product = productData.product
+            setFormData({
+              name: product.name,
+              description: product.description,
+              price: product.price,
+              categorySlug: product.categorySlug,
+              image: product.image,
+              imageUrl: product.imageUrl || '',
+              inStock: product.inStock,
+              featured: product.featured,
+              inventoryCount: product.inventoryCount
+            })
+          }
+        } else {
+          setSubmitStatus('error')
+        }
+
+        if (categoriesResponse.ok) {
+          const categoriesData = await categoriesResponse.json()
+          if (categoriesData.categories) {
+            setCategories(categoriesData.categories)
+          }
         }
       } catch (error) {
-        console.error('Error fetching categories:', error)
+        console.error('Error fetching data:', error)
+        setSubmitStatus('error')
       } finally {
+        setIsLoading(false)
         setCategoriesLoading(false)
       }
     }
 
-    fetchCategories()
-  }, [])
-
-  const validateField = (name: string, value: any) => {
-    const newErrors = { ...errors }
-
-    switch (name) {
-      case 'name':
-        if (!value.trim()) {
-          newErrors.name = 'Product name is required'
-        } else {
-          delete newErrors.name
-        }
-        break
-      case 'description':
-        if (!value.trim()) {
-          newErrors.description = 'Description is required'
-        } else if (value.length < 10) {
-          newErrors.description = 'Description must be at least 10 characters'
-        } else {
-          delete newErrors.description
-        }
-        break
-      case 'price':
-        const priceValue = value.replace('$', '')
-        if (!priceValue.trim()) {
-          newErrors.price = 'Price is required'
-        } else if (isNaN(parseFloat(priceValue)) || parseFloat(priceValue) <= 0) {
-          newErrors.price = 'Price must be a valid positive number'
-        } else {
-          delete newErrors.price
-        }
-        break
-      case 'categorySlug':
-        if (!value) {
-          newErrors.categorySlug = 'Category is required'
-        } else {
-          delete newErrors.categorySlug
-        }
-        break
-      case 'imageUrl':
-        if (value && !isValidUrl(value)) {
-          newErrors.imageUrl = 'Please enter a valid URL'
-        } else {
-          delete newErrors.imageUrl
-        }
-        break
-      default:
-        break
-    }
-
-    setErrors(newErrors)
-    return Object.keys(newErrors).length === 0
-  }
-
-  const isValidUrl = (string: string) => {
-    try {
-      new URL(string)
-      return true
-    } catch (_) {
-      return false
-    }
-  }
+    fetchData()
+  }, [params.id])
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value, type } = e.target
@@ -132,53 +100,45 @@ export default function AddProductPage() {
         [name]: checked
       }))
     } else if (type === 'number') {
-      const numValue = parseInt(value) || 0
       setFormData(prev => ({
         ...prev,
-        [name]: numValue
+        [name]: parseInt(value) || 0
       }))
-      validateField(name, numValue)
     } else {
       setFormData(prev => ({
         ...prev,
         [name]: value
       }))
-      validateField(name, value)
     }
   }
 
-
-  const handleSubmit = async (e?: React.FormEvent | React.MouseEvent) => {
-    e?.preventDefault()
-    console.log('Button clicked! Function is running')
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
     setIsSubmitting(true)
     setSubmitStatus('idle')
-    
+
     try {
-      console.log('Submitting form data:', formData)
-      
       // Format price to include $ if not already included
       const formattedData = {
         ...formData,
         price: formData.price.startsWith('$') ? formData.price : `$${formData.price}`
       }
-      
-      const response = await fetch('/api/products', {
-        method: 'POST',
+
+      const response = await fetch(`/api/products/${params.id}`, {
+        method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(formattedData)
       })
-      
-      console.log('Response status:', response.status)
+
       const result = await response.json()
-      console.log('Response data:', result)
-      
+
       if (response.ok && result.success) {
         setSubmitStatus('success')
-        setFormData(initialFormData)
-        console.log('Product added successfully!')
+        setTimeout(() => {
+          router.push('/admin/products')
+        }, 1500)
       } else {
         setSubmitStatus('error')
         console.error('Error response:', result)
@@ -191,13 +151,26 @@ export default function AddProductPage() {
     }
   }
 
+  if (isLoading) {
+    return (
+      <div className={styles.container}>
+        <div className={styles.wrapper}>
+          <div className={styles.loadingContainer}>
+            <div className={styles.spinner}></div>
+            <p>Loading product...</p>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className={styles.container}>
       <div className={styles.wrapper}>
         {/* Header */}
         <div className={styles.header}>
           <h1>
-            Add New Product
+            Edit Product
           </h1>
           <Link
             href="/admin/products"
@@ -207,26 +180,21 @@ export default function AddProductPage() {
           </Link>
         </div>
 
-        {/* Two Column Layout */}
-        <div className={styles.layout}>
-          {/* Form Column */}
-          <div className={styles.formColumn}>
+        {submitStatus === 'success' && (
+          <div className={styles.successBox}>
+            <p>Product updated successfully! Redirecting...</p>
+          </div>
+        )}
 
-            {submitStatus === 'success' && (
-              <div className={styles.successBox}>
-                <p>Product added successfully!</p>
-              </div>
-            )}
+        {submitStatus === 'error' && (
+          <div className={styles.errorBox}>
+            <p>
+              Error updating product. Please try again.
+            </p>
+          </div>
+        )}
 
-            {submitStatus === 'error' && (
-              <div className={styles.errorBox}>
-                <p>
-                  Error adding product. Please try again.
-                </p>
-              </div>
-            )}
-
-            <form onSubmit={handleSubmit} className={styles.form}>
+        <form onSubmit={handleSubmit} className={styles.form}>
           <div className={styles.formGroup}>
             {/* Product Name */}
             <div className={styles.fieldGroup}>
@@ -240,14 +208,9 @@ export default function AddProductPage() {
                 value={formData.name}
                 onChange={handleInputChange}
                 required
-                className={`${styles.inputField} ${
-                  errors.name ? styles.error : ''
-                }`}
+                className={styles.inputField}
                 placeholder="e.g., Ocean Wave Coaster Set"
               />
-              {errors.name && (
-                <p className={styles.errorText}>{errors.name}</p>
-              )}
             </div>
 
             {/* Category */}
@@ -343,10 +306,17 @@ export default function AddProductPage() {
                 className={styles.inputField}
                 placeholder="https://example.com/image.jpg (direct image URL works best)"
               />
-              <p className={styles.helperText}>
-                <strong>Best options:</strong> Direct image URLs (.jpg, .png, etc.) or Google Drive links.<br/>
-                <strong>Note:</strong> Google Photos URLs may be rate-limited. Consider using Google Drive or other image hosting services.
-              </p>
+              {formData.imageUrl && (
+                <div className={styles.imagePreview}>
+                  <img
+                    src={formData.imageUrl}
+                    alt="Preview"
+                    onError={(e) => {
+                      (e.target as HTMLImageElement).style.display = 'none'
+                    }}
+                  />
+                </div>
+              )}
             </div>
 
             {/* Stock and Featured */}
@@ -393,34 +363,24 @@ export default function AddProductPage() {
               </div>
             </div>
 
-            {/* Submit Button */}
+            {/* Submit Buttons */}
             <div className={styles.submitSection}>
               <button
-                type="button"
-                onClick={handleSubmit}
+                type="submit"
                 disabled={isSubmitting}
                 className={styles.submitButton}
               >
-                {isSubmitting ? 'Adding Product...' : 'Add Product'}
+                {isSubmitting ? 'Updating Product...' : 'Update Product'}
               </button>
+              <Link
+                href="/admin/products"
+                className={styles.cancelButton}
+              >
+                Cancel
+              </Link>
             </div>
-              </div>
-            </form>
           </div>
-
-          {/* Preview Column */}
-          <div className={styles.previewColumn}>
-            <ProductPreview
-              name={formData.name}
-              price={formData.price}
-              description={formData.description}
-              imageUrl={formData.imageUrl}
-              inStock={formData.inStock}
-              featured={formData.featured}
-              variant={formData.featured ? 'featured' : 'regular'}
-            />
-          </div>
-        </div>
+        </form>
       </div>
     </div>
   )
