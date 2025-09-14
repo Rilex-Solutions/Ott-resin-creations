@@ -434,7 +434,7 @@ export default function AdminDashboard() {
 
           {/* Quick Actions */}
           <div className={styles.quickActions}>
-            <Link href="/" className={styles.viewStoreBtn}>
+            <Link href="https://www.huberduberkidresincreations.com/" target="_blank" rel="noopener noreferrer" className={styles.viewStoreBtn}>
               <img src="/icons/recent.png" alt="Store" className={styles.iconMr} />
               View Store
             </Link>
