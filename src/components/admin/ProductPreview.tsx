@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import ImageModal from '@/components/ui/ImageModal'
+import { getDirectImageUrl } from '@/lib/utils/image'
 import styles from '../ProductCard.module.scss'
 
 interface ProductPreviewProps {
@@ -14,47 +15,6 @@ interface ProductPreviewProps {
   variant?: 'featured' | 'regular'
 }
 
-// Helper function to convert Google Photos URLs to direct image URLs
-function getDirectImageUrl(googlePhotosUrl: string | null): string | null {
-  if (!googlePhotosUrl) return null
-
-  // If it's already a direct image URL, return as is
-  if (googlePhotosUrl.match(/\.(jpg|jpeg|png|gif|webp)$/i)) {
-    return googlePhotosUrl
-  }
-
-  // Handle different Google service URLs
-  if (googlePhotosUrl.includes('drive.google.com')) {
-    // For Google Drive, extract the file ID and create a direct link
-    let fileId = ''
-
-    // Handle different Google Drive URL formats
-    const shareMatch = googlePhotosUrl.match(/\/file\/d\/([a-zA-Z0-9-_]+)/)
-    const viewMatch = googlePhotosUrl.match(/\/d\/([a-zA-Z0-9-_]+)/)
-    const idMatch = googlePhotosUrl.match(/id=([a-zA-Z0-9-_]+)/)
-
-    if (shareMatch) {
-      fileId = shareMatch[1]
-    } else if (viewMatch) {
-      fileId = viewMatch[1]
-    } else if (idMatch) {
-      fileId = idMatch[1]
-    }
-
-    if (fileId) {
-      // Use the thumbnail API which is more reliable for images
-      return `https://drive.google.com/thumbnail?id=${fileId}&sz=w800`
-    }
-  }
-
-  // For Google Photos, these URLs are tricky and often get rate limited
-  if (googlePhotosUrl.includes('photos.google.com') || googlePhotosUrl.includes('photos.app.goo.gl')) {
-    return googlePhotosUrl
-  }
-
-  // Return original URL if we can't process it
-  return googlePhotosUrl
-}
 
 export default function ProductPreview({
   name,

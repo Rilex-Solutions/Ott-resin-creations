@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import ProductPreview from '@/components/admin/ProductPreview'
+import { getDirectImageUrl } from '@/lib/utils/image'
 import styles from './dashboard.module.scss'
 
 interface Product {
@@ -773,9 +774,9 @@ export default function AdminDashboard() {
 
                         {/* Product Image */}
                         <div className={styles.productImage}>
-                          {product.imageUrl ? (
+                          {getDirectImageUrl(product.imageUrl) ? (
                             <img
-                              src={product.imageUrl}
+                              src={getDirectImageUrl(product.imageUrl)!}
                               alt={product.name}
                               style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain', borderRadius: '0.5rem' }}
                               onError={(e) => {
@@ -934,9 +935,9 @@ export default function AdminDashboard() {
                             <td className={styles.tableCell}>
                               <div className={styles.tableCellContent}>
                                 <div className={styles.tableImage}>
-                                  {product.imageUrl ? (
+                                  {getDirectImageUrl(product.imageUrl) ? (
                                     <img
-                                      src={product.imageUrl}
+                                      src={getDirectImageUrl(product.imageUrl)!}
                                       alt={product.name}
                                       className={styles.tableImage}
                                       style={{ borderRadius: '0.5rem', objectFit: 'cover' }}

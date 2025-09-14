@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { colorCombinations } from '@/constants/colors'
 import { styleCombinations } from '@/constants/styles'
+import { getDirectImageUrl } from '@/lib/utils/image'
 import styles from './products.module.scss'
 
 interface Product {
@@ -308,9 +309,9 @@ export default function AdminProductsPage() {
                     <tr key={product.id} className="hover:bg-[#FEFBFD] transition-colors">
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="w-16 h-16 bg-[#F7F1F8] rounded-lg flex items-center justify-center overflow-hidden">
-                          {product.imageUrl ? (
+                          {getDirectImageUrl(product.imageUrl) ? (
                             <img
-                              src={product.imageUrl}
+                              src={getDirectImageUrl(product.imageUrl)!}
                               alt={product.name}
                               className="max-w-full max-h-full object-contain"
                               onError={(e) => {
@@ -395,9 +396,9 @@ export default function AdminProductsPage() {
               <div key={product.id} className="bg-white rounded-lg shadow-sm border border-[#E0D0E3] overflow-hidden">
                 {/* Product Image */}
                 <div className="aspect-square bg-[#F7F1F8] flex items-center justify-center p-4">
-                  {product.imageUrl ? (
+                  {getDirectImageUrl(product.imageUrl) ? (
                     <img
-                      src={product.imageUrl}
+                      src={getDirectImageUrl(product.imageUrl)!}
                       alt={product.name}
                       className="max-w-full max-h-full object-contain rounded"
                       onError={(e) => {
