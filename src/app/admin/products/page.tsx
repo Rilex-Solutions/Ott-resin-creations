@@ -42,7 +42,7 @@ export default function AdminProductsPage() {
       if (data.products) {
         setProducts(data.products)
         // Extract unique categories
-        const uniqueCategories = [...new Set(data.products.map((p: Product) => p.categoryName))]
+        const uniqueCategories = [...new Set(data.products.map((p: Product) => p.categoryName))] as string[]
         setCategories(uniqueCategories.sort())
       }
     } catch (error) {
