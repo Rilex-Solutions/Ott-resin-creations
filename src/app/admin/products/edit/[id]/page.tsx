@@ -34,7 +34,7 @@ const initialFormData: ProductFormData = {
   inventoryCount: 1
 }
 
-export default function EditProductPage({ params }: { params: { id: string } }) {
+export default function EditProductPage({ params }: { params: Promise<{ id: string }> }) {
   const router = useRouter()
   const [formData, setFormData] = useState<ProductFormData>(initialFormData)
   const [isLoading, setIsLoading] = useState(true)
@@ -46,9 +46,10 @@ export default function EditProductPage({ params }: { params: { id: string } }) 
   useEffect(() => {
     const fetchData = async () => {
       try {
+        const resolvedParams = await params
         // Fetch product and categories in parallel
         const [productResponse, categoriesResponse] = await Promise.all([
-          fetch(`/api/products/${params.id}`),
+          fetch(`/api/products/${resolvedParams.id}`),
           fetch('/api/categories')
         ])
 
@@ -88,7 +89,7 @@ export default function EditProductPage({ params }: { params: { id: string } }) 
     }
 
     fetchData()
-  }, [params.id])
+  }, [params])
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value, type } = e.target
@@ -124,7 +125,8 @@ export default function EditProductPage({ params }: { params: { id: string } }) 
         price: formData.price.startsWith('$') ? formData.price : `$${formData.price}`
       }
 
-      const response = await fetch(`/api/products/${params.id}`, {
+      const resolvedParams = await params
+      const response = await fetch(`/api/products/${resolvedParams.id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
