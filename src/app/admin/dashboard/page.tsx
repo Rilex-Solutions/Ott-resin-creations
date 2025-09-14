@@ -492,7 +492,7 @@ export default function AdminDashboard() {
               </div>
               <div className={styles.statDetails}>
                 <p className={styles.statLabel}>Low Stock</p>
-                <p className={styles.statValue}>{products.filter(p => p.inventoryCount < 5).length}</p>
+                <p className={styles.statValue}>{products.filter(p => p.inventoryCount <= 2).length}</p>
               </div>
             </div>
           </div>
