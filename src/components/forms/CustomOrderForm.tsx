@@ -66,14 +66,27 @@ export default function CustomOrderForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
-    
+
     try {
-      // Here you would normally send the data to your backend
-      await new Promise(resolve => setTimeout(resolve, 2000))
-      
+      const response = await fetch('/api/custom-order/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...formData,
+          timestamp: new Date().toISOString()
+        }),
+      })
+
+      if (!response.ok) {
+        throw new Error('Failed to submit custom order request')
+      }
+
       setSubmitStatus('success')
       setFormData(initialFormData)
     } catch (error) {
+      console.error('Error submitting custom order:', error)
       setSubmitStatus('error')
     } finally {
       setIsSubmitting(false)
