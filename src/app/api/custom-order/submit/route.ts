@@ -71,7 +71,7 @@ The Huberduberkid Resin Creations Team
     if (resend) {
       try {
         await resend.emails.send({
-          from: 'Huberduberkid Resin Creations <contact@huberduberkid.com>',
+          from: 'Huberduberkid Resin Creations <onboarding@resend.dev>',
           to: ['huberduberkid@gmail.com'],
           subject: 'New Custom Order Request - Huberduberkid Resin Creations',
           text: janetEmailContent,
@@ -85,7 +85,7 @@ The Huberduberkid Resin Creations Team
       // Send confirmation email to customer
       try {
         await resend.emails.send({
-          from: 'Huberduberkid Resin Creations <contact@huberduberkid.com>',
+          from: 'Huberduberkid Resin Creations <onboarding@resend.dev>',
           to: [formData.email],
           subject: 'Thank you for your custom order request - Huberduberkid Resin Creations',
           text: customerEmailContent,
