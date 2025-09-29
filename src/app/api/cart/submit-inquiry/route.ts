@@ -78,7 +78,7 @@ Huberduberkid Resin Creations
     if (resend) {
       try {
         await resend.emails.send({
-          from: 'Huberduberkid Resin Creations <onboarding@resend.dev>',
+          from: 'Huberduberkid Resin Creations <orders@huberduberkidresincreations.com>',
           to: ['huberduberkid@gmail.com'],
           subject: 'New Purchase Inquiry - Huberduberkid Resin Creations',
           text: janetEmailContent,
@@ -94,7 +94,7 @@ Huberduberkid Resin Creations
     if (resend) {
       try {
         await resend.emails.send({
-          from: 'Huberduberkid Resin Creations <onboarding@resend.dev>',
+          from: 'Huberduberkid Resin Creations <orders@huberduberkidresincreations.com>',
           to: [inquiry.customer.email],
           subject: 'Your Purchase Inquiry - Huberduberkid Resin Creations',
           text: customerEmailContent,
