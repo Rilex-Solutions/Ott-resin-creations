@@ -72,7 +72,7 @@ The Huberduberkid Resin Creations Team
       try {
         await resend.emails.send({
           from: 'Huberduberkid Resin Creations <onboarding@resend.dev>',
-          to: ['tiffanycodes.co@gmail.com'],
+          to: ['huberduberkid@gmail.com'],
           subject: 'New Custom Order Request - Huberduberkid Resin Creations',
           text: janetEmailContent,
         })
