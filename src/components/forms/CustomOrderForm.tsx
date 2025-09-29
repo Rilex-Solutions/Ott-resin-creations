@@ -191,10 +191,53 @@ export default function CustomOrderForm() {
         </div>
       </div>
 
-      {/* Custom Order Form */}
-      <form onSubmit={handleSubmit} className={styles.form}>
+      {/* Custom Order Notice */}
+      <div className={styles.form}>
         <h2 className={styles.formTitle}>Request a Custom Piece</h2>
-        
+
+        <div className={styles.noticeCard}>
+          <div className={styles.noticeIcon}>
+            <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z" />
+            </svg>
+          </div>
+          <div className={styles.noticeContent}>
+            <h3 className={styles.noticeTitle}>Temporarily Unavailable</h3>
+            <p className={styles.noticeDescription}>
+              Our online custom order form is currently undergoing maintenance. We apologize for any inconvenience.
+            </p>
+            <div className={styles.contactInfo}>
+              <h4 className={styles.contactTitle}>Please Contact Us Directly:</h4>
+              <div className={styles.contactDetails}>
+                <div className={styles.contactItem}>
+                  <strong>Email:</strong> <a href="mailto:huberduberkid@gmail.com" className={styles.contactLink}>huberduberkid@gmail.com</a>
+                </div>
+                <div className={styles.contactItem}>
+                  <strong>Phone:</strong> <a href="tel:7208055509" className={styles.contactLink}>(720) 805-5509</a>
+                </div>
+              </div>
+              <div className={styles.infoNeeded}>
+                <h5 className={styles.infoNeededTitle}>Please Include in Your Message:</h5>
+                <ul className={styles.infoList}>
+                  <li>Your name and phone number</li>
+                  <li>What type of item you want (coaster, tray, wall art, etc.)</li>
+                  <li>Size or dimensions you need</li>
+                  <li>Colors or themes you prefer</li>
+                  <li>Any special elements to include (flowers, glitter, photos, etc.)</li>
+                  <li>When you need it completed</li>
+                  <li>Any inspiration or reference ideas</li>
+                </ul>
+              </div>
+              <p className={styles.responseTime}>
+                <strong>We will respond within 24 hours</strong> and would love to discuss your custom piece ideas!
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Hidden form section - keeping for when maintenance is complete */}
+      <div style={{ display: 'none' }}>
         <div className={styles.formGroup}>
           {/* Contact Information */}
           <div className={styles.formGrid}>
@@ -313,7 +356,7 @@ export default function CustomOrderForm() {
             </p>
           </div>
         </div>
-      </form>
+      </div>
     </div>
   )
 }

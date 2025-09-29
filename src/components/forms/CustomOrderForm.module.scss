@@ -38,6 +38,128 @@
   color: $text-tertiary;
 }
 
+// Notice Card Styles
+.noticeCard {
+  background: linear-gradient(135deg, #FFF3CD 0%, #FEF9E7 100%);
+  border: 2px solid #F0C947;
+  border-radius: $radius-lg;
+  padding: $spacing-xl;
+  margin-bottom: $spacing-xl;
+  display: flex;
+  gap: $spacing-lg;
+  align-items: flex-start;
+
+  @media (max-width: 640px) {
+    flex-direction: column;
+    text-align: center;
+    gap: $spacing-md;
+  }
+}
+
+.noticeIcon {
+  flex-shrink: 0;
+  color: #B7791F;
+
+  svg {
+    width: 2rem;
+    height: 2rem;
+  }
+}
+
+.noticeContent {
+  flex: 1;
+}
+
+.noticeTitle {
+  font-size: $font-size-xl;
+  font-weight: bold;
+  color: #8B5A2B;
+  margin-bottom: $spacing-sm;
+}
+
+.noticeDescription {
+  color: #8B5A2B;
+  margin-bottom: $spacing-lg;
+  line-height: 1.6;
+}
+
+.contactInfo {
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: $radius-md;
+  padding: $spacing-lg;
+  border: 1px solid rgba(240, 201, 71, 0.3);
+}
+
+.contactTitle {
+  font-size: $font-size-lg;
+  font-weight: 600;
+  color: #8B5A2B;
+  margin-bottom: $spacing-md;
+}
+
+.contactDetails {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+  margin-bottom: $spacing-md;
+}
+
+.contactItem {
+  color: #8B5A2B;
+
+  strong {
+    margin-right: $spacing-sm;
+  }
+}
+
+.contactLink {
+  color: #B7791F;
+  text-decoration: none;
+  font-weight: 500;
+
+  &:hover {
+    text-decoration: underline;
+    color: #8B5A2B;
+  }
+}
+
+.infoNeeded {
+  margin: $spacing-lg 0;
+  padding: $spacing-md;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: $radius-sm;
+  border-left: 4px solid #B7791F;
+}
+
+.infoNeededTitle {
+  font-size: $font-size-md;
+  font-weight: 600;
+  color: #8B5A2B;
+  margin: 0 0 $spacing-sm 0;
+}
+
+.infoList {
+  margin: 0;
+  padding-left: $spacing-lg;
+  color: #8B5A2B;
+
+  li {
+    margin-bottom: $spacing-xs;
+    line-height: 1.5;
+  }
+}
+
+.responseTime {
+  color: #8B5A2B;
+  font-size: $font-size-sm;
+  margin: 0;
+  text-align: center;
+
+  strong {
+    color: #B7791F;
+  }
+}
+
 .infoCard {
   background-color: $bg-card;
   border-radius: $radius-lg;
