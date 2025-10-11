@@ -40,7 +40,7 @@ export default function InfoSection() {
     <section className={styles.section}>
       <div className={styles.container}>
         <h2 className={styles.title}>
-          Why Choose Our Resin Art?
+          Why Choose Our Art?
         </h2>
         <div className={styles.grid}>
           {features.map((feature, index) => (

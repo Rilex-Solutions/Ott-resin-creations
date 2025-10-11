@@ -66,7 +66,8 @@ export async function GET() {
         featured: products.featured,
         inventoryCount: products.inventoryCount,
         categoryName: categories.name,
-        categorySlug: categories.slug
+        categorySlug: categories.slug,
+        productType: categories.productType
       })
       .from(products)
       .leftJoin(categories, eq(products.categoryId, categories.id))

@@ -3,11 +3,21 @@
 import { useState, useEffect } from 'react'
 import { Product, Category } from '@/types/shop'
 
+interface CategoriesByType {
+  resin: Category[]
+  crochet: Category[]
+  '3d-print': Category[]
+}
+
 interface UseShopDataResult {
   products: Product[]
   categories: Category[]
   featuredCategories: Category[]
   otherCategories: Category[]
+  categoriesByType: CategoriesByType
+  resinCategories: Category[]
+  crochetCategories: Category[]
+  threeDPrintCategories: Category[]
   loading: boolean
   error: string | null
 }
@@ -73,11 +83,26 @@ export function useShopData(): UseShopDataResult {
   const featuredCategories = categories.filter(cat => cat.featured)
   const otherCategories = categories.filter(cat => !cat.featured)
 
+  // Group categories by product type
+  const resinCategories = categories.filter(cat => cat.productType === 'resin')
+  const crochetCategories = categories.filter(cat => cat.productType === 'crochet')
+  const threeDPrintCategories = categories.filter(cat => cat.productType === '3d-print')
+
+  const categoriesByType: CategoriesByType = {
+    resin: resinCategories,
+    crochet: crochetCategories,
+    '3d-print': threeDPrintCategories
+  }
+
   return {
     products,
     categories,
     featuredCategories,
     otherCategories,
+    categoriesByType,
+    resinCategories,
+    crochetCategories,
+    threeDPrintCategories,
     loading,
     error
   }

@@ -38,6 +38,49 @@
   margin: 0 auto $spacing-xl;
 }
 
+.productTypeNav {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+  justify-content: center;
+  margin-bottom: $spacing-xl;
+  max-width: 48rem;
+  margin-left: auto;
+  margin-right: auto;
+
+  @media (min-width: 640px) {
+    flex-direction: row;
+    gap: $spacing-lg;
+  }
+}
+
+.navButton {
+  background-color: $primary-main;
+  color: white;
+  padding: $spacing-md $spacing-xl;
+  border: none;
+  border-radius: $radius-lg;
+  font-size: $font-size-lg;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all $transition-normal;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+  &:hover {
+    background-color: $primary-hover;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  @media (min-width: 640px) {
+    flex: 1;
+  }
+}
+
 .heroButtons {
   display: flex;
   flex-direction: column;

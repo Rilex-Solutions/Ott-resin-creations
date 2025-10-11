@@ -5,7 +5,7 @@ import { categories } from '@/lib/db/schema'
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
-    const { name, slug, description, hero, featured } = body
+    const { name, slug, description, hero, productType, featured } = body
 
     const [newCategory] = await db
       .insert(categories)
@@ -14,6 +14,7 @@ export async function POST(request: NextRequest) {
         slug,
         description,
         hero,
+        productType: productType ?? 'resin',
         featured: featured ?? false
       })
       .returning()

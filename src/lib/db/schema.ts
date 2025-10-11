@@ -8,6 +8,7 @@ export const categories = pgTable('categories', {
   slug: varchar('slug', { length: 100 }).notNull().unique(),
   description: text('description'),
   hero: text('hero'), // Hero text for category pages
+  productType: varchar('product_type', { length: 50 }).default('resin').notNull(), // 'resin', 'crochet', '3d-print'
   featured: boolean('featured').default(false).notNull(),
   createdAt: timestamp('created_at').defaultNow().notNull(),
   updatedAt: timestamp('updated_at').defaultNow().notNull()

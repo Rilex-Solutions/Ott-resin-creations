@@ -826,6 +826,25 @@
   color: #991B1B;
 }
 
+.statusBadge.productType {
+  font-weight: 600;
+}
+
+.statusBadge.resin {
+  background: #E0E7FF;
+  color: #3730A3;
+}
+
+.statusBadge.crochet {
+  background: #FCE7F3;
+  color: #9F1239;
+}
+
+.statusBadge.\\3d-print {
+  background: #DBEAFE;
+  color: #1E40AF;
+}
+
 .productInfo {
   padding: 1rem;
 }
@@ -1069,6 +1088,25 @@
 .tableBadge.featured {
   background: #FEF3C7;
   color: #92400E;
+}
+
+.tableBadge.productType {
+  font-weight: 600;
+}
+
+.tableBadge.resin {
+  background: #E0E7FF;
+  color: #3730A3;
+}
+
+.tableBadge.crochet {
+  background: #FCE7F3;
+  color: #9F1239;
+}
+
+.tableBadge.\\3d-print {
+  background: #DBEAFE;
+  color: #1E40AF;
 }
 
 .tablePrice {

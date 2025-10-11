@@ -13,6 +13,7 @@ interface Product {
   price: string
   categoryName: string
   categorySlug: string
+  productType: 'resin' | 'crochet' | '3d-print'
   image: string
   imageUrl: string
   inStock: boolean
@@ -23,6 +24,7 @@ interface Product {
 interface Category {
   slug: string
   name: string
+  productType: 'resin' | 'crochet' | '3d-print'
 }
 
 interface ProductFormData {
@@ -55,6 +57,7 @@ export default function AdminDashboard() {
   const [productsLoading, setProductsLoading] = useState(true)
   const [searchTerm, setSearchTerm] = useState('')
   const [filterCategory, setFilterCategory] = useState('')
+  const [productTypeFilter, setProductTypeFilter] = useState('')
   const [sortBy, setSortBy] = useState('name')
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc')
   const [stockFilter, setStockFilter] = useState('')
@@ -332,6 +335,7 @@ export default function AdminDashboard() {
     const matchesSearch = product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          product.description.toLowerCase().includes(searchTerm.toLowerCase())
     const matchesCategory = !filterCategory || product.categoryName === filterCategory
+    const matchesProductType = !productTypeFilter || product.productType === productTypeFilter
     const matchesStock = !stockFilter ||
                         (stockFilter === 'in-stock' && product.inStock) ||
                         (stockFilter === 'out-of-stock' && !product.inStock)
@@ -344,7 +348,7 @@ export default function AdminDashboard() {
     const matchesPriceMin = !priceRange.min || price >= parseFloat(priceRange.min)
     const matchesPriceMax = !priceRange.max || price <= parseFloat(priceRange.max)
 
-    return matchesSearch && matchesCategory && matchesStock && matchesFeatured && matchesPriceMin && matchesPriceMax
+    return matchesSearch && matchesCategory && matchesProductType && matchesStock && matchesFeatured && matchesPriceMin && matchesPriceMax
   }).sort((a, b) => {
     let aValue: any, bValue: any
 
@@ -384,7 +388,7 @@ export default function AdminDashboard() {
   // Reset to first page when filters change
   useEffect(() => {
     setCurrentPage(1)
-  }, [searchTerm, filterCategory, stockFilter, featuredFilter, priceRange])
+  }, [searchTerm, filterCategory, productTypeFilter, stockFilter, featuredFilter, priceRange])
 
   // Bulk actions
   const handleSelectAll = () => {
@@ -408,6 +412,7 @@ export default function AdminDashboard() {
   const clearFilters = () => {
     setSearchTerm('')
     setFilterCategory('')
+    setProductTypeFilter('')
     setStockFilter('')
     setFeaturedFilter('')
     setPriceRange({ min: '', max: '' })
@@ -415,7 +420,7 @@ export default function AdminDashboard() {
     setSortOrder('asc')
   }
 
-  const activeFiltersCount = [searchTerm, filterCategory, stockFilter, featuredFilter, priceRange.min, priceRange.max].filter(Boolean).length
+  const activeFiltersCount = [searchTerm, filterCategory, productTypeFilter, stockFilter, featuredFilter, priceRange.min, priceRange.max].filter(Boolean).length
 
   return (
     <div className={styles.dashboard}>
@@ -647,6 +652,21 @@ export default function AdminDashboard() {
                       </select>
                     </div>
 
+                    {/* Product Type Filter */}
+                    <div className={styles.filterField}>
+                      <label className={styles.filterLabel}>Product Type</label>
+                      <select
+                        value={productTypeFilter}
+                        onChange={(e) => setProductTypeFilter(e.target.value)}
+                        className={styles.filterSelect}
+                      >
+                        <option value="">All Types</option>
+                        <option value="resin">Resin Creations</option>
+                        <option value="crochet">Crocheted Items</option>
+                        <option value="3d-print">3D Printed Items</option>
+                      </select>
+                    </div>
+
                     {/* Sort Options */}
                     <div className={styles.filterField}>
                       <label className={styles.filterLabel}>Sort By</label>
@@ -792,6 +812,12 @@ export default function AdminDashboard() {
 
                           {/* Status Badges */}
                           <div className={styles.statusBadges}>
+                            {/* Product Type Badge */}
+                            <span className={`${styles.statusBadge} ${styles.productType} ${styles[product.productType]}`}>
+                              {product.productType === 'resin' && 'Resin'}
+                              {product.productType === 'crochet' && 'Crochet'}
+                              {product.productType === '3d-print' && '3D Print'}
+                            </span>
                             {product.featured && (
                               <span className={`${styles.statusBadge} ${styles.featured}`}>
                                 <img src="/icons/feature.png" alt="Featured" className={styles.iconSm} />
@@ -970,6 +996,11 @@ export default function AdminDashboard() {
                             </td>
                             <td className={styles.tableCell}>
                               <div className={styles.tableStatusContainer}>
+                                <span className={`${styles.tableBadge} ${styles.productType} ${styles[product.productType]}`}>
+                                  {product.productType === 'resin' && 'Resin'}
+                                  {product.productType === 'crochet' && 'Crochet'}
+                                  {product.productType === '3d-print' && '3D Print'}
+                                </span>
                                 <span className={`${styles.tableBadge} ${product.inStock ? styles.inStock : styles.outOfStock}`}>
                                   {product.inStock ? 'In Stock' : 'Out of Stock'}
                                 </span>
@@ -1125,11 +1156,45 @@ export default function AdminDashboard() {
                         ) : (
                           <>
                             <option value="">Select a category</option>
-                            {categories.map(category => (
-                              <option key={category.slug} value={category.slug}>
-                                {category.name}
-                              </option>
-                            ))}
+
+                            {/* Resin Categories */}
+                            {categories.filter(c => c.productType === 'resin').length > 0 && (
+                              <optgroup label="Resin Creations">
+                                {categories
+                                  .filter(c => c.productType === 'resin')
+                                  .map(category => (
+                                    <option key={category.slug} value={category.slug}>
+                                      {category.name}
+                                    </option>
+                                  ))}
+                              </optgroup>
+                            )}
+
+                            {/* Crochet Categories */}
+                            {categories.filter(c => c.productType === 'crochet').length > 0 && (
+                              <optgroup label="Crocheted Items">
+                                {categories
+                                  .filter(c => c.productType === 'crochet')
+                                  .map(category => (
+                                    <option key={category.slug} value={category.slug}>
+                                      {category.name}
+                                    </option>
+                                  ))}
+                              </optgroup>
+                            )}
+
+                            {/* 3D Print Categories */}
+                            {categories.filter(c => c.productType === '3d-print').length > 0 && (
+                              <optgroup label="3D Printed Items">
+                                {categories
+                                  .filter(c => c.productType === '3d-print')
+                                  .map(category => (
+                                    <option key={category.slug} value={category.slug}>
+                                      {category.name}
+                                    </option>
+                                  ))}
+                              </optgroup>
+                            )}
                           </>
                         )}
                       </select>

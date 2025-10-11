@@ -18,6 +18,7 @@ export interface Category {
   slug: string
   description: string
   hero: string
+  productType: 'resin' | 'crochet' | '3d-print'
   featured: boolean
 }
 
