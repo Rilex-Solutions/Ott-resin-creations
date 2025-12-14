@@ -273,6 +273,14 @@ const categoryData = [
     hero: 'Enhance your gaming experience with custom 3D printed accessories',
     productType: '3d-print',
     featured: true
+  },
+  {
+    slug: '3d-jewelry',
+    name: 'Jewelry',
+    description: 'Custom 3D printed jewelry pieces including earrings, pendants, and accessories',
+    hero: 'Wear unique 3D printed jewelry that stands out',
+    productType: '3d-print',
+    featured: false
   }
 ]
 
