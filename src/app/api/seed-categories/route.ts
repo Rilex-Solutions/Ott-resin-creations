@@ -33,9 +33,9 @@ const categoryData = [
   },
   {
     slug: 'phone-stands',
-    name: 'Phone Stands',
-    description: 'Functional and beautiful phone stands for your desk or nightstand',
-    hero: 'Keep your phone stylishly displayed with our resin phone stands',
+    name: 'Phone Accessories',
+    description: 'Functional and beautiful phone accessories for your desk or nightstand',
+    hero: 'Keep your phone stylishly displayed with our resin phone accessories',
     featured: false
   },
   {

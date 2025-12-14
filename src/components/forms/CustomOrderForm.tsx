@@ -28,7 +28,7 @@ const basePrices = [
   { category: 'Ornaments', subcategory: 'Mouse', price: '$2' },
   { category: 'Ornaments', subcategory: 'Large', price: '$5' },
   { category: 'Ornaments', subcategory: 'Small', price: '$2' },
-  { category: 'Phone Stands', subcategory: 'Phone Stand', price: '$5' },
+  { category: 'Phone Accessories', subcategory: 'Phone Stand', price: '$5' },
   { category: 'Recreational', subcategory: 'Tray', price: '$8' },
   { category: 'Recreational', subcategory: 'Ashtray', price: '$8' },
   { category: 'Teddy Bears', subcategory: 'Teddy Bear', price: '$5' },
