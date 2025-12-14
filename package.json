@@ -15,7 +15,8 @@
     "db:studio": "drizzle-kit studio",
     "db:seed-categories": "tsx src/scripts/seed-categories.ts",
     "db:seed-production": "tsx src/scripts/seed-production.ts",
-    "db:view-products": "tsx src/scripts/view-products.ts"
+    "db:view-products": "tsx src/scripts/view-products.ts",
+    "db:update-phone-category": "tsx src/scripts/update-phone-category.ts"
   },
   "dependencies": {
     "@neondatabase/serverless": "^1.0.1",
