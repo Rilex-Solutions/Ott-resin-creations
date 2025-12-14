@@ -31,7 +31,7 @@ const categoryData = [
     featured: true
   },
   {
-    slug: 'phone-stands',
+    slug: 'phone-accessories',
     name: 'Phone Accessories',
     description: 'Functional and beautiful phone accessories for your desk or nightstand',
     hero: 'Keep your phone stylishly displayed with our resin phone accessories',
