@@ -36,7 +36,13 @@ export async function POST(request: NextRequest) {
 export async function GET() {
   try {
     const allCategories = await db.select().from(categories)
-    return NextResponse.json({ categories: allCategories })
+
+    // Sort categories alphabetically by name
+    const sortedCategories = allCategories.sort((a, b) =>
+      a.name.localeCompare(b.name)
+    )
+
+    return NextResponse.json({ categories: sortedCategories })
 
   } catch (error) {
     console.error('Error fetching categories:', error)
