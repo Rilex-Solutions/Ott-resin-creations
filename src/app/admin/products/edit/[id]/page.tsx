@@ -76,7 +76,11 @@ export default function EditProductPage({ params }: { params: Promise<{ id: stri
         if (categoriesResponse.ok) {
           const categoriesData = await categoriesResponse.json()
           if (categoriesData.categories) {
-            setCategories(categoriesData.categories)
+            // Sort categories alphabetically by name
+            const sortedCategories = [...categoriesData.categories].sort((a, b) =>
+              a.name.localeCompare(b.name)
+            )
+            setCategories(sortedCategories)
           }
         }
       } catch (error) {

@@ -49,7 +49,11 @@ export default function AddProductPage() {
         const response = await fetch('/api/categories')
         const data = await response.json()
         if (data.categories) {
-          setCategories(data.categories)
+          // Sort categories alphabetically by name
+          const sortedCategories = [...data.categories].sort((a, b) =>
+            a.name.localeCompare(b.name)
+          )
+          setCategories(sortedCategories)
         }
       } catch (error) {
         console.error('Error fetching categories:', error)
