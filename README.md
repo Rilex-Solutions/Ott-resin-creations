@@ -1,67 +1,173 @@
 # Huberduberkid Resin Creations
 
-This is a [Next.js](https://nextjs.org) e-commerce website for Huberduberkid Resin Creations, featuring handcrafted resin art pieces and custom orders.
+A full-stack e-commerce platform built for Huberduberkid Resin Creations, a Colorado-based artisan resin craft business specializing in handcrafted resin art pieces and custom orders.
 
-## Getting Started
+## Live Site
 
-First, run the development server:
+[huberduberresincreations.vercel.app](https://huberduberresincreations.vercel.app)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## About This Project
+
+This is production client work built for a real small business owner to showcase and sell their handcrafted resin art online. The site includes a custom-built product management system, cart functionality, and automated customer communication flows. This repository is shared with permission from the client.
+
+## Tech Stack
+
+- **Frontend**: Next.js 16 (App Router), React 18, TypeScript
+- **Styling**: SCSS Modules with custom design system
+- **Database**: PostgreSQL (Neon)
+- **ORM**: Drizzle ORM
+- **Email**: Resend API
+- **Deployment**: Vercel
+- **Testing**: Jest, React Testing Library
+
+## Key Features
+
+### Product Catalog System
+- Dynamic product browsing with category filtering
+- Featured products showcase on homepage
+- Image modal for detailed product views
+- Responsive grid layouts optimized for mobile and desktop
+- Real-time inventory tracking and stock status display
+
+### Custom Admin Dashboard
+- Product management (create, edit, delete)
+- Category management with dynamic dropdown population
+- Inventory control with low stock warnings
+- Featured product toggle
+- Product preview system
+- Image URL management supporting Google Drive and direct links
+
+### Custom Order Flow
+- Multi-step custom order form with validation
+- Automated email notifications to business owner and customer
+- Order inquiry tracking
+- Contact form with inquiry type categorization
+
+### Cart System
+- Client-side cart state management with Context API
+- Cart inquiry submission
+- Email notifications for cart submissions
+- Persistent cart data during session
+
+### Email Automation
+- Customer confirmation emails
+- Business owner notifications
+- Custom order inquiry handling
+- Contact form submissions
+
+## Project Structure
+
+```
+src/
+├── app/                    # Next.js App Router pages
+│   ├── admin/             # Admin dashboard and product management
+│   ├── api/               # API routes for products, orders, contact
+│   ├── cart/              # Shopping cart page
+│   ├── shop/              # Product catalog and category pages
+│   └── contact/           # Contact form page
+├── components/
+│   ├── admin/             # Admin-specific components
+│   ├── forms/             # Custom order and contact forms
+│   ├── layout/            # Header, Footer, navigation
+│   ├── shop/              # Product cards, category cards, CTAs
+│   └── ui/                # Reusable UI components
+├── contexts/              # React Context (CartContext)
+├── lib/                   # Database connection and schema
+├── scripts/               # Database seeding and migration scripts
+└── types/                 # TypeScript type definitions
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Database Schema
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+**Products Table**
+- Product information (name, description, price)
+- Inventory management (stock count, availability)
+- Category relationship
+- Featured product status
+- Image URLs
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+**Categories Table**
+- Category name and slug
+- Used for product organization and filtering
 
-## Learn More
+## Setup Instructions
 
-To learn more about Next.js, take a look at the following resources:
+### Prerequisites
+- Node.js 18+
+- PostgreSQL database (Neon recommended)
+- Resend API key for email functionality
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Installation
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Clone the repository
+```bash
+git clone https://github.com/Rilex-Solutions/Ott-resin-creations.git
+cd Ott-resin-creations
+```
 
-## Deploy on Vercel
+2. Install dependencies
+```bash
+npm install
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+3. Set up environment variables (see `.env.example`)
+```bash
+cp .env.example .env.local
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Required environment variables:
+- `DATABASE_URL` - PostgreSQL connection string
+- `RESEND_API_KEY` - Resend API key for email sending
 
-## Admin Product Upload System
+4. Run database migrations
+```bash
+npm run db:migrate
+```
 
-### ✅ Features Already Implemented:
-- **Form Fields**: Name, Description, Price, Category, Image Description, Image URL
-- **Inventory Management**: Stock status, inventory count
-- **Product Settings**: Featured product toggle
-- **Category Integration**: Fetches categories from database dynamically
-- **API Integration**: POST endpoint to save products to database
-- **Success/Error Handling**: User feedback on form submission
-- **Database Storage**: Full integration with your Drizzle/PostgreSQL setup
+5. Seed categories (optional)
+```bash
+npm run db:seed-categories
+```
 
-### 🎯 Current Workflow:
-1. Admin fills out product form
-2. Selects category from dropdown (populated from database)
-3. Adds image URL (supports Google Drive and direct image links)
-4. Sets inventory and featured status
-5. Submits to `/api/products` endpoint
-6. Product gets saved to database with category relationship
+6. Start development server
+```bash
+npm run dev
+```
 
-### 📍 Admin Access:
-- **Add Products**: `/admin/products/add`
-- **API Endpoint**: `/api/products` (POST for creating, GET for listing)
+## Available Scripts
 
-### 🚀 Planned Improvements:
-- Product management interface (edit/delete existing products)
-- Live preview of how product will look on site
-- Enhanced form validation and required field indicators
-- Improved styling and mobile experience for admin forms
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run start` - Start production server
+- `npm run lint` - Run ESLint
+- `npm test` - Run test suite
+- `npm run db:generate` - Generate Drizzle migrations
+- `npm run db:migrate` - Push migrations to database
+- `npm run db:studio` - Open Drizzle Studio GUI
+
+## Testing
+
+Tests are implemented using Jest and React Testing Library for critical user flows including cart functionality, product display, and form submissions.
+
+```bash
+npm test
+```
+
+## Admin Access
+
+Admin product management is available at `/admin/products` with the following capabilities:
+- Add new products at `/admin/products/add`
+- Edit existing products at `/admin/products/edit/[id]`
+- View all products and inventory at `/admin/products`
+- Dashboard analytics at `/admin/dashboard`
+
+## Notes
+
+- This is production code actively used by a real business
+- Client personal information has been redacted for security
+- Built with performance, accessibility, and SEO in mind
+- Responsive design tested across mobile, tablet, and desktop
+
+## License
+
+This code is shared for portfolio purposes only. All rights reserved by the client, Huberduberkid Resin Creations.
