@@ -11,14 +11,18 @@ interface ProductsSectionProps {
   loading: boolean
   variant?: 'featured' | 'regular'
   backgroundColor?: 'white' | 'gray'
+  springSaleActive?: boolean
+  salePercentage?: number
 }
 
-export default function ProductsSection({ 
-  title, 
-  products, 
-  loading, 
+export default function ProductsSection({
+  title,
+  products,
+  loading,
   variant = 'regular',
-  backgroundColor = 'white'
+  backgroundColor = 'white',
+  springSaleActive = false,
+  salePercentage = 50
 }: ProductsSectionProps) {
   if (loading) {
     return (
@@ -53,10 +57,12 @@ export default function ProductsSection({
         
         <div className={`${styles.grid} ${styles[variant]}`}>
           {products.map((product) => (
-            <ProductCard 
-              key={product.id} 
-              product={product} 
+            <ProductCard
+              key={product.id}
+              product={product}
               variant={variant}
+              springSaleActive={springSaleActive}
+              salePercentage={salePercentage}
             />
           ))}
         </div>

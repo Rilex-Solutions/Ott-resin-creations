@@ -42,6 +42,15 @@ export const customOrders = pgTable('custom_orders', {
   updatedAt: timestamp('updated_at').defaultNow().notNull()
 })
 
+// Site settings table
+export const siteSettings = pgTable('site_settings', {
+  id: uuid('id').defaultRandom().primaryKey(),
+  springSaleActive: boolean('spring_sale_active').default(false).notNull(),
+  salePercentage: decimal('sale_percentage', { precision: 5, scale: 2 }).default('50.00').notNull(),
+  createdAt: timestamp('created_at').defaultNow().notNull(),
+  updatedAt: timestamp('updated_at').defaultNow().notNull()
+})
+
 // Relations
 export const categoriesRelations = relations(categories, ({ many }) => ({
   products: many(products)

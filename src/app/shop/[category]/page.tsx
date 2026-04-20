@@ -1,6 +1,7 @@
 'use client'
 
 import { notFound } from 'next/navigation'
+import { useEffect, useState, use } from 'react'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import CategoryHero from '@/components/shop/CategoryHero'
@@ -8,7 +9,6 @@ import ProductsSection from '@/components/shop/ProductsSection'
 import CustomOrderCTA from '@/components/shop/CustomOrderCTA'
 import CustomOrderForm from '@/components/forms/CustomOrderForm'
 import { useCategoryData } from '@/hooks/useCategoryData'
-import { use } from 'react'
 import styles from './category.module.scss'
 
 interface CategoryPageProps {
@@ -17,14 +17,39 @@ interface CategoryPageProps {
   }>
 }
 
+interface SiteSettings {
+  springSaleActive: boolean
+  salePercentage: number
+}
+
 export default function CategoryPage({ params }: CategoryPageProps) {
   const { category: categorySlug } = use(params)
-  const { 
-    category, 
-    products, 
-    loading, 
-    error 
+  const {
+    category,
+    products,
+    loading,
+    error
   } = useCategoryData(categorySlug)
+
+  const [settings, setSettings] = useState<SiteSettings>({
+    springSaleActive: false,
+    salePercentage: 50
+  })
+
+  useEffect(() => {
+    async function fetchSettings() {
+      try {
+        const response = await fetch('/api/settings')
+        if (response.ok) {
+          const data = await response.json()
+          setSettings(data.settings)
+        }
+      } catch (error) {
+        console.error('Error fetching settings:', error)
+      }
+    }
+    fetchSettings()
+  }, [])
 
   // Handle error states
   if (error && error.includes('not found')) {
@@ -95,12 +120,14 @@ export default function CategoryPage({ params }: CategoryPageProps) {
       <main className={styles.mainContent}>
         <CategoryHero category={category} />
         
-        <ProductsSection 
+        <ProductsSection
           title="All Products"
           products={products}
           loading={loading}
           variant="regular"
           backgroundColor="gray"
+          springSaleActive={settings.springSaleActive}
+          salePercentage={settings.salePercentage}
         />
 
         {/* Show message if no products */}

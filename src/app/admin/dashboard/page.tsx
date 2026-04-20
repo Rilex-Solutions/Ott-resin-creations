@@ -84,8 +84,15 @@ export default function AdminDashboard() {
   // Delete state
   const [deleteStatus, setDeleteStatus] = useState<{[key: string]: 'idle' | 'deleting' | 'success' | 'error'}>({})
 
+  // Site settings state
+  const [springSaleActive, setSpringSaleActive] = useState(false)
+  const [salePercentage, setSalePercentage] = useState(50)
+  const [settingsLoading, setSettingsLoading] = useState(true)
+  const [savingSettings, setSavingSettings] = useState(false)
+
   useEffect(() => {
     fetchData()
+    fetchSettings()
   }, [])
 
   const fetchData = async () => {
@@ -113,6 +120,47 @@ export default function AdminDashboard() {
     } finally {
       setProductsLoading(false)
       setCategoriesLoading(false)
+    }
+  }
+
+  const fetchSettings = async () => {
+    try {
+      const response = await fetch('/api/settings')
+      if (response.ok) {
+        const data = await response.json()
+        setSpringSaleActive(data.settings.springSaleActive)
+        setSalePercentage(data.settings.salePercentage)
+      }
+    } catch (error) {
+      console.error('Error fetching settings:', error)
+    } finally {
+      setSettingsLoading(false)
+    }
+  }
+
+  const handleToggleSpringSale = async () => {
+    setSavingSettings(true)
+    try {
+      const response = await fetch('/api/settings', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          springSaleActive: !springSaleActive,
+          salePercentage
+        })
+      })
+
+      if (response.ok) {
+        const data = await response.json()
+        setSpringSaleActive(data.settings.springSaleActive)
+        setSalePercentage(data.settings.salePercentage)
+      }
+    } catch (error) {
+      console.error('Error updating settings:', error)
+    } finally {
+      setSavingSettings(false)
     }
   }
 
@@ -500,6 +548,39 @@ export default function AdminDashboard() {
                 <p className={styles.statLabel}>Low Stock</p>
                 <p className={styles.statValue}>{products.filter(p => p.inventoryCount <= 2).length}</p>
               </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Site Settings Section */}
+        <div className={styles.settingsCard}>
+          <div className={styles.settingsHeader}>
+            <h3 className={styles.settingsTitle}>Site Settings</h3>
+          </div>
+          <div className={styles.settingsContent}>
+            <div className={styles.settingItem}>
+              <div className={styles.settingInfo}>
+                <div className={styles.settingLabel}>
+                  <span className={styles.settingIcon}>🌸</span>
+                  Spring Sale (50% Off Site Wide)
+                </div>
+                <p className={styles.settingDescription}>
+                  Toggle the spring sale banner and discounted pricing across the entire site
+                </p>
+              </div>
+              <button
+                onClick={handleToggleSpringSale}
+                disabled={savingSettings || settingsLoading}
+                className={`${styles.toggleButton} ${springSaleActive ? styles.active : ''}`}
+              >
+                <span className={styles.toggleSlider}></span>
+              </button>
+            </div>
+            <div className={styles.settingStatus}>
+              <span className={styles.statusLabel}>Current Status:</span>
+              <span className={`${styles.statusBadge} ${springSaleActive ? styles.statusActive : styles.statusInactive}`}>
+                {springSaleActive ? '✓ Sale Active' : '✗ Sale Inactive'}
+              </span>
             </div>
           </div>
         </div>

@@ -10,6 +10,81 @@
   flex: 1;
 }
 
+// Spring Sale Banner
+.saleBanner {
+  background: linear-gradient(135deg, #FFB7D5 0%, #C7A4FF 50%, #9BB5FF 100%);
+  padding: $spacing-lg $spacing-md;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+    animation: pulse 3s ease-in-out infinite;
+  }
+
+  @media (min-width: 768px) {
+    padding: $spacing-xl $spacing-lg;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.saleBannerContent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-md;
+  position: relative;
+  z-index: 1;
+}
+
+.saleBannerIcon {
+  font-size: $font-size-2xl;
+
+  @media (min-width: 768px) {
+    font-size: $font-size-3xl;
+  }
+}
+
+.saleBannerTitle {
+  font-size: $font-size-xl;
+  font-weight: 700;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  margin: 0;
+
+  @media (min-width: 768px) {
+    font-size: $font-size-3xl;
+  }
+}
+
+.saleBannerSubtext {
+  font-size: $font-size-base;
+  color: rgba(255, 255, 255, 0.95);
+  margin: $spacing-xs 0 0;
+  position: relative;
+  z-index: 1;
+  font-weight: 500;
+
+  @media (min-width: 768px) {
+    font-size: $font-size-lg;
+  }
+}
+
 // Hero Section with Background Image
 .heroSection {
   background-image: url('/hero-otter-artist-hd.png');

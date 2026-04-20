@@ -1,5 +1,6 @@
 'use client'
 
+import { useEffect, useState } from 'react'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import HeroSection from '@/components/shop/HeroSection'
@@ -10,6 +11,11 @@ import ScrollToTop from '@/components/ui/ScrollToTop'
 import { useShopData } from '@/hooks/useShopData'
 import styles from './shop.module.scss'
 
+interface SiteSettings {
+  springSaleActive: boolean
+  salePercentage: number
+}
+
 export default function ShopPage() {
   const {
     products,
@@ -19,6 +25,29 @@ export default function ShopPage() {
     loading,
     error
   } = useShopData()
+
+  const [settings, setSettings] = useState<SiteSettings>({
+    springSaleActive: false,
+    salePercentage: 50
+  })
+  const [settingsLoading, setSettingsLoading] = useState(true)
+
+  useEffect(() => {
+    async function fetchSettings() {
+      try {
+        const response = await fetch('/api/settings')
+        if (response.ok) {
+          const data = await response.json()
+          setSettings(data.settings)
+        }
+      } catch (error) {
+        console.error('Error fetching settings:', error)
+      } finally {
+        setSettingsLoading(false)
+      }
+    }
+    fetchSettings()
+  }, [])
 
   // Show error state if needed
   if (error) {

@@ -14,6 +14,8 @@ interface ProductCardProps {
   featured?: boolean
   className?: string
   onAddToCart?: (productId: number) => void
+  springSaleActive?: boolean
+  salePercentage?: number
 }
 
 export default function ProductCard({
@@ -25,9 +27,19 @@ export default function ProductCard({
   inStock,
   featured = false,
   className = '',
-  onAddToCart
+  onAddToCart,
+  springSaleActive = false,
+  salePercentage = 50
 }: ProductCardProps) {
   const [isAddingToCart, setIsAddingToCart] = useState(false)
+
+  // Calculate sale price
+  const calculateSalePrice = (originalPrice: string): string => {
+    const numericPrice = parseFloat(originalPrice.replace(/[^0-9.]/g, ''))
+    if (isNaN(numericPrice)) return originalPrice
+    const salePrice = numericPrice * (1 - salePercentage / 100)
+    return `$${salePrice.toFixed(2)}`
+  }
 
   const handleAddToCart = async () => {
     if (!inStock || isAddingToCart) return
@@ -89,10 +101,23 @@ export default function ProductCard({
         
         {/* Price and Add to Cart */}
         <div className="flex justify-between items-center mt-auto">
-          <span className="text-2xl font-bold text-[#9BB5FF]">
-            {price}
-          </span>
-          
+          <div className="flex flex-col">
+            {springSaleActive ? (
+              <>
+                <span className="text-lg font-semibold text-[#8B7B94] line-through">
+                  {price}
+                </span>
+                <span className="text-2xl font-bold text-[#E8378B]">
+                  {calculateSalePrice(price)}
+                </span>
+              </>
+            ) : (
+              <span className="text-2xl font-bold text-[#9BB5FF]">
+                {price}
+              </span>
+            )}
+          </div>
+
           <button
             onClick={handleAddToCart}
             disabled={!inStock || isAddingToCart}

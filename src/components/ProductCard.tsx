@@ -21,6 +21,8 @@ interface Product {
 interface ProductCardProps {
   product: Product
   variant: 'featured' | 'regular'
+  springSaleActive?: boolean
+  salePercentage?: number
 }
 
 // Helper function to convert Google Photos URLs to direct image URLs
@@ -68,9 +70,22 @@ function getDirectImageUrl(googlePhotosUrl: string | null): string | null {
   return googlePhotosUrl
 }
 
-export default function ProductCard({ product, variant }: ProductCardProps) {
+export default function ProductCard({
+  product,
+  variant,
+  springSaleActive = false,
+  salePercentage = 50
+}: ProductCardProps) {
   const { addToCart, isInCart } = useCart()
   const [isModalOpen, setIsModalOpen] = useState(false)
+
+  // Calculate sale price
+  const calculateSalePrice = (originalPrice: string): string => {
+    const numericPrice = parseFloat(originalPrice.replace(/[^0-9.]/g, ''))
+    if (isNaN(numericPrice)) return originalPrice
+    const salePrice = numericPrice * (1 - salePercentage / 100)
+    return `$${salePrice.toFixed(2)}`
+  }
 
   const handleAddToCart = () => {
     if (!product.inStock) return
@@ -145,8 +160,17 @@ export default function ProductCard({ product, variant }: ProductCardProps) {
         <p className={styles.description}>{product.description}</p>
         
         <div className={styles.footer}>
-          <span className={styles.price}>{product.price}</span>
-          <button 
+          <div className={styles.priceContainer}>
+            {springSaleActive ? (
+              <>
+                <span className={styles.originalPrice}>{product.price}</span>
+                <span className={styles.salePrice}>{calculateSalePrice(product.price)}</span>
+              </>
+            ) : (
+              <span className={styles.price}>{product.price}</span>
+            )}
+          </div>
+          <button
             onClick={handleAddToCart}
             className={`${styles.addButton} ${getButtonClass()}`}
             disabled={!product.inStock || productInCart}

@@ -1563,3 +1563,135 @@
   max-width: 16px !important;
   flex-shrink: 0;
 }
+
+/* Site Settings Card */
+.settingsCard {
+  background: white;
+  border-radius: 0.75rem;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+  margin-top: 1.5rem;
+  overflow: hidden;
+}
+
+.settingsHeader {
+  padding: 1.5rem;
+  border-bottom: 1px solid #E5E7EB;
+  background: linear-gradient(135deg, #F8F5FF 0%, #F0FDF9 100%);
+}
+
+.settingsTitle {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #6B5B73;
+  margin: 0;
+}
+
+.settingsContent {
+  padding: 1.5rem;
+}
+
+.settingItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.settingInfo {
+  flex: 1;
+}
+
+.settingLabel {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 0.25rem;
+}
+
+.settingIcon {
+  font-size: 1.5rem;
+}
+
+.settingDescription {
+  font-size: 0.875rem;
+  color: #6B7280;
+  margin: 0;
+}
+
+.toggleButton {
+  position: relative;
+  width: 52px;
+  height: 28px;
+  background: #D1D5DB;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  flex-shrink: 0;
+
+  &:hover {
+    background: #9CA3AF;
+  }
+
+  &.active {
+    background: linear-gradient(135deg, #C7A4FF 0%, #9BB5FF 100%);
+
+    .toggleSlider {
+      transform: translateX(24px);
+    }
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.toggleSlider {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 24px;
+  height: 24px;
+  background: white;
+  border-radius: 50%;
+  transition: transform 0.3s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.settingStatus {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding-top: 1rem;
+  border-top: 1px solid #E5E7EB;
+}
+
+.statusLabel {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #6B7280;
+}
+
+.statusBadge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 600;
+
+  &.statusActive {
+    background: #D1FAE5;
+    color: #065F46;
+  }
+
+  &.statusInactive {
+    background: #FEE2E2;
+    color: #991B1B;
+  }
+}

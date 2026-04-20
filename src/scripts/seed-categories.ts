@@ -206,6 +206,30 @@ const categoryData = [
     productType: 'resin',
     featured: true
   },
+  {
+    slug: 'jewelry-organizer',
+    name: 'Jewelry Organizer',
+    description: 'Beautiful resin organizers to keep your jewelry and accessories tidy',
+    hero: 'Organize your treasures in style with handcrafted resin jewelry organizers',
+    productType: 'resin',
+    featured: false
+  },
+  {
+    slug: 'gifts-for-him',
+    name: 'Gifts for Him',
+    description: 'Unique resin gifts perfect for the special men in your life',
+    hero: 'Find the perfect handcrafted gift for him',
+    productType: 'resin',
+    featured: false
+  },
+  {
+    slug: 'misc',
+    name: 'Misc.',
+    description: 'Unique resin creations that don\'t fit in a single category',
+    hero: 'Discover one-of-a-kind resin pieces',
+    productType: 'resin',
+    featured: false
+  },
 
   // Crochet Categories
   {
